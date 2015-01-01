@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
+#include "GameController.h"
 
 USING_NS_CC;
 
@@ -24,24 +25,23 @@ void AppDelegate::initGLContextAttrs()
 
 bool AppDelegate::applicationDidFinishLaunching() {
     // initialize director
+
+	setResouseSearchPath();
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-        glview = GLViewImpl::create("My Game");
+        glview = GLViewImpl::create("Break out");
         director->setOpenGLView(glview);
+		glview->setFrameSize(480, 800);
     }
 
     // turn on display FPS
     director->setDisplayStats(true);
-
+	glview->setDesignResolutionSize(480, 800, ResolutionPolicy::FIXED_WIDTH);
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
 
-    // create a scene. it's an autorelease object
-    auto scene = HelloWorld::createScene();
-
-    // run
-    director->runWithScene(scene);
+	GameController::getInstance()->goState(GAME_STATE::GAME);
 
     return true;
 }
@@ -60,4 +60,14 @@ void AppDelegate::applicationWillEnterForeground() {
 
     // if you use SimpleAudioEngine, it must resume here
     // SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
+}
+
+void AppDelegate::setResouseSearchPath()
+{
+	std::vector<std::string> paths;
+	paths.push_back("fonts");
+	paths.push_back("images");
+	paths.push_back("sounds");
+	paths.push_back("ui");
+	FileUtils::getInstance()->setSearchPaths(paths);
 }
