@@ -41,7 +41,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
 
-	GameController::getInstance()->goState(GAME_STATE::GAME);
+	GameController::getInstance()->goState(GAME_STATE::LOGO);
 
     return true;
 }
@@ -64,10 +64,10 @@ void AppDelegate::applicationWillEnterForeground() {
 
 void AppDelegate::setResouseSearchPath()
 {
-	std::vector<std::string> paths;
-	paths.push_back("fonts");
-	paths.push_back("images");
-	paths.push_back("sounds");
-	paths.push_back("ui");
+	std::vector<std::string> paths;
+	paths.push_back("fonts");
+	paths.push_back("images");
+	paths.push_back("sounds");
+	paths.push_back("ui");
 	FileUtils::getInstance()->setSearchPaths(paths);
 }

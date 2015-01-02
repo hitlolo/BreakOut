@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "GameData.h"
 #include "GameLogo.h"
+#include "GameMenu.h"
 #include "test.h"
 
 USING_NS_CC;
@@ -12,11 +13,11 @@ class GameController
 {
 
 public:
+	static GameController* getInstance();
+
 	GameController();
 
 	~GameController();
-
-	static GameController* getInstance();
 
 	void goState(const GAME_STATE = GAME_STATE::LOGO);
 
@@ -28,6 +29,8 @@ private:
 	CC_SYNTHESIZE(GAME_STATE, curGameState, CurGameState);
 
 	CC_SYNTHESIZE(Scene*, curScene, CurScene);
+
+private:
 
 	void logo();
 

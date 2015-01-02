@@ -38,7 +38,7 @@ void GameController::goState(const GAME_STATE state)
 		map();
 		break;
 	case GAME_STATE::GAME:
-		test();
+		//test();
 		//game();
 		break;
 	case GAME_STATE::OVER:
@@ -55,8 +55,10 @@ void GameController::logo()
 
 void GameController::menu()
 {
-
+	auto menu = GameMenu::createScene();
+	this->nextScene(menu);
 }
+
 void GameController::map()
 {
 

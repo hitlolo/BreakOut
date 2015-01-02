@@ -13,6 +13,18 @@
     <Filter Include="classes">
       <UniqueIdentifier>{9079a777-614f-41f0-b1c5-9759ca246e49}</UniqueIdentifier>
     </Filter>
+    <Filter Include="classes\menu">
+      <UniqueIdentifier>{8fe6c87e-bf8a-4cbe-9744-b8169a3a2474}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\logo">
+      <UniqueIdentifier>{f9fbed49-96b2-483e-baef-0df7ddc55164}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\controller">
+      <UniqueIdentifier>{54536ca7-1681-40d5-872c-bdb5b4a7c00b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\utilities">
+      <UniqueIdentifier>{6dc33b35-6a96-4c2d-8ab9-09d5f54a62df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -24,20 +36,23 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GameController.cpp">
-      <Filter>classes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameLogo.cpp">
-      <Filter>classes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameMenu.cpp">
-      <Filter>classes</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\test.cpp">
       <Filter>classes</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GLES-Render.cpp">
       <Filter>classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMenu.cpp">
+      <Filter>classes\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameLogo.cpp">
+      <Filter>classes\logo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameController.cpp">
+      <Filter>classes\controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameSound.cpp">
+      <Filter>classes\utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -50,23 +65,29 @@
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GameController.h">
-      <Filter>classes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameData.h">
-      <Filter>classes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameLogo.h">
-      <Filter>classes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameMenu.h">
-      <Filter>classes</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\test.h">
       <Filter>classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GLES-Render.h">
       <Filter>classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMenu.h">
+      <Filter>classes\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameLogo.h">
+      <Filter>classes\logo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameData.h">
+      <Filter>classes\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameController.h">
+      <Filter>classes\controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SoundDelegate.h">
+      <Filter>classes\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameSound.h">
+      <Filter>classes\utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -17,12 +17,17 @@ bool GameLogo::init()
 	}
 	//init
 	
-	addLogo();
+	startLoading();
 
 	return true;
 }
 
-void GameLogo::addLogo()
+void GameLogo::startLoading()
+{
+	this->addLogoAndLoad();
+}
+
+void GameLogo::addLogoAndLoad()
 {
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	auto originPoint = Director::getInstance()->getVisibleOrigin();
@@ -37,41 +42,46 @@ void GameLogo::addLogo()
 
 void  GameLogo::loadRes()
 {
-	Director::getInstance()->getTextureCache()->addImageAsync("spriteSheet.png", CC_CALLBACK_1(GameLogo::loadImageOver, this));
+	this->loadPNG();
+	this->loadMusicAndEffects();
+	this->overLoading();
 }
 
 
-void GameLogo::loadImageOver(Texture2D* texture)
+
+void  GameLogo::loadPNG()
+{
+	Director::getInstance()->getTextureCache()->addImageAsync("spriteSheet.png", CC_CALLBACK_1(GameLogo::loadPNGOver, this));
+}
+
+
+void GameLogo::loadPNGOver(Texture2D* texture)
 {
 
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("spriteSheet.plist", texture);
 
-	this->loadMusic();
-
-	this->startGame();
 }
 
-void GameLogo::loadMusic()
+void GameLogo::loadMusicAndEffects()
 {
 
 }
+
+void GameLogo::overLoading()
+{
+
+	CallFunc* startGame = CallFunc::create(std::bind(&GameLogo::startGame, this));
+	this->getChildByName("logo")->runAction(Sequence::create(FadeOut::create(2.0f), startGame, nullptr));
+}
+
 
 void GameLogo::startGame()
 {
-
-	CallFunc* nextScene = CallFunc::create(std::bind(&GameLogo::nextScene, this));
-	this->getChildByName("logo")->runAction(Sequence::create(FadeOut::create(2.0f), nextScene, nullptr));
-}
-
-
-void GameLogo::nextScene()
-{
-	GameController::getInstance()->goState(GAME_STATE::GAME);
+	GameController::getInstance()->goState(GAME_STATE::MENU);
 }
 
 void GameLogo::onExit()
 {
-
 	Layer::onExit();
 	this->stopAllActions();
 }

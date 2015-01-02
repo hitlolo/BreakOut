@@ -16,14 +16,18 @@ public:
 	CREATE_FUNC(GameLogo);
 
 private:
-	void addLogo();
+	void startLoading();
 
 	void loadRes();
 
-	void loadImageOver(Texture2D* texture);
-	void loadMusic();
+	void addLogoAndLoad();
+
+	void loadPNG();
+
+	void loadPNGOver(Texture2D* texture);
+	void loadMusicAndEffects();
+	void overLoading();
 	void startGame();
-	void nextScene();
 	virtual void onExit() override;
 };
 
