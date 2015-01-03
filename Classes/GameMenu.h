@@ -5,6 +5,7 @@
 #include "ui/CocosGUI.h"
 #include "cocostudio/CocoStudio.h"
 #include "GameSound.h"
+#include "GameController.h"
 
 USING_NS_CC;
 USING_NS_UI;

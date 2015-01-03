@@ -28,7 +28,6 @@ private:
 	void loadMusicAndEffects();
 	void overLoading();
 	void startGame();
-	virtual void onExit() override;
 };
 
 #endif

@@ -32,12 +32,12 @@ bool AppDelegate::applicationDidFinishLaunching() {
     if(!glview) {
         glview = GLViewImpl::create("Break out");
         director->setOpenGLView(glview);
-		glview->setFrameSize(480, 800);
+		glview->setFrameSize(288, 512);
     }
 
     // turn on display FPS
     director->setDisplayStats(true);
-	glview->setDesignResolutionSize(480, 800, ResolutionPolicy::FIXED_WIDTH);
+	glview->setDesignResolutionSize(288, 512, ResolutionPolicy::SHOW_ALL);
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
 

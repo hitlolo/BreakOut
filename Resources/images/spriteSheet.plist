@@ -59,6 +59,105 @@
 				<key>sourceSize</key>
 				<string>{190,49}</string>
 			</dict>
+			<key>Ball_Blue.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{49,640},{16,16}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{16,16}</string>
+			</dict>
+			<key>Ball_Brown.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{49,656},{16,16}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{16,16}</string>
+			</dict>
+			<key>Ball_Darkgray.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{49,672},{16,16}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{16,16}</string>
+			</dict>
+			<key>Ball_Green.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{49,688},{16,16}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{16,16}</string>
+			</dict>
+			<key>Ball_LightGray.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{49,704},{16,16}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{16,16}</string>
+			</dict>
+			<key>Ball_Orange.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{49,720},{16,16}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{16,16}</string>
+			</dict>
+			<key>Ball_Purple.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{49,736},{16,16}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{16,16}</string>
+			</dict>
+			<key>Ball_Red.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{49,752},{16,16}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{16,16}</string>
+			</dict>
+			<key>Ball_Yellow.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{49,768},{16,16}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{16,16}</string>
+			</dict>
 		</dict>
 		<key>metadata</key>
 		<dict>

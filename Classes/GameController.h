@@ -5,6 +5,7 @@
 #include "GameData.h"
 #include "GameLogo.h"
 #include "GameMenu.h"
+#include "GameWorld.h"
 #include "test.h"
 
 USING_NS_CC;

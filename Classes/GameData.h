@@ -11,6 +11,8 @@ public: virtual void set##funName(varType var){ varName = var; }
 #define GET_BUTTON(varRoot,varName)\
 varName = dynamic_cast<Button*>(varRoot->getChildByName(#varName))
 
+#define CENTER Point(Director::getInstance()->getVisibleSize().width/2,Director::getInstance()->getVisibleSize().height/2)
+
 typedef enum class game_state
 {
 	LOGO = 0,

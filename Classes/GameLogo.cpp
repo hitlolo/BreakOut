@@ -79,9 +79,3 @@ void GameLogo::startGame()
 {
 	GameController::getInstance()->goState(GAME_STATE::MENU);
 }
-
-void GameLogo::onExit()
-{
-	Layer::onExit();
-	this->stopAllActions();
-}

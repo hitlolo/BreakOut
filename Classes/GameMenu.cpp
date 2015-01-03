@@ -34,6 +34,7 @@ GameMenu::~GameMenu()
 
 }
 
+
 void GameMenu::addMenu()
 {
 	auto node = CSLoader::createNode("menuScene.csb");
@@ -74,7 +75,8 @@ void GameMenu::addButtonListeners()
 
 void GameMenu::startGame(Ref* sender)
 {
-
+	//test
+	GameController::getInstance()->goState(GAME_STATE::GAME);
 }
 
 void GameMenu::showOptions(Ref* sender)

@@ -39,7 +39,7 @@ void GameController::goState(const GAME_STATE state)
 		break;
 	case GAME_STATE::GAME:
 		//test();
-		//game();
+		game(0);
 		break;
 	case GAME_STATE::OVER:
 		over();
@@ -66,7 +66,8 @@ void GameController::map()
 
 void GameController::game(const unsigned int map)
 {
-
+	auto game = GameWorld::create();
+	this->nextScene(game);
 }
 
 void GameController::over()
