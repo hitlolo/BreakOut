@@ -23,9 +23,9 @@ bool test::init()
 void test::initPhysics()
 {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	this->_ball = Sprite::create("ball-hd.png");
-	_ball->setPosition(100, 300);
-	this->addChild(_ball);
+	//this->_ball = Sprite::create("ball-hd.png");
+	//_ball->setPosition(100, 300);
+	//this->addChild(_ball);
 
 	b2Vec2 gravity = b2Vec2(0, -10.0f);
 	_world = new b2World(gravity);
@@ -43,7 +43,7 @@ void test::initPhysics()
 	b2BodyDef bodyDef;
 	bodyDef.type = b2BodyType::b2_dynamicBody;
 	bodyDef.position.Set(100 / PTM_RATIO, 300 / PTM_RATIO);
-	bodyDef.userData = _ball;
+	//bodyDef.userData = _ball;
 	_body = _world->CreateBody(&bodyDef);
 
 	b2CircleShape circle;
@@ -57,7 +57,7 @@ void test::initPhysics()
 	_body->CreateFixture(&ballShapeDef);
 
 	b2BodyDef groundBodyDef;
-	groundBodyDef.position.Set(0, 0);
+	groundBodyDef.position.Set(0, 2);
 
 	b2Body *groundBody = _world->CreateBody(&groundBodyDef);
 	b2EdgeShape groundEdge;
@@ -101,7 +101,8 @@ void test::draw(Renderer *renderer, const Mat4 &transform, uint32_t flags)
 void test::update(float dt)
 {
 	_world->Step(dt, 10, 10);
-	for (b2Body *b = _world->GetBodyList(); b; b = b->GetNext()) {
+	for (b2Body *b = _world->GetBodyList(); b; b = b->GetNext()) 
+	{
 		if (b->GetUserData() != NULL) {
 			Sprite *ballData = (Sprite *)b->GetUserData();
 			ballData->setPosition(b->GetPosition().x * PTM_RATIO,

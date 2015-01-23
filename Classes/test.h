@@ -3,8 +3,8 @@
 #include "cocos2d.h"
 #include "Box2D\Box2D.h"
 #include "GLES-Render.h"
-
-#define PTM_RATIO 32.0
+#include "GameData.h"
+//
 
 USING_NS_CC;
 

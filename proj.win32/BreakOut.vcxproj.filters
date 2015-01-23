@@ -39,9 +39,6 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\test.cpp">
-      <Filter>classes</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GLES-Render.cpp">
       <Filter>classes</Filter>
     </ClCompile>
@@ -63,6 +60,21 @@
     <ClCompile Include="..\Classes\GameBall.cpp">
       <Filter>classes\game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamePaddle.cpp">
+      <Filter>classes\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ShapeCache.cpp">
+      <Filter>classes\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PhysicsSprite.cpp">
+      <Filter>classes\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameScene.cpp">
+      <Filter>classes\game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\test.cpp">
+      <Filter>classes\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -74,9 +86,6 @@
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\test.h">
-      <Filter>classes</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GLES-Render.h">
       <Filter>classes</Filter>
     </ClInclude>
@@ -85,9 +94,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameLogo.h">
       <Filter>classes\logo</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameData.h">
-      <Filter>classes\controller</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameController.h">
       <Filter>classes\controller</Filter>
@@ -102,6 +108,24 @@
       <Filter>classes\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameBall.h">
+      <Filter>classes\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameData.h">
+      <Filter>classes\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamePaddle.h">
+      <Filter>classes\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ShapeCache.h">
+      <Filter>classes\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PhysicsSprite.h">
+      <Filter>classes\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameScene.h">
+      <Filter>classes\game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\test.h">
       <Filter>classes\game</Filter>
     </ClInclude>
   </ItemGroup>

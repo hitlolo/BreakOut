@@ -66,7 +66,7 @@ void GameController::map()
 
 void GameController::game(const unsigned int map)
 {
-	auto game = GameWorld::create();
+	auto game = GameScene::create();
 	this->nextScene(game);
 }
 
@@ -77,8 +77,8 @@ void GameController::over()
 
 void GameController::test()
 {
-	auto test = test::createScene();
-	this->nextScene(test);
+	auto game = test::createScene();
+	this->nextScene(game);
 }
 
 void GameController::nextScene(Scene* next_scene)
