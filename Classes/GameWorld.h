@@ -10,12 +10,14 @@
 #include "GamePaddle.h"
 #include "Box2D\Box2D.h"
 #include "GLES-Render.h"
+#include "PhysicsProtocol.h"
+#include "GB2ShapeCache-x.h"
 
 
 USING_NS_CC;
 USING_NS_UI;
 
-class GameWorld :public Layer
+class GameWorld :public Layer, public PhysicsProtocol
 {
 public:
 	static GameWorld* create(int);
@@ -32,6 +34,8 @@ public:
 
 	virtual void onEnter() override;
 
+	b2World* getPhysicsWorld() const;
+
 private:
 	void addBackground();
 
@@ -41,13 +45,18 @@ private:
 	//init with the TMX level data
 	bool initLevelData(int);
 
+	void addBall();
+
+	void addPaddle();
+
 private:
 	//win SIZE
 	Size          visibleSize;
 	Point         originPoint;
 	//Physics
-	b2World       *_world;
-	GLESDebugDraw *_debugDraw;
+	b2World       *m_world;
+	GLESDebugDraw *m_debugDraw;
+	GameBall      *m_ball;
 
 };
 

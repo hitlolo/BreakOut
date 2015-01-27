@@ -13,7 +13,6 @@ varName = dynamic_cast<Button*>(varRoot->getChildByName(#varName))
 
 #define CENTER Point(Director::getInstance()->getVisibleSize().width/2,Director::getInstance()->getVisibleSize().height/2)
 
-#define PTM_RATIO 32.0
 #define PHYSICSBODY_MATERIAL_BREAKOUT  PhysicsMaterial(0,1,0)
 typedef enum class game_state
 {

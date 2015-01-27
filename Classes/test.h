@@ -4,7 +4,7 @@
 #include "Box2D\Box2D.h"
 #include "GLES-Render.h"
 #include "GameData.h"
-//
+#include "PhysicsProtocol.h"
 
 USING_NS_CC;
 

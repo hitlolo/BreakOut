@@ -1,19 +1,42 @@
 #include "GameBall.h"
 
+GameBall::GameBall(b2World* world)
+{
+	m_world = world;
+}
+
+GameBall::~GameBall()
+{
+
+}
+
+GameBall* GameBall::create(b2World* world)
+{
+	GameBall * ret = new (std::nothrow) GameBall(world);
+	if (ret && ret->init())
+	{
+		ret->autorelease();
+	}
+	else
+	{
+		CC_SAFE_DELETE(ret);
+	}
+	return ret;
+}
+
 bool GameBall::init()
 {
 	if (!Sprite::init())
 	{
 		return false;
 	}
-	initSelf();
-	initPhysicsAttributes();
+	beReady();
 	return true;
 }
 
 
 
-void  GameBall::initSelf()
+void  GameBall::initSelfImage()
 {
 	std::string file_name = selectRandomColor();
 	this->initWithSpriteFrameName(file_name);
@@ -46,17 +69,32 @@ std::string GameBall::selectRandomColor()
 void  GameBall::initPhysicsAttributes()
 {
 
-	PhysicsBody *body = PhysicsBody::create();
-	PhysicsShape *shape = PhysicsShapeCircle::create(8.0f, PHYSICSBODY_MATERIAL_BREAKOUT);
-//	shape->setDensity(1.0f);
-//	shape->setRestitution(1.0f);
-//	shape->setFriction(0.0f);
-	body->addShape(shape);
-//	body->setDynamic(true);
-//	body->setGravityEnable(true);
-	this->setPhysicsBody(body);
+	b2BodyDef bodyDef;
+	bodyDef.type = b2BodyType::b2_dynamicBody;
+	bodyDef.position.Set(  ptm(144), ptm(256));
+	auto body = m_world->CreateBody(&bodyDef);
 
-	Vect force = Vect(50, 340);
-//	body->setVelocity(force);
-	body->applyImpulse(force);
+	//b2CircleShape circle;
+	//circle.m_radius = ptm(9.0) ;
+
+	//b2FixtureDef ballShapeDef;
+	//ballShapeDef.shape = &circle;
+	//ballShapeDef.density = 0.0f;
+	//ballShapeDef.friction = 0.0f;
+	//ballShapeDef.restitution = 1.0f;
+	//body->CreateFixture(&ballShapeDef);
+	GB2ShapeCache::getInstancs()->addFixturesToBody(body, "Bar4");
+	this->setB2Body(body);
+	this->setPTMRatio(PTM_RATIO);
+}
+
+void GameBall::beReady()
+{
+	//initSelfImage();
+	initPhysicsAttributes();
+}
+
+void GameBall::startGame()
+{
+
 }

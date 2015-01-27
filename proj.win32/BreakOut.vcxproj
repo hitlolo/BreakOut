@@ -145,8 +145,10 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\GamePaddle.cpp" />
     <ClCompile Include="..\Classes\GameScene.cpp" />
     <ClCompile Include="..\Classes\GameSound.cpp" />
+    <ClCompile Include="..\Classes\GB2ShapeCache-x.cpp" />
     <ClCompile Include="..\Classes\GLES-Render.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\PhysicsProtocol.cpp" />
     <ClCompile Include="..\Classes\PhysicsSprite.cpp" />
     <ClCompile Include="..\Classes\ShapeCache.cpp" />
     <ClCompile Include="..\Classes\GameWorld.cpp" />
@@ -160,6 +162,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\GameScene.h" />
     <ClInclude Include="..\Classes\GameSound.h" />
     <ClInclude Include="..\Classes\GameWorld.h" />
+    <ClInclude Include="..\Classes\GB2ShapeCache-x.h" />
+    <ClInclude Include="..\Classes\PhysicsProtocol.h" />
     <ClInclude Include="..\Classes\PhysicsSprite.h" />
     <ClInclude Include="..\Classes\ShapeCache.h" />
     <ClInclude Include="..\Classes\SoundDelegate.h" />
