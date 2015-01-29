@@ -22,11 +22,13 @@ bool GameWorld::init(int level)
 		return false;
 	}
 	
-	//addBackground();
+	addBackground();
+	addTouch();
 	createPhysicsWorld();
 	createEdgeBox();
 	initLevelData(level);
 	addBall();
+	addPaddle();
 	return true;
 	
 
@@ -43,10 +45,14 @@ GameWorld::GameWorld()
 : m_world(nullptr)
 , m_debugDraw(nullptr)
 , m_ball(nullptr)
+, m_paddle(nullptr)
+, m_maxSpeed(20)
 {
 	visibleSize = Director::getInstance()->getVisibleSize();
 	originPoint = Director::getInstance()->getVisibleOrigin();
 
+	isStarted = false;
+	
 	GB2ShapeCache::getInstancs()->addShapesWithFile("breakout.plist");
 }
 
@@ -100,27 +106,32 @@ void GameWorld::createEdgeBox()
 {
 	b2BodyDef groundBodyDef;
 	groundBodyDef.position.Set(0, 0);
+	groundBodyDef.angularDamping = 0.0f;
+	groundBodyDef.linearDamping = 0.0f;
+	std::string *ground = new std::string("ground");
+	groundBodyDef.userData = ground;
 
-	b2Body *groundBody = m_world->CreateBody(&groundBodyDef);
+	m_groundBody = m_world->CreateBody(&groundBodyDef);
 	b2EdgeShape groundEdge;
 	b2FixtureDef boxShapeDef;
 	boxShapeDef.shape = &groundEdge;
-
+	boxShapeDef.restitution = 1;
+	boxShapeDef.friction = 0;
 	//wall definitions
 	//BOTTOM
 	groundEdge.Set(b2Vec2(0, 0), b2Vec2( ptm(visibleSize.width) , 0));
-	groundBody->CreateFixture(&boxShapeDef);
+	m_groundBody->CreateFixture(&boxShapeDef);
 	// top
 	groundEdge.Set(b2Vec2(0, ptm(visibleSize.height)), b2Vec2( ptm(visibleSize.width), ptm(visibleSize.height) ));
-	groundBody->CreateFixture(&boxShapeDef);
+	m_groundBody->CreateFixture(&boxShapeDef);
 
 	// left
 	groundEdge.Set(b2Vec2(0, 0), b2Vec2(0, ptm(visibleSize.height)));
-	groundBody->CreateFixture(&boxShapeDef);
+	m_groundBody->CreateFixture(&boxShapeDef);
 
 	// right
 	groundEdge.Set(b2Vec2( ptm(visibleSize.width), 0), b2Vec2( ptm(visibleSize.width), ptm(visibleSize.height)));
-	groundBody->CreateFixture(&boxShapeDef);
+	m_groundBody->CreateFixture(&boxShapeDef);
 	
 }
 
@@ -137,7 +148,15 @@ void GameWorld::addBall()
 
 void GameWorld::addPaddle()
 {
+	m_paddle = GamePaddle::create(m_world,m_groundBody);
+	this->addChild(m_paddle);
+}
 
+void GameWorld::addTouch()
+{
+	auto touchLayer = TouchLayer::create();
+	touchLayer->setDelegator(this);
+	this->addChild(touchLayer);
 }
 
 #if 1
@@ -159,12 +178,44 @@ void GameWorld::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4& transform
 void GameWorld::update(float dt)
 {
 	m_world->Step(dt, 10, 10);
-	/*for (b2Body *b = _world->GetBodyList(); b; b = b->GetNext()) {
-		if (b->GetUserData() != NULL) {
-			Sprite *ballData = (Sprite *)b->GetUserData();
-			ballData->setPosition(b->GetPosition().x * PTM_RATIO,
-				b->GetPosition().y * PTM_RATIO);
-			ballData->setRotation(-1 * CC_RADIANS_TO_DEGREES(b->GetAngle()));
-		}
-	}*/
+	m_world->ClearForces();
+	b2Vec2 velocity = m_ball->getB2Body()->GetLinearVelocity();
+	float32 speed = velocity.Length();
+	if (speed > m_maxSpeed) {
+		m_ball->getB2Body()->SetLinearDamping(0.5);
+	}
+	else if (speed < m_maxSpeed) {
+		m_ball->getB2Body()->SetLinearDamping(0.0);
+	}
+
+	//float angle =	m_ball->getB2Body()->GetAngle();
+	////CCLOG("ANGLE:%f",angle);
+}
+
+void GameWorld::onGameStart()
+{
+	if (m_ball->getStarted())
+		return;
+	else
+	{
+		m_ball->startGame();
+		this->setStarted(true);
+	}
+}
+
+void GameWorld::onPaddleBeginMove(const std::vector<Touch*>& touches)
+{
+	m_paddle->onBeginMove(touches);
+}
+void GameWorld::onPaddleMove(const std::vector<Touch*>& touches)
+{
+	m_paddle->onMove(touches);
+}
+void GameWorld::onPaddleEndMove()
+{
+	m_paddle->onMoveEnd();
+}
+void GameWorld::onPaddleCancelMove()
+{
+	m_paddle->onMoveCancel();
 }

@@ -1,6 +1,7 @@
 #include "GameBall.h"
 
 GameBall::GameBall(b2World* world)
+	:isStarted(false)
 {
 	m_world = world;
 }
@@ -71,30 +72,27 @@ void  GameBall::initPhysicsAttributes()
 
 	b2BodyDef bodyDef;
 	bodyDef.type = b2BodyType::b2_dynamicBody;
-	bodyDef.position.Set(  ptm(144), ptm(256));
+	bodyDef.linearDamping = 0.0f;
+	bodyDef.angularDamping = 0.0f;
+	bodyDef.fixedRotation = true;
+	bodyDef.position.Set(  ptm(144), ptm(64) );
 	auto body = m_world->CreateBody(&bodyDef);
 
-	//b2CircleShape circle;
-	//circle.m_radius = ptm(9.0) ;
-
-	//b2FixtureDef ballShapeDef;
-	//ballShapeDef.shape = &circle;
-	//ballShapeDef.density = 0.0f;
-	//ballShapeDef.friction = 0.0f;
-	//ballShapeDef.restitution = 1.0f;
-	//body->CreateFixture(&ballShapeDef);
-	GB2ShapeCache::getInstancs()->addFixturesToBody(body, "Bar4");
+	GB2ShapeCache::getInstancs()->addFixturesToBody(body, "Ball_Red");
 	this->setB2Body(body);
 	this->setPTMRatio(PTM_RATIO);
+	this->setIgnoreBodyRotation(false);
 }
 
 void GameBall::beReady()
 {
-	//initSelfImage();
+	initSelfImage();
 	initPhysicsAttributes();
 }
 
 void GameBall::startGame()
 {
-
+	this->getB2Body()->SetLinearVelocity(b2Vec2(0, 20));
+	this->getB2Body()->SetAngularVelocity(5.0f);
+	this->setStarted(true);
 }

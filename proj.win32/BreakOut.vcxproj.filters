@@ -81,6 +81,9 @@
     <ClCompile Include="..\Classes\GB2ShapeCache-x.cpp">
       <Filter>classes\utilities</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\TouchLayer.cpp">
+      <Filter>classes\utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -138,6 +141,12 @@
       <Filter>classes\game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GB2ShapeCache-x.h">
+      <Filter>classes\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TouchProtocol.h">
+      <Filter>classes\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TouchLayer.h">
       <Filter>classes\utilities</Filter>
     </ClInclude>
   </ItemGroup>

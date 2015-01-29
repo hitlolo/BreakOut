@@ -21,6 +21,8 @@ public:
 	GameBall(b2World*);
 	
 	~GameBall();
+
+	void startGame();
 private:
 	std::string selectRandomColor();
 
@@ -30,10 +32,13 @@ private:
 
 	void beReady();
 
-	void startGame();
+	
 
 private:
 	b2World* m_world;
+
+	CC_SYNTHESIZE(bool, isStarted, Started);
+	
 };
 
 

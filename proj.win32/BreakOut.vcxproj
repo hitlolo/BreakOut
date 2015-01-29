@@ -153,6 +153,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\ShapeCache.cpp" />
     <ClCompile Include="..\Classes\GameWorld.cpp" />
     <ClCompile Include="..\Classes\test.cpp" />
+    <ClCompile Include="..\Classes\TouchLayer.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +175,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\GLES-Render.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\test.h" />
+    <ClInclude Include="..\Classes\TouchLayer.h" />
+    <ClInclude Include="..\Classes\TouchProtocol.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
