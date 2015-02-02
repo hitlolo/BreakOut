@@ -32,7 +32,19 @@ public:
 
 	virtual bool isEffectOn() override;
 
+	virtual void musicOn() override;
+
+	virtual void musicOff() override;
+
+	virtual void effectOn() override;
+
+	virtual void effectOff() override;
+
 	virtual void playBackgroundMusic() override;
+
+	virtual void playClickEffect() override;
+
+	virtual void playSwitchEffect() override;
 
 private:
 	static GameSound*  _gameSound;

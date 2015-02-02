@@ -26,14 +26,13 @@ buttonCredits(nullptr),
 buttonTutorial(nullptr),
 menuRoot(nullptr)
 {
-
+	soundEngine = GameSound::getInstance();
 }
 
 GameMenu::~GameMenu()
 {
 
 }
-
 
 void GameMenu::addMenu()
 {
@@ -44,6 +43,13 @@ void GameMenu::addMenu()
 	this->setTitleFontLineout();
 	this->getButtonsFromRoot();
 	this->addButtonListeners();
+	
+}
+
+void GameMenu::onEnter()
+{
+	Layer::onEnter();
+	this->setAndStartUIAnimation();
 }
 
 void GameMenu::getMenuRoot(Node* root)
@@ -73,24 +79,63 @@ void GameMenu::addButtonListeners()
 	buttonCredits->addClickEventListener(CC_CALLBACK_1(GameMenu::showCredits, this));
 }
 
+void GameMenu::setAndStartUIAnimation()
+{
+	//set start position
+	//button start
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Point originLocation = buttonStart->getPosition();
+	buttonStart->setPosition(Point((-buttonStart->getContentSize().width/2), originLocation.y));
+	buttonStart->runAction(MoveTo::create(0.8f, originLocation));
+
+	//button options
+	originLocation = buttonOptions->getPosition();
+	buttonOptions->setPosition(Point(buttonOptions->getContentSize().width + visibleSize.width, originLocation.y));
+	buttonOptions->runAction(MoveTo::create(0.8f, originLocation));
+
+	//button Tutorial
+	originLocation = buttonTutorial->getPosition();
+	buttonTutorial->setPosition(Point(-buttonTutorial->getContentSize().width, originLocation.y));
+	buttonTutorial->runAction(MoveTo::create(0.8f, originLocation));
+
+	//button Credits
+	originLocation = buttonCredits->getPosition();
+	buttonCredits->setPosition(Point(buttonCredits->getContentSize().width + visibleSize.width, originLocation.y));
+	buttonCredits->runAction(MoveTo::create(0.8f, originLocation));
+}
+
+
 void GameMenu::startGame(Ref* sender)
 {
 	//test
+	this->playClickEffect();
 	GameController::getInstance()->goState(GAME_STATE::GAME);
 }
 
 void GameMenu::showOptions(Ref* sender)
 {
+	this->playClickEffect();
+	auto  options = OptionLayer::create();
+	this->addChild(options);
 
 }
 
 void GameMenu::showCredits(Ref* sender)
 {
-
+	this->playClickEffect();
+	auto  credit = CreditLayer::create();
+	this->addChild(credit);
+	CCLOG("CREDITS");
 }
 
 void GameMenu::showTutorial(Ref* sender)
 {
+	this->playClickEffect();
 
 }
 
+
+void GameMenu::playClickEffect()
+{
+	getSoundEngine()->playClickEffect();
+}

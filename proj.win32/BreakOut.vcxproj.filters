@@ -72,9 +72,6 @@
     <ClCompile Include="..\Classes\GameScene.cpp">
       <Filter>classes\game</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\test.cpp">
-      <Filter>classes\game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\PhysicsProtocol.cpp">
       <Filter>classes\game</Filter>
     </ClCompile>
@@ -83,6 +80,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\TouchLayer.cpp">
       <Filter>classes\utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\OptionLayer.cpp">
+      <Filter>classes\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\CreditLayer.cpp">
+      <Filter>classes\menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -134,9 +137,6 @@
     <ClInclude Include="..\Classes\GameScene.h">
       <Filter>classes\game</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\test.h">
-      <Filter>classes\game</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\PhysicsProtocol.h">
       <Filter>classes\game</Filter>
     </ClInclude>
@@ -148,6 +148,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\TouchLayer.h">
       <Filter>classes\utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\OptionLayer.h">
+      <Filter>classes\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\CreditLayer.h">
+      <Filter>classes\menu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

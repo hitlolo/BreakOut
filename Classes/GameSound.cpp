@@ -26,6 +26,14 @@ GameSound::~GameSound()
 void GameSound::preLoad()
 {
 	//load music and effects...
+	SimpleAudioEngine::getInstance()->preloadEffect("click1.ogg");
+	SimpleAudioEngine::getInstance()->preloadEffect("click2.ogg");
+	SimpleAudioEngine::getInstance()->preloadEffect("rollover1.ogg");
+	SimpleAudioEngine::getInstance()->preloadEffect("rollover2.ogg");
+	SimpleAudioEngine::getInstance()->preloadEffect("rollover2.ogg");
+	SimpleAudioEngine::getInstance()->preloadEffect("switch2.ogg");
+	SimpleAudioEngine::getInstance()->preloadEffect("switch3.ogg");
+	
 }
 
 void  GameSound::unLoad(std::string file)
@@ -43,9 +51,43 @@ bool GameSound::isEffectOn()
 	return getEffectOn();
 }
 
+void GameSound::musicOn()
+{
+	setMusicOn(true);
+}
+
+
+void GameSound::musicOff()
+{
+	setMusicOn(false);
+}
+
+void GameSound::effectOn()
+{
+	setEffectOn(true);
+}
+
+void GameSound::effectOff()
+{
+	setEffectOn(false);
+}
+
 void GameSound::playBackgroundMusic()
 {
 	if (!music_on)
 		return;
 
+}
+
+void GameSound::playClickEffect()
+{
+	if (!effect_on)
+		return;
+	SimpleAudioEngine::getInstance()->playEffect("click1.ogg");
+}
+void GameSound::playSwitchEffect()
+{
+	if (!effect_on)
+		return;
+	SimpleAudioEngine::getInstance()->playEffect("switch2.ogg");
 }

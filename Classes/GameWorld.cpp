@@ -115,7 +115,7 @@ void GameWorld::createEdgeBox()
 	b2EdgeShape groundEdge;
 	b2FixtureDef boxShapeDef;
 	boxShapeDef.shape = &groundEdge;
-	boxShapeDef.restitution = 1;
+	boxShapeDef.restitution = 0;
 	boxShapeDef.friction = 0;
 	//wall definitions
 	//BOTTOM

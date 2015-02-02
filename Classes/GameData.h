@@ -9,7 +9,10 @@ protected: varType varName;\
 public: virtual void set##funName(varType var){ varName = var; }
 
 #define GET_BUTTON(varRoot,varName)\
-varName = dynamic_cast<Button*>(varRoot->getChildByName(#varName))
+varName = dynamic_cast<ui::Button*>(varRoot->getChildByName(#varName))
+
+#define GET_CHECKBOX(varRoot,varName)\
+varName = dynamic_cast<ui::CheckBox*>(varRoot->getChildByName(#varName))
 
 #define CENTER Point(Director::getInstance()->getVisibleSize().width/2,Director::getInstance()->getVisibleSize().height/2)
 

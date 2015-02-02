@@ -6,6 +6,8 @@
 #include "cocostudio/CocoStudio.h"
 #include "GameSound.h"
 #include "GameController.h"
+#include "OptionLayer.h"
+#include "CreditLayer.h"
 
 USING_NS_CC;
 USING_NS_UI;
@@ -20,9 +22,13 @@ public:
 
 	virtual bool init() override;
 
+	virtual void onEnter() override;
+
 	GameMenu();
 	
 	~GameMenu();
+
+	CC_SYNTHESIZE(SoundDelegate*, soundEngine, SoundEngine);
 
 private:
 	void addMenu();
@@ -34,6 +40,8 @@ private:
 	void getButtonsFromRoot();
 
 	void addButtonListeners();
+
+	void setAndStartUIAnimation();
 
 private:
 	Node*     menuRoot;
@@ -53,5 +61,7 @@ private:
 	void showCredits(Ref* sender);
 
 	void showTutorial(Ref* sender);
+
+	void playClickEffect();
 };
 #endif

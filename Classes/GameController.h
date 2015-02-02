@@ -6,7 +6,7 @@
 #include "GameLogo.h"
 #include "GameMenu.h"
 #include "GameScene.h"
-#include  "test.h"
+
 
 
 USING_NS_CC;
@@ -44,7 +44,6 @@ private:
 
 	void over();
 
-	void test();
 };
 
 #endif

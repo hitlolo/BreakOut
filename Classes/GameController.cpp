@@ -75,15 +75,10 @@ void GameController::over()
 
 }
 
-void GameController::test()
-{
-	auto game = test::createScene();
-	this->nextScene(game);
-}
 
 void GameController::nextScene(Scene* next_scene)
 {
 	this->setCurScene(next_scene);
-	auto trasition = TransitionCrossFade::create(1.3f,next_scene);
+	auto trasition = TransitionSlideInR::create(0.6f,next_scene);
 	Director::getInstance()->replaceScene(trasition);
 }
