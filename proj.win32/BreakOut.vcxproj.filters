@@ -11,149 +11,161 @@
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
     <Filter Include="classes">
-      <UniqueIdentifier>{9079a777-614f-41f0-b1c5-9759ca246e49}</UniqueIdentifier>
+      <UniqueIdentifier>{7fdd559c-50c9-42c1-8804-1b10f7660a4f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes\menu">
-      <UniqueIdentifier>{8fe6c87e-bf8a-4cbe-9744-b8169a3a2474}</UniqueIdentifier>
+    <Filter Include="classes\Menu">
+      <UniqueIdentifier>{75616acd-f3a6-49a6-9219-ec96e735ddbc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes\logo">
-      <UniqueIdentifier>{f9fbed49-96b2-483e-baef-0df7ddc55164}</UniqueIdentifier>
+    <Filter Include="classes\Game">
+      <UniqueIdentifier>{4a83c7cf-e809-41d3-a2f1-5fdfbffb0c5a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes\controller">
-      <UniqueIdentifier>{54536ca7-1681-40d5-872c-bdb5b4a7c00b}</UniqueIdentifier>
+    <Filter Include="classes\Sound">
+      <UniqueIdentifier>{7b5a24c3-38e6-4002-be2a-34e17bd42617}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes\utilities">
-      <UniqueIdentifier>{6dc33b35-6a96-4c2d-8ab9-09d5f54a62df}</UniqueIdentifier>
+    <Filter Include="classes\Utilities">
+      <UniqueIdentifier>{d6857e32-bfd0-48a1-9912-4d480f031d94}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes\game">
-      <UniqueIdentifier>{c986a57e-5fb7-4b45-a63d-7edcc8e723b9}</UniqueIdentifier>
+    <Filter Include="classes\Ball">
+      <UniqueIdentifier>{78ffd9f7-38fd-43e9-8d0a-262f4ab9536e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\Paddle">
+      <UniqueIdentifier>{272d712a-d6f5-409a-8e22-39ac19e9e204}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\Touch">
+      <UniqueIdentifier>{5cd5288d-d18e-41b0-91ed-935365e381cd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>win32</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\AppDelegate.cpp">
+    <ClCompile Include="..\Classes\test.cpp">
       <Filter>classes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GLES-Render.cpp">
-      <Filter>classes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameMenu.cpp">
-      <Filter>classes\menu</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameLogo.cpp">
-      <Filter>classes\logo</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameController.cpp">
-      <Filter>classes\controller</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameSound.cpp">
-      <Filter>classes\utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameWorld.cpp">
-      <Filter>classes\game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameBall.cpp">
-      <Filter>classes\game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamePaddle.cpp">
-      <Filter>classes\game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\ShapeCache.cpp">
-      <Filter>classes\utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\PhysicsSprite.cpp">
-      <Filter>classes\game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameScene.cpp">
-      <Filter>classes\game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\PhysicsProtocol.cpp">
-      <Filter>classes\game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GB2ShapeCache-x.cpp">
-      <Filter>classes\utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\TouchLayer.cpp">
-      <Filter>classes\utilities</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\OptionLayer.cpp">
-      <Filter>classes\menu</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\CreditLayer.cpp">
-      <Filter>classes\menu</Filter>
+      <Filter>classes\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMenu.cpp">
+      <Filter>classes\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\OptionLayer.cpp">
+      <Filter>classes\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GB2ShapeCache-x.cpp">
+      <Filter>classes\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GLES-Render.cpp">
+      <Filter>classes\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PhysicsSprite.cpp">
+      <Filter>classes\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PhysicsProtocol.cpp">
+      <Filter>classes\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ShapeCache.cpp">
+      <Filter>classes\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameSound.cpp">
+      <Filter>classes\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameLogo.cpp">
+      <Filter>classes\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameWorld.cpp">
+      <Filter>classes\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameScene.cpp">
+      <Filter>classes\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameController.cpp">
+      <Filter>classes\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameBall.cpp">
+      <Filter>classes\Ball</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamePaddle.cpp">
+      <Filter>classes\Paddle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TouchLayer.cpp">
+      <Filter>classes\Touch</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
       <Filter>win32</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>src</Filter>
+    </ClInclude>
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\AppDelegate.h">
+    <ClInclude Include="..\Classes\test.h">
       <Filter>classes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GLES-Render.h">
-      <Filter>classes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameMenu.h">
-      <Filter>classes\menu</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameLogo.h">
-      <Filter>classes\logo</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameController.h">
-      <Filter>classes\controller</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\SoundDelegate.h">
-      <Filter>classes\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameSound.h">
-      <Filter>classes\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameWorld.h">
-      <Filter>classes\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameBall.h">
-      <Filter>classes\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameData.h">
-      <Filter>classes\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamePaddle.h">
-      <Filter>classes\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\ShapeCache.h">
-      <Filter>classes\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\PhysicsSprite.h">
-      <Filter>classes\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameScene.h">
-      <Filter>classes\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\PhysicsProtocol.h">
-      <Filter>classes\game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GB2ShapeCache-x.h">
-      <Filter>classes\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\TouchProtocol.h">
-      <Filter>classes\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\TouchLayer.h">
-      <Filter>classes\utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\OptionLayer.h">
-      <Filter>classes\menu</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CreditLayer.h">
-      <Filter>classes\menu</Filter>
+      <Filter>classes\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMenu.h">
+      <Filter>classes\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\OptionLayer.h">
+      <Filter>classes\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameData.h">
+      <Filter>classes\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GB2ShapeCache-x.h">
+      <Filter>classes\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GLES-Render.h">
+      <Filter>classes\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PhysicsSprite.h">
+      <Filter>classes\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PhysicsProtocol.h">
+      <Filter>classes\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ShapeCache.h">
+      <Filter>classes\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SoundDelegate.h">
+      <Filter>classes\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameSound.h">
+      <Filter>classes\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameLogo.h">
+      <Filter>classes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameWorld.h">
+      <Filter>classes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameScene.h">
+      <Filter>classes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameController.h">
+      <Filter>classes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameBall.h">
+      <Filter>classes\Ball</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamePaddle.h">
+      <Filter>classes\Paddle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TouchProtocol.h">
+      <Filter>classes\Touch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TouchLayer.h">
+      <Filter>classes\Touch</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

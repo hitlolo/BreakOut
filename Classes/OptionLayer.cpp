@@ -71,20 +71,22 @@ void OptionLayer::getItemsFromRoot()
 		return;
 	
 		//set font name again due to the cocos studio 2.0 bugs (Text load ttf error)
-	for (auto node : panel->getChildren())
-	{
-		auto textNode = dynamic_cast<ui::Text*>(node);
-		if (textNode)
-		{
-			textNode->enableOutline(Color4B(25, 26, 25, 155), 1);
-		}
-	}
+	//for (auto node : panel->getChildren())
+	//{
+	//	auto textNode = dynamic_cast<ui::Text*>(node);
+	//	if (textNode)
+	//	{
+	//		textNode->enableOutline(Color4B(25, 26, 25, 155), 1);
+	//	}
+	//}
 
 	//cancelButton = dynamic_cast<ui::Button*>(panel->getChildByName("cancelButton"));
 	GET_BUTTON(panel, cancelButton);
-	GET_CHECKBOX(panel, soundCheck);
-	GET_CHECKBOX(panel, effectCheck);
+//	GET_CHECKBOX(panel, soundCheck);
+//	GET_CHECKBOX(panel, effectCheck);
+	soundCheck = dynamic_cast<ui::CheckBox*>(panel->getChildByName("soundCheck"));
 	soundCheck->setSelectedState(getSoundEngine()->isMusicOn());
+	effectCheck = dynamic_cast<ui::CheckBox*>(panel->getChildByName("effectCheck"));
 	effectCheck->setSelectedState(getSoundEngine()->isEffectOn());
 }
 
