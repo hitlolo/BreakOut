@@ -1,11 +1,12 @@
 #include "GamePaddle.h"
 
 GamePaddle::GamePaddle(b2World* world, b2Body* ground)
-:m_mouseJoint(nullptr)
+: m_mouseJoint(nullptr)
 , _ignoreBodyRotation(false)
+, m_world(world)
+, m_groundBody(ground)
 {
-	m_world = world;
-	m_groundBody = ground;
+	
 }
 
 GamePaddle::~GamePaddle()
@@ -33,7 +34,8 @@ bool GamePaddle::init()
 	{
 		return false;
 	}
-	initSelfImage();
+	//initSelfImage();
+	this->initPhysicsAttributes();
 	scheduleUpdate();
 	return true;
 }
@@ -43,7 +45,7 @@ void  GamePaddle::initSelfImage()
 {
 	this->initWithSpriteFrameName(selectRandomFile());
 	this->setContentSize(NORMAL_SIZE);
-	this->initPhysicsAttributes();
+	
 }
 
 std::string  GamePaddle::selectRandomFile()

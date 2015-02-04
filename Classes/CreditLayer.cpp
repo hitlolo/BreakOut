@@ -38,19 +38,19 @@ void CreditLayer::addCSBRootFile()
 	this->setPosition(nextLocation);
 	this->addChild(node);
 
-	auto panel = node->getChildByName("panel");
-	if (!panel)
-		return;
+	//auto panel = node->getChildByName("panel");
+	//if (!panel)
+	//	return;
 
-	//set font name again due to the cocos studio 2.0 bugs (Text load ttf error)
-	for (auto node : panel->getChildren())
-	{
-		auto textNode = dynamic_cast<ui::Text*>(node);
-		if (textNode)
-		{
-			textNode->enableOutline(Color4B(25, 26, 25, 155), 1);
-		}
-	}
+	////set font name again due to the cocos studio 2.0 bugs (Text load ttf error)
+	//for (auto node : panel->getChildren())
+	//{
+	//	auto textNode = dynamic_cast<ui::Text*>(node);
+	//	if (textNode)
+	//	{
+	//		textNode->enableOutline(Color4B(25, 26, 25, 155), 1);
+	//	}
+	//}
 }
 
 void CreditLayer::setTouchListeners()

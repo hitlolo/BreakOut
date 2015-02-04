@@ -2,8 +2,9 @@
 
 GameBall::GameBall(b2World* world)
 	:isStarted(false)
+	, m_world(world)
 {
-	m_world = world;
+	
 }
 
 GameBall::~GameBall()
@@ -86,7 +87,7 @@ void  GameBall::initPhysicsAttributes()
 
 void GameBall::beReady()
 {
-	initSelfImage();
+//	initSelfImage();
 	initPhysicsAttributes();
 }
 

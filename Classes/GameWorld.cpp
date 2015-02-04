@@ -22,7 +22,7 @@ bool GameWorld::init(int level)
 		return false;
 	}
 	
-	addBackground();
+//	addBackground();
 	addTouch();
 	createPhysicsWorld();
 	createEdgeBox();

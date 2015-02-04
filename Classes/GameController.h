@@ -6,6 +6,7 @@
 #include "GameLogo.h"
 #include "GameMenu.h"
 #include "GameScene.h"
+#include "GameMap.h"
 
 
 
@@ -23,10 +24,20 @@ public:
 
 	void goState(const GAME_STATE = GAME_STATE::LOGO);
 
+	int getLevelPassed();
+
+	void setLevelPassed(int);
+
+	void popScene();
+
 private:
 	static GameController* _controller; 
 
-	void nextScene(Scene*);	
+	void nextScene(Scene*);
+
+	void pushScene(Scene*);
+
+	
 
 	CC_SYNTHESIZE(GAME_STATE, curGameState, CurGameState);
 
@@ -44,6 +55,8 @@ private:
 
 	void over();
 
+private:
+	int  level;
 };
 
 #endif

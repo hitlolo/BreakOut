@@ -14,6 +14,7 @@ GameController* GameController::getInstance()
 }
 
 GameController::GameController()
+	:level(1)
 {
 	setCurGameState(GAME_STATE::LOGO);
 }
@@ -61,6 +62,8 @@ void GameController::menu()
 
 void GameController::map()
 {
+	auto map = GameMap::createScene();
+	this->pushScene(map);
 
 }
 
@@ -81,4 +84,35 @@ void GameController::nextScene(Scene* next_scene)
 	this->setCurScene(next_scene);
 	auto trasition = TransitionSlideInR::create(0.6f,next_scene);
 	Director::getInstance()->replaceScene(trasition);
+}
+
+void  GameController::pushScene(Scene* next_scene)
+{
+	this->setCurScene(next_scene);
+	auto trasition = TransitionSlideInR::create(0.6f, next_scene);
+	Director::getInstance()->pushScene(trasition);
+}
+
+void GameController::popScene()
+{
+	Director::getInstance()->popScene();
+}
+
+int GameController::getLevelPassed()
+{
+	int temLevel = 0;
+	temLevel = UserDefault::getInstance()->getIntegerForKey("level");
+	if (temLevel)
+	{
+		level = temLevel;
+		return temLevel;
+	}
+	else
+		return level;
+}
+
+void GameController::setLevelPassed(int level)
+{
+	UserDefault::getInstance()->setIntegerForKey("level", level);
+	this->level = level;
 }

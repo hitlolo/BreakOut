@@ -30,6 +30,8 @@ public:
 
 	CC_SYNTHESIZE(SoundDelegate*, soundEngine, SoundEngine);
 
+	virtual void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event) override;
+
 private:
 	void addMenu();
 
@@ -61,6 +63,8 @@ private:
 	void showCredits(Ref* sender);
 
 	void showTutorial(Ref* sender);
+
+
 
 	void playClickEffect();
 };

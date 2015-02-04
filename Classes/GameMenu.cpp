@@ -15,6 +15,7 @@ bool GameMenu::init()
     {
         return false;
     }
+	setKeyboardEnabled(true);
 	addMenu();
     return true;
 }
@@ -109,7 +110,7 @@ void GameMenu::startGame(Ref* sender)
 {
 	//test
 	this->playClickEffect();
-	GameController::getInstance()->goState(GAME_STATE::GAME);
+	GameController::getInstance()->goState(GAME_STATE::MAP);
 }
 
 void GameMenu::showOptions(Ref* sender)
@@ -125,7 +126,7 @@ void GameMenu::showCredits(Ref* sender)
 	this->playClickEffect();
 	auto  credit = CreditLayer::create();
 	this->addChild(credit);
-	CCLOG("CREDITS");
+	
 }
 
 void GameMenu::showTutorial(Ref* sender)
@@ -135,7 +136,27 @@ void GameMenu::showTutorial(Ref* sender)
 }
 
 
+
 void GameMenu::playClickEffect()
 {
 	getSoundEngine()->playClickEffect();
+}
+
+//void GameMenu::keyBackClicked()
+//{
+//	Director::getInstance()->end();
+//#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)  
+//	exit(0);
+//#endif  
+//}
+
+void GameMenu::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
+{
+	if (keyCode == EventKeyboard::KeyCode::KEY_BACK)
+	{
+		Director::getInstance()->end();
+		#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)  
+			exit(0);
+		#endif  
+	}
 }
