@@ -70,5 +70,6 @@ void AppDelegate::setResouseSearchPath()
 	paths.push_back("sounds");
 	paths.push_back("ui");
 	paths.push_back("res");
+	paths.push_back("level");
 	FileUtils::getInstance()->setSearchPaths(paths);
 }

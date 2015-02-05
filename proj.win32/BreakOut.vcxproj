@@ -154,6 +154,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\OptionLayer.cpp" />
     <ClCompile Include="..\Classes\PhysicsProtocol.cpp" />
     <ClCompile Include="..\Classes\PhysicsSprite.cpp" />
+    <ClCompile Include="..\Classes\PreviewLayer.cpp" />
     <ClCompile Include="..\Classes\ShapeCache.cpp" />
     <ClCompile Include="..\Classes\test.cpp" />
     <ClCompile Include="..\Classes\TouchLayer.cpp" />
@@ -178,6 +179,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\OptionLayer.h" />
     <ClInclude Include="..\Classes\PhysicsProtocol.h" />
     <ClInclude Include="..\Classes\PhysicsSprite.h" />
+    <ClInclude Include="..\Classes\PreviewLayer.h" />
     <ClInclude Include="..\Classes\ShapeCache.h" />
     <ClInclude Include="..\Classes\SoundDelegate.h" />
     <ClInclude Include="..\Classes\test.h" />

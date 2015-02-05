@@ -99,6 +99,9 @@
     <ClCompile Include="..\Classes\GameMap.cpp">
       <Filter>classes\Game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\PreviewLayer.cpp">
+      <Filter>classes\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -171,6 +174,9 @@
       <Filter>classes\Touch</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameMap.h">
+      <Filter>classes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PreviewLayer.h">
       <Filter>classes\Game</Filter>
     </ClInclude>
   </ItemGroup>

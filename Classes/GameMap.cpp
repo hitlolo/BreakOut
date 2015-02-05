@@ -2,7 +2,7 @@
 
 GameMap::GameMap()
 	: rootNode(nullptr)
-	, levelLayer(nullptr)
+	, levelNode(nullptr)
 	, buttonPanel(nullptr)
 {
 	setAnchorPoint(Point(0.5, 0.5));
@@ -38,13 +38,14 @@ bool GameMap::init()
 void GameMap::initFromCSBFile()
 {
 	rootNode = CSLoader::createNode("mapLayer.csb");
-
+	buttonPanel = rootNode->getChildByName("buttonPanel");
+	levelNode = rootNode->getChildByName("levelNode");
 	this->addChild(rootNode);
 }
 
 void GameMap::getButtonsFromRoot()
 {
-	buttonPanel = rootNode->getChildByName("buttonPanel");
+	
 	String *filename;
 	for (int i = 1; i <= 6; i++)
 	{
@@ -60,7 +61,14 @@ void GameMap::getButtonsFromRoot()
 
 void GameMap::onClickButton(Ref* sender)
 {
-	CCLOG("clicked");
+	getSoundEngine()->playClickEffect();
+	levelNode->removeAllChildren();
+	int level = dynamic_cast<ui::Button*>(sender)->getTag();
+	auto preview = PreviewLayer::create(level);
+	levelNode->addChild(preview);
+//	CCLOG("%f,%f,%f,%f", preview->getPosition().x, preview->getPosition().y, levelNode->getPosition().x, levelNode->getPosition().y);
+//	CCLOG("%f,%f,%f,%f", preview->getAnchorPoint().x, preview->getAnchorPoint().y, levelNode->getAnchorPoint().x, levelNode->getAnchorPoint().y);
+//	preview->setPosition(location);
 }
 
 void GameMap::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)

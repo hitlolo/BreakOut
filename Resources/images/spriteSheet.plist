@@ -271,7 +271,7 @@
 			<key>yellow_button08.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{178,456},{49,45}}</string>
+				<string>{{161,645},{49,45}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -282,7 +282,7 @@
 			<key>res/grey_circle.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{108,709},{36,36}}</string>
+				<string>{{127,813},{36,36}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -293,7 +293,7 @@
 			<key>res/buttonCancel.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{144,609},{36,36}}</string>
+				<string>{{163,745},{36,36}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -304,7 +304,7 @@
 			<key>res/blue_boxTick.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{178,509},{36,36}}</string>
+				<string>{{176,698},{36,36}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -315,13 +315,145 @@
 			<key>res/blue_circle.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{127,749},{36,36}}</string>
+				<string>{{210,645},{36,36}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{36,36}</string>
+			</dict>
+			<key>element_blue_rectangle.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{108,709},{64,32}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{64,32}</string>
+			</dict>
+			<key>element_blue_square.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{212,592},{32,32}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{32,32}</string>
+			</dict>
+			<key>element_green_rectangle.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{144,609},{64,32}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{64,32}</string>
+			</dict>
+			<key>element_green_square.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{233,524},{32,32}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{32,32}</string>
+			</dict>
+			<key>element_grey_rectangle.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{178,456},{64,32}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{64,32}</string>
+			</dict>
+			<key>element_grey_square.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{250,456},{32,32}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{32,32}</string>
+			</dict>
+			<key>element_purple_rectangle.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{197,524},{64,32}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{64,32}</string>
+			</dict>
+			<key>element_purple_square.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{248,560},{32,32}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{32,32}</string>
+			</dict>
+			<key>element_red_rectangle.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{214,456},{64,32}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{64,32}</string>
+			</dict>
+			<key>element_red_square.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{248,596},{32,32}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{32,32}</string>
+			</dict>
+			<key>element_yellow_rectangle.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{127,745},{64,32}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{64,32}</string>
+			</dict>
+			<key>element_yellow_square.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{269,492},{32,32}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{32,32}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>

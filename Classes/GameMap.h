@@ -7,6 +7,8 @@
 #include "GameSound.h"
 #include "GameData.h"
 #include "GameController.h"
+#include "PreviewLayer.h"
+#include "CreditLayer.h"
 
 USING_NS_CC;
 USING_NS_UI;
@@ -38,7 +40,7 @@ private:
 	std::vector<ui::Button*>  buttonVector;
 	Node   *rootNode;
 	Node   *buttonPanel;
-	Layer  *levelLayer;
+	Node   *levelNode;
 };
 
 

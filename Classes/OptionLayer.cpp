@@ -99,7 +99,6 @@ void OptionLayer::setClickListenersToItems()
 
 void  OptionLayer::onCancelCallBack(Ref* sender)
 {
-	CCLOG("YES");
 	this->playClickEffect();
 	this->runOutAnimation();
 }
