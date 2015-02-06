@@ -6,6 +6,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "GameData.h"
 #include "PhysicsSprite.h"
+#include "GameController.h"
 
 USING_NS_CC;
 USING_NS_UI;

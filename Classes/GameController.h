@@ -28,6 +28,8 @@ public:
 
 	void setLevelPassed(int);
 
+	CC_SYNTHESIZE(int, levelSelected, SelectedLevel);
+
 	void popScene();
 
 private:
@@ -36,8 +38,6 @@ private:
 	void nextScene(Scene*);
 
 	void pushScene(Scene*);
-
-	
 
 	CC_SYNTHESIZE(GAME_STATE, curGameState, CurGameState);
 

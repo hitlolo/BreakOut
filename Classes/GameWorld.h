@@ -13,6 +13,7 @@
 #include "PhysicsProtocol.h"
 #include "GB2ShapeCache-x.h"
 #include "TouchLayer.h"
+#include "GameController.h"
 
 
 USING_NS_CC;
@@ -70,6 +71,7 @@ protected:
 	virtual void onPaddleMove(const std::vector<Touch*>& touches) override;
 	virtual void onPaddleEndMove() override;
 	virtual void onPaddleCancelMove() override;
+	virtual void onReturn() override;
 };
 
 #endif

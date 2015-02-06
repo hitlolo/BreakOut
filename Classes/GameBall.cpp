@@ -28,7 +28,7 @@ GameBall* GameBall::create(b2World* world)
 
 bool GameBall::init()
 {
-	if (!Sprite::init())
+	if (!PhysicsSprite::init())
 	{
 		return false;
 	}

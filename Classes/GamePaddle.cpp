@@ -35,7 +35,7 @@ bool GamePaddle::init()
 		return false;
 	}
 	//initSelfImage();
-	this->initPhysicsAttributes();
+	initPhysicsAttributes();
 	scheduleUpdate();
 	return true;
 }

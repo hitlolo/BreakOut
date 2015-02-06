@@ -25,14 +25,20 @@
     <Filter Include="classes\Utilities">
       <UniqueIdentifier>{d6857e32-bfd0-48a1-9912-4d480f031d94}</UniqueIdentifier>
     </Filter>
-    <Filter Include="classes\Ball">
-      <UniqueIdentifier>{78ffd9f7-38fd-43e9-8d0a-262f4ab9536e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="classes\Paddle">
-      <UniqueIdentifier>{272d712a-d6f5-409a-8e22-39ac19e9e204}</UniqueIdentifier>
-    </Filter>
     <Filter Include="classes\Touch">
       <UniqueIdentifier>{5cd5288d-d18e-41b0-91ed-935365e381cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\Items">
+      <UniqueIdentifier>{d51997dc-c559-4e88-9815-d07153ea277d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\Items\Ball">
+      <UniqueIdentifier>{78ffd9f7-38fd-43e9-8d0a-262f4ab9536e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\Items\Paddle">
+      <UniqueIdentifier>{272d712a-d6f5-409a-8e22-39ac19e9e204}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\Items\Brick">
+      <UniqueIdentifier>{3698114d-295f-4ddb-a2c4-d90464ec7df0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -88,10 +94,10 @@
       <Filter>classes\Game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GameBall.cpp">
-      <Filter>classes\Ball</Filter>
+      <Filter>classes\Items\Ball</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GamePaddle.cpp">
-      <Filter>classes\Paddle</Filter>
+      <Filter>classes\Items\Paddle</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\TouchLayer.cpp">
       <Filter>classes\Touch</Filter>
@@ -101,6 +107,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\PreviewLayer.cpp">
       <Filter>classes\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameBrick.cpp">
+      <Filter>classes\Items\Brick</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -162,10 +171,10 @@
       <Filter>classes\Game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameBall.h">
-      <Filter>classes\Ball</Filter>
+      <Filter>classes\Items\Ball</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamePaddle.h">
-      <Filter>classes\Paddle</Filter>
+      <Filter>classes\Items\Paddle</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\TouchProtocol.h">
       <Filter>classes\Touch</Filter>
@@ -178,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\PreviewLayer.h">
       <Filter>classes\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameBrick.h">
+      <Filter>classes\Items\Brick</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

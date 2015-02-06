@@ -203,6 +203,11 @@ void GameWorld::onGameStart()
 	}
 }
 
+void GameWorld::onReturn()
+{
+	GameController::getInstance()->popScene();
+}
+
 void GameWorld::onPaddleBeginMove(const std::vector<Touch*>& touches)
 {
 	m_paddle->onBeginMove(touches);

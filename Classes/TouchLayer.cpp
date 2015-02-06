@@ -7,6 +7,7 @@ bool TouchLayer::init()
 		return false;
 	}
 
+	this->setKeyboardEnabled(true);
 	this->setTouchEnabled(true);
 	this->setSwallowsTouches(true);
 
@@ -37,4 +38,13 @@ void TouchLayer::onTouchesEnded(const std::vector<Touch*>& touches, Event *unuse
 void TouchLayer::onTouchesCancelled(const std::vector<Touch*>& touches, Event *unused_event)
 {
 	getDelegator()->onPaddleEndMove();
+}
+
+void TouchLayer::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
+{
+	if (keyCode == EventKeyboard::KeyCode::KEY_BACK)
+	{
+		getDelegator()->onReturn();
+
+	}
 }

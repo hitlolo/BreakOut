@@ -15,6 +15,7 @@ GameController* GameController::getInstance()
 
 GameController::GameController()
 	:level(1)
+	, levelSelected(1)
 {
 	setCurGameState(GAME_STATE::LOGO);
 }
@@ -40,7 +41,7 @@ void GameController::goState(const GAME_STATE state)
 		break;
 	case GAME_STATE::GAME:
 		//test();
-		game(0);
+		game(getSelectedLevel());
 		break;
 	case GAME_STATE::OVER:
 		over();
@@ -70,7 +71,7 @@ void GameController::map()
 void GameController::game(const unsigned int map)
 {
 	auto game = GameScene::create();
-	this->nextScene(game);
+	this->pushScene(game);
 }
 
 void GameController::over()

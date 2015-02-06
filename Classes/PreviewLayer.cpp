@@ -87,7 +87,7 @@ void  PreviewLayer::onTouchEnded(Touch* touch, Event* event)
 
 	if (isTouchOnPanel(touch))
 	{
-		CCLOG("contains");
+		GameController::getInstance()->goState(GAME_STATE::GAME);
 	}
 }
 
@@ -122,7 +122,7 @@ void PreviewLayer::initFromTMXFile(std::string &file)
 
 	for (auto brickObject : objectsVector)
 	{
-		brickLayer->addChild(createBrickWithDef(brickObject));	
+		this->addChild(createBrickWithDef(brickObject));	
 	}
 	CCLOG("%f,%f,this->getPosition()", this->getPosition().x, this->getPosition().y);
 	CCLOG("%f,%f,this->getAnchorPoint()", this->getAnchorPoint().x, this->getAnchorPoint().y);

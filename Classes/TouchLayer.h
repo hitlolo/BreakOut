@@ -25,6 +25,7 @@ public:
 	virtual void onTouchesMoved(const std::vector<Touch*>& touches, Event *unused_event) override;
 	virtual void onTouchesEnded(const std::vector<Touch*>& touches, Event *unused_event) override;
 	virtual void onTouchesCancelled(const std::vector<Touch*>&touches, Event *unused_event) override;
+	virtual void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event) override;
 
 	CC_SYNTHESIZE(TouchProtocol*, touchDeleageted, Delegator);
 

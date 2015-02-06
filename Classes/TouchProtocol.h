@@ -11,6 +11,8 @@ public:
 	virtual void onPaddleMove(const std::vector<Touch*>& touches) = 0;
 	virtual void onPaddleEndMove() = 0;
 	virtual void onPaddleCancelMove() = 0;
+	virtual void onReturn() = 0;
+
 };
 
 
