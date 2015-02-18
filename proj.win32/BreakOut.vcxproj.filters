@@ -111,6 +111,9 @@
     <ClCompile Include="..\Classes\GameBrick.cpp">
       <Filter>classes\Items\Brick</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\BrickLayer.cpp">
+      <Filter>classes\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -190,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameBrick.h">
       <Filter>classes\Items\Brick</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BrickLayer.h">
+      <Filter>classes\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

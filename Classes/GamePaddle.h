@@ -16,6 +16,12 @@ USING_NS_UI;
 #define MIN_SIZE Size(64,32)
 #define MAX_SIZE Size(128,32)
 
+typedef  enum class bar_type{
+	NORMAL = 0,
+	SHORT,
+	LONG,
+}BAR;
+
 class GamePaddle : virtual public Scale9Sprite, public PhysicsProtocol
 {
 public:
@@ -36,6 +42,7 @@ private:
 
 	void initSelfImage();
 
+	void addFixturesToBody(b2Body*);
 public:
 	/** Body accessor when using box2d */
 	virtual bool isDirty() const;
@@ -71,6 +78,8 @@ private:
 	b2MouseJoint *m_mouseJoint;
 	float         m_ptm;
 	bool          _ignoreBodyRotation;
+private:
+	bar_type    m_type;
 	// box2d specific
 	
 public:

@@ -138,6 +138,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\BrickLayer.cpp" />
     <ClCompile Include="..\Classes\CreditLayer.cpp" />
     <ClCompile Include="..\Classes\GameBall.cpp" />
     <ClCompile Include="..\Classes\GameBrick.cpp" />
@@ -163,6 +164,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\BrickLayer.h" />
     <ClInclude Include="..\Classes\CreditLayer.h" />
     <ClInclude Include="..\Classes\GameBall.h" />
     <ClInclude Include="..\Classes\GameBrick.h" />

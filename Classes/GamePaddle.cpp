@@ -5,6 +5,7 @@ GamePaddle::GamePaddle(b2World* world, b2Body* ground)
 , _ignoreBodyRotation(false)
 , m_world(world)
 , m_groundBody(ground)
+, m_type(BAR::NORMAL)
 {
 	
 }
@@ -57,6 +58,32 @@ std::string  GamePaddle::selectRandomFile()
 	return file->getCString(); 
 }
 
+void GamePaddle::addFixturesToBody(b2Body* body)
+{
+	auto fixture = body->GetFixtureList(); 
+	if (fixture)
+	{
+		body->DestroyFixture(fixture);
+
+	}
+	std::string type_name;
+	switch (m_type)
+	{
+		case BAR::NORMAL:
+				type_name = "bar_normal";
+				break;
+		case BAR::SHORT:
+				type_name = "bar_short";
+				break;
+		case BAR::LONG:
+				type_name = "bar_long";
+				break;
+	}
+
+	GB2ShapeCache::getInstancs()->addFixturesToBody(body, type_name);
+}
+
+
 void GamePaddle::initPhysicsAttributes()
 {
 	b2BodyDef bodyDef;
@@ -65,9 +92,9 @@ void GamePaddle::initPhysicsAttributes()
 //	bodyDef.position.Set(ptm(88), ptm(32));
 	m_body = m_world->CreateBody(&bodyDef);
 
-	GB2ShapeCache::getInstancs()->addFixturesToBody(m_body, "Bar4");
+	
 	this->setB2Body(m_body);
-	this->setPTMRatio(PTM_RATIO);
+	this->setPTMRatio(PTM_RATIO);	this->addFixturesToBody(m_body);
 	b2PrismaticJointDef jointDef;
 	b2Vec2 worldAxis(1.0f, 0.0f);
 	jointDef.collideConnected = true;
