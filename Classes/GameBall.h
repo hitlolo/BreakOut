@@ -15,28 +15,18 @@ class GameBall :public PhysicsSprite, public PhysicsProtocol
 {
 public:
 	static GameBall* create(b2World*);
-
 	virtual bool init() override;
-
 	GameBall(b2World*);
-	
 	~GameBall();
-
 	void startGame();
 private:
 	std::string selectRandomColor();
-
 	void initSelfImage();
-
 	void initPhysicsAttributes();
-
 	void beReady();
-
-	
 
 private:
 	b2World* m_world;
-
 	CC_SYNTHESIZE(bool, isStarted, Started);
 	
 };

@@ -40,6 +40,18 @@
     <Filter Include="classes\Items\Brick">
       <UniqueIdentifier>{3698114d-295f-4ddb-a2c4-d90464ec7df0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="classes\Game\Game">
+      <UniqueIdentifier>{ce54e33b-08d5-4150-944a-aee4f7194618}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\Game\Controller">
+      <UniqueIdentifier>{2c9cb49f-715d-4467-af18-00ec411b5f64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\Game\Logo">
+      <UniqueIdentifier>{da0cbfd6-f040-4f2b-ade3-65e21523206c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="classes\Game\Map">
+      <UniqueIdentifier>{e6ddd44e-f652-4dca-b986-6c2c66820a75}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -81,18 +93,6 @@
     <ClCompile Include="..\Classes\GameSound.cpp">
       <Filter>classes\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GameLogo.cpp">
-      <Filter>classes\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameWorld.cpp">
-      <Filter>classes\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameScene.cpp">
-      <Filter>classes\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameController.cpp">
-      <Filter>classes\Game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GameBall.cpp">
       <Filter>classes\Items\Ball</Filter>
     </ClCompile>
@@ -102,17 +102,29 @@
     <ClCompile Include="..\Classes\TouchLayer.cpp">
       <Filter>classes\Touch</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GameMap.cpp">
-      <Filter>classes\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\PreviewLayer.cpp">
-      <Filter>classes\Game</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GameBrick.cpp">
       <Filter>classes\Items\Brick</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameController.cpp">
+      <Filter>classes\Game\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameLogo.cpp">
+      <Filter>classes\Game\Logo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameScene.cpp">
+      <Filter>classes\Game\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameWorld.cpp">
+      <Filter>classes\Game\Game</Filter>
+    </ClCompile>
     <ClCompile Include="..\Classes\BrickLayer.cpp">
-      <Filter>classes\Game</Filter>
+      <Filter>classes\Game\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMap.cpp">
+      <Filter>classes\Game\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PreviewLayer.cpp">
+      <Filter>classes\Game\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -161,18 +173,6 @@
     <ClInclude Include="..\Classes\GameSound.h">
       <Filter>classes\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GameLogo.h">
-      <Filter>classes\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameWorld.h">
-      <Filter>classes\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameScene.h">
-      <Filter>classes\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameController.h">
-      <Filter>classes\Game</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GameBall.h">
       <Filter>classes\Items\Ball</Filter>
     </ClInclude>
@@ -185,17 +185,29 @@
     <ClInclude Include="..\Classes\TouchLayer.h">
       <Filter>classes\Touch</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GameMap.h">
-      <Filter>classes\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\PreviewLayer.h">
-      <Filter>classes\Game</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GameBrick.h">
       <Filter>classes\Items\Brick</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\GameController.h">
+      <Filter>classes\Game\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameLogo.h">
+      <Filter>classes\Game\Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameScene.h">
+      <Filter>classes\Game\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameWorld.h">
+      <Filter>classes\Game\Game</Filter>
+    </ClInclude>
     <ClInclude Include="..\Classes\BrickLayer.h">
-      <Filter>classes\Game</Filter>
+      <Filter>classes\Game\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMap.h">
+      <Filter>classes\Game\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\PreviewLayer.h">
+      <Filter>classes\Game\Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

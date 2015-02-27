@@ -22,7 +22,7 @@ bool GameWorld::init(int level)
 		return false;
 	}
 	
-//	addBackground();
+	addBackground();
 	addTouch();
 	createPhysicsWorld();
 	createEdgeBox();
@@ -46,7 +46,7 @@ GameWorld::GameWorld()
 , m_debugDraw(nullptr)
 , m_ball(nullptr)
 , m_paddle(nullptr)
-, m_maxSpeed(20)
+, m_maxSpeed(30)
 {
 	visibleSize = Director::getInstance()->getVisibleSize();
 	originPoint = Director::getInstance()->getVisibleOrigin();
@@ -71,8 +71,8 @@ void GameWorld::onEnter()
 
 void GameWorld::addBackground()
 {
-	auto background = Scale9Sprite::createWithSpriteFrameName("res/menuPanel.png");
-	background->setContentSize(Size(288, 512));
+	auto background = Scale9Sprite::createWithSpriteFrameName("res/panel.png");
+	background->setContentSize(Size(576, 1024));
 	background->setPosition(CENTER);
 	this->addChild(background);
 

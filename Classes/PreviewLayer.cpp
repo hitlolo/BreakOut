@@ -55,14 +55,14 @@ void PreviewLayer::onEnter()
 void PreviewLayer::addBackground()
 {
 	
-	auto background = Scale9Sprite::createWithSpriteFrameName("res/menuPanel.png");
-	background->setContentSize(Size(288, 512));
+	auto background = Scale9Sprite::createWithSpriteFrameName("res/panel.png");
+	background->setInsetTop(30);
+	background->setInsetBottom(30);
+	background->setInsetRight(30);
+	background->setInsetLeft(30);
+	background->setContentSize(Size(576, 1024));
 	background->setPosition(CENTER);
 	this->addChild(background);
-	CCLOG("%f,%f,background->getPosition()", background->getPosition().x, background->getPosition().y);
-	CCLOG("%f,%f,this->getPosition()", this->getPosition().x, this->getPosition().y);
-	CCLOG("%f,%f,background->getAnchorPoint()", background->getAnchorPoint().x, background->getAnchorPoint().y);
-	CCLOG("%f,%f,this->getAnchorPoint()", this->getAnchorPoint().x, this->getAnchorPoint().y);
 	this->setColor(Color3B(0, 0, 0));
 }
 
@@ -141,6 +141,7 @@ Sprite* PreviewLayer::createBrickWithDef(Value &def)
 	float positionY = brickDef["y"].asInt();
 	float rotation = brickDef["rotation"].asFloat();
 	std::string filename = getBrickColor(def);
+	CCLOG("%s", filename.c_str());
 	auto brick = Sprite::createWithSpriteFrameName(filename.c_str());
 	brick->setAnchorPoint(Point(0, 0));
 	brick->setPosition(Point(positionX, positionY));
@@ -168,17 +169,17 @@ std::string PreviewLayer::getLongBrickColor(Value &def)
 	auto brickDef = def.asValueMap();
 	auto color = brickDef["color"].asString(); 
 	if (color == "white")
-		return std::string("element_grey_rectangle.png");
+		return std::string("element_grey_rectangle_glossy.png");
 	else if (color == "blue")
-		return std::string("element_blue_rectangle.png");
+		return std::string("element_blue_rectangle_glossy.png");
 	else if (color == "yellow")
-		return std::string("element_yellow_rectangle.png");
+		return std::string("element_yellow_rectangle_glossy.png");
 	else if (color == "red")
-		return std::string("element_red_rectangle.png");
+		return std::string("element_red_rectangle_glossy.png");
 	else if (color == "purple")
-		return std::string("element_purple_rectangle.png");
+		return std::string("element_purple_rectangle_glossy.png");
 	else if (color == "green")
-		return std::string("element_green_rectangle.png");
+		return std::string("element_green_rectangle_glossy.png");
 }
 
 std::string PreviewLayer::getShortBrickColor(Value &def)
@@ -186,16 +187,16 @@ std::string PreviewLayer::getShortBrickColor(Value &def)
 	auto brickDef = def.asValueMap();
 	auto color = brickDef["color"].asString();
 	if (color == "white")
-		return std::string("element_grey_square.png");
+		return std::string("element_grey_square_glossy.png");
 	else if (color == "blue")
-		return std::string("element_blue_square.png");
+		return std::string("element_blue_square_glossy.png");
 	else if (color == "yellow")
-		return std::string("element_yellow_square.png");
+		return std::string("element_yellow_square_glossy.png");
 	else if (color == "red")
-		return std::string("element_red_square.png");
+		return std::string("element_red_square_glossy.png");
 	else if (color == "purple")
-		return std::string("element_purple_square.png");
+		return std::string("element_purple_square_glossy.png");
 	else if (color == "green")
-		return std::string("element_green_square.png");
+		return std::string("element_green_square_glossy.png");
 	
 }

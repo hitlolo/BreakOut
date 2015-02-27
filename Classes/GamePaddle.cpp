@@ -35,7 +35,7 @@ bool GamePaddle::init()
 	{
 		return false;
 	}
-	//initSelfImage();
+	initSelfImage();
 	initPhysicsAttributes();
 	scheduleUpdate();
 	return true;
@@ -88,7 +88,7 @@ void GamePaddle::initPhysicsAttributes()
 {
 	b2BodyDef bodyDef;
 	bodyDef.type = b2BodyType::b2_dynamicBody;
-	bodyDef.position.Set(ptm(144), ptm(32));
+	bodyDef.position.Set(ptm(288), ptm(64));
 //	bodyDef.position.Set(ptm(88), ptm(32));
 	m_body = m_world->CreateBody(&bodyDef);
 

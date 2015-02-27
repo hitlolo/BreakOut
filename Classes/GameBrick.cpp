@@ -88,17 +88,17 @@ std::string GameBrick::getLongBrickColor(Value &def)
 	auto brickDef = def.asValueMap();
 	auto color = brickDef["color"].asString();
 	if (color == "white")
-		return std::string("element_grey_rectangle.png");
+		return std::string("element_grey_rectangle_glossy.png");
 	else if (color == "blue")
-		return std::string("element_blue_rectangle.png");
+		return std::string("element_blue_rectangle_glossy.png");
 	else if (color == "yellow")
-		return std::string("element_yellow_rectangle.png");
+		return std::string("element_yellow_rectangle_glossy.png");
 	else if (color == "red")
-		return std::string("element_red_rectangle.png");
+		return std::string("element_red_rectangle_glossy.png");
 	else if (color == "purple")
-		return std::string("element_purple_rectangle.png");
+		return std::string("element_purple_rectangle_glossy.png");
 	else if (color == "green")
-		return std::string("element_green_rectangle.png");
+		return std::string("element_green_rectangle_glossy.png");
 }
 
 std::string GameBrick::getShortBrickColor(Value &def)
@@ -106,17 +106,17 @@ std::string GameBrick::getShortBrickColor(Value &def)
 	auto brickDef = def.asValueMap();
 	auto color = brickDef["color"].asString();
 	if (color == "white")
-		return std::string("element_grey_square.png");
+		return std::string("element_grey_square_glossy.png");
 	else if (color == "blue")
-		return std::string("element_blue_square.png");
+		return std::string("element_blue_square_glossy.png");
 	else if (color == "yellow")
-		return std::string("element_yellow_square.png");
+		return std::string("element_yellow_square_glossy.png");
 	else if (color == "red")
-		return std::string("element_red_square.png");
+		return std::string("element_red_square_glossy.png");
 	else if (color == "purple")
-		return std::string("element_purple_square.png");
+		return std::string("element_purple_square_glossy.png");
 	else if (color == "green")
-		return std::string("element_green_square.png");
+		return std::string("element_green_square_glossy.png");
 
 }
 

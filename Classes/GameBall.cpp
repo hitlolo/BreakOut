@@ -76,7 +76,7 @@ void  GameBall::initPhysicsAttributes()
 	bodyDef.linearDamping = 0.0f;
 	bodyDef.angularDamping = 0.0f;
 	bodyDef.fixedRotation = true;
-	bodyDef.position.Set(  ptm(144), ptm(64) );
+	bodyDef.position.Set(  ptm(288), ptm(96) );
 	auto body = m_world->CreateBody(&bodyDef);
 
 	GB2ShapeCache::getInstancs()->addFixturesToBody(body, "ball");
@@ -87,13 +87,13 @@ void  GameBall::initPhysicsAttributes()
 
 void GameBall::beReady()
 {
-//	initSelfImage();
+	initSelfImage();
 	initPhysicsAttributes();
 }
 
 void GameBall::startGame()
 {
-	this->getB2Body()->SetLinearVelocity(b2Vec2(0, 20));
+	this->getB2Body()->SetLinearVelocity(b2Vec2(0, 30));
 	this->getB2Body()->SetAngularVelocity(5.0f);
 	this->setStarted(true);
 }

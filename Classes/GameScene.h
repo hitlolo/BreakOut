@@ -11,18 +11,12 @@ class GameScene :public Scene
 
 public:
 	CREATE_FUNC(GameScene);
-
 	virtual bool init() override;
-
 	GameScene();
-
 	~GameScene();
-private:
-	
+private:	
 	void startGameByLevel(int);
-
-	void initLevelDataTMX(int); 
-
+	void initLevelDataTMX(int);
 
 };
 

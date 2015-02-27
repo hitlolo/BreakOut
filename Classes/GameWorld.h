@@ -23,34 +23,24 @@ class GameWorld :public Layer, public PhysicsProtocol,public TouchProtocol
 {
 public:
 	static GameWorld* create(int);
-
 	bool init(int);
-
 	GameWorld();
-
 	~GameWorld();
 	//update the physics world  too
 	virtual void update(float dt) override;
 	//draw physics debug draw
 	virtual void draw(cocos2d::Renderer *renderer, const cocos2d::Mat4& transform, uint32_t flags);
-
 	virtual void onEnter() override;
-
 	b2World* getPhysicsWorld() const;
 
 private:
 	void addBackground();
-
 	void createPhysicsWorld();
-
 	void createEdgeBox();
 	//init with the TMX level data
 	bool initLevelData(int);
-
 	void addBall();
-
 	void addPaddle();
-
 	void addTouch();
 
 private:
