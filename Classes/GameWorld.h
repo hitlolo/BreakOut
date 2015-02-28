@@ -43,6 +43,7 @@ private:
 	void addBall();
 	void addPaddle();
 	void addTouch();
+	void addStreak();
 
 private:
 	//win SIZE
@@ -55,6 +56,7 @@ private:
 	GameBall      *m_ball;
 	GamePaddle    *m_paddle;
 	BrickLayer    *m_brickLayer;
+	MotionStreak  *m_streak;
 	int            m_maxSpeed;
 
 protected:

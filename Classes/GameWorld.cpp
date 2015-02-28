@@ -29,6 +29,7 @@ bool GameWorld::init(int level)
 	initLevelData(level);
 	addBall();
 	addPaddle();
+	addStreak();
 	return true;
 	
 
@@ -163,6 +164,20 @@ void GameWorld::addTouch()
 	this->addChild(touchLayer);
 }
 
+void GameWorld::addStreak()
+{
+	//	auto texture = SpriteFrameCache::getInstance()->getSpriteFrameByName("Ball_Darkgray.png");
+	m_streak = MotionStreak::create(0.5f, 2.0f, 12.0f, Color3B(200, 200, 200), "Ball_LightGray.png");
+	m_streak->setPosition(m_ball->getPosition());
+//	m_streak->setAnchorPoint(Point(0, 0));
+	this->addChild(m_streak);
+//	CCLOG("%f,%f", m_streak->getPosition().x, m_streak->getPosition().y);
+//	sp = Sprite::createWithSpriteFrameName("Ball_Darkgray.png");
+//	this->addChild(sp);
+//	sp->setPosition(Point(0, 32));
+}
+
+
 #if 1
 void GameWorld::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4& transform, uint32_t flags)
 {
@@ -192,6 +207,9 @@ void GameWorld::update(float dt)
 	else if (speed < m_maxSpeed) {
 		m_ball->getB2Body()->SetLinearDamping(0.0);
 	}
+
+	//streak
+	m_streak->setPosition(m_ball->getPosition());
 
 	//float angle =	m_ball->getB2Body()->GetAngle();
 	////CCLOG("ANGLE:%f",angle);

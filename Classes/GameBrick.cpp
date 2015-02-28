@@ -55,7 +55,7 @@ void GameBrick::initImage(Value &def)
 	//float rotation = brickDef["rotation"].asFloat();
 	std::string filename = getBrickColor(def);
 	this->initWithSpriteFrameName(filename.c_str());
-	CCLOG("%s", filename.c_str());
+//	CCLOG("%s", filename.c_str());
 //	this->setAnchorPoint(Point(0, 0));
 //	this->setPosition(Point(positionX, positionY));
 //	this->setRotation(rotation);
@@ -131,7 +131,7 @@ void GameBrick::initPhysics(b2World* world, Value& def)
 	float positionY = brickDef["y"].asInt();
 	positionX += this->getContentSize().width / 2;
 	positionY += this->getContentSize().height / 2;
-	CCLOG("%f,",this->getContentSize().width);
+//	CCLOG("%f,",this->getContentSize().width);
 	float rotation = brickDef["rotation"].asFloat();
 	b2BodyDef bodyDef;
 	bodyDef.type = b2BodyType::b2_staticBody;

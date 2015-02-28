@@ -307,4 +307,5 @@ void PhysicsSprite::draw(Renderer *renderer, const Mat4 &transform, uint32_t fla
 	}
 
 	Sprite::draw(renderer, _transform, flags);
+
 }

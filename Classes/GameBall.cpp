@@ -85,10 +85,12 @@ void  GameBall::initPhysicsAttributes()
 	this->setIgnoreBodyRotation(false);
 }
 
+
 void GameBall::beReady()
 {
 	initSelfImage();
 	initPhysicsAttributes();
+
 }
 
 void GameBall::startGame()
@@ -96,4 +98,11 @@ void GameBall::startGame()
 	this->getB2Body()->SetLinearVelocity(b2Vec2(0, 25));
 	this->getB2Body()->SetAngularVelocity(5.0f);
 	this->setStarted(true);
+//	this->scheduleUpdate();
 }
+
+//void GameBall::update(float time)
+//{
+////	m_streak->setPosition(this->convertToWorldSpace(Vec2::ZERO));
+//	sp->setPosition(getPosition());
+//}

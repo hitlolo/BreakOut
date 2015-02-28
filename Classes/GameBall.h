@@ -19,14 +19,18 @@ public:
 	GameBall(b2World*);
 	~GameBall();
 	void startGame();
+//	void update(float time) override;
 private:
 	std::string selectRandomColor();
 	void initSelfImage();
 	void initPhysicsAttributes();
+	
 	void beReady();
 
 private:
-	b2World* m_world;
+
+	b2World      *m_world;
+	Sprite* sp;
 	CC_SYNTHESIZE(bool, isStarted, Started);
 	
 };
