@@ -14,6 +14,7 @@
 #include "GB2ShapeCache-x.h"
 #include "TouchLayer.h"
 #include "GameController.h"
+#include "BrickLayer.h"
 
 
 USING_NS_CC;
@@ -53,6 +54,7 @@ private:
 	GLESDebugDraw *m_debugDraw;
 	GameBall      *m_ball;
 	GamePaddle    *m_paddle;
+	BrickLayer    *m_brickLayer;
 	int            m_maxSpeed;
 
 protected:

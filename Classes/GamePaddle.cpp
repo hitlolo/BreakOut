@@ -5,7 +5,7 @@ GamePaddle::GamePaddle(b2World* world, b2Body* ground)
 , _ignoreBodyRotation(false)
 , m_world(world)
 , m_groundBody(ground)
-, m_type(BAR::NORMAL)
+, m_type(BAR::LONG)
 {
 	
 }

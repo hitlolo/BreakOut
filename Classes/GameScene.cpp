@@ -1,13 +1,28 @@
 #include "GameScene.h"
 
-bool GameScene::init()
+
+GameScene* GameScene::create(int level)
+{
+	GameScene * ret = new (std::nothrow) GameScene();
+	if (ret && ret->init(level))
+	{
+		ret->autorelease();
+	}
+	else
+	{
+		CC_SAFE_DELETE(ret);
+	}
+	return ret;
+}
+
+bool GameScene::init(int level)
 {
 	if (!Scene::init())
 	{
 		return false;
 	}
 
-	startGameByLevel(0);
+	startGameByLevel(level);
 	return true;
 }
 

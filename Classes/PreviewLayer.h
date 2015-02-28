@@ -37,8 +37,9 @@ protected:
 	void onTouchCancelled(Touch* touch, Event* event);
 
 protected:
+	int                          level;
 	std::string                  tmxFileName;
-	std::vector<PhysicsSprite*>  bricksVector;
+//	std::vector<PhysicsSprite*>  bricksVector;
 	TMXTiledMap                 *brickLayer;
 };
 

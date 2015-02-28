@@ -35,32 +35,36 @@ bool GameBrick::init(b2World* world, Value &def)
 	initBrick(world,def);
 	return true;
 }
+
 void GameBrick::initBrick(b2World* world, Value& def)
 {
 	this->initImage(def);
-	this->initPhysics(world);
+	this->initType(def);
 	this->initLife(def);
+	this->initPhysics(world, def);
+
+	
+
 }
 
 void GameBrick::initImage(Value &def)
 {
 	auto brickDef = def.asValueMap();
-	float positionX = brickDef["x"].asInt();
-	float positionY = brickDef["y"].asInt();
-	float rotation = brickDef["rotation"].asFloat();
+	//float positionX = brickDef["x"].asInt();
+	//float positionY = brickDef["y"].asInt();
+	//float rotation = brickDef["rotation"].asFloat();
 	std::string filename = getBrickColor(def);
 	this->initWithSpriteFrameName(filename.c_str());
-	//this->setAnchorPoint(Point(0, 0));
-	this->setPosition(Point(positionX, positionY));
-	this->setRotation(rotation);
+	CCLOG("%s", filename.c_str());
+//	this->setAnchorPoint(Point(0, 0));
+//	this->setPosition(Point(positionX, positionY));
+//	this->setRotation(rotation);
 }
 
-bool GameBrick::initType(Value& def)
+void GameBrick::initType(Value& def)
 {
 	auto brickDef = def.asValueMap();
 	is_longBrick = brickDef["type"].asBool();
-
-	return is_longBrick;
 }
 
 void GameBrick::initLife(Value&  def)
@@ -120,17 +124,25 @@ std::string GameBrick::getShortBrickColor(Value &def)
 
 }
 
-void GameBrick::initPhysics(b2World* world)
+void GameBrick::initPhysics(b2World* world, Value& def)
 {
+	auto brickDef = def.asValueMap();
+	float positionX = brickDef["x"].asInt();
+	float positionY = brickDef["y"].asInt();
+	positionX += this->getContentSize().width / 2;
+	positionY += this->getContentSize().height / 2;
+	CCLOG("%f,",this->getContentSize().width);
+	float rotation = brickDef["rotation"].asFloat();
 	b2BodyDef bodyDef;
 	bodyDef.type = b2BodyType::b2_staticBody;
 	bodyDef.linearDamping = 0.0f;
 	bodyDef.angularDamping = 0.0f;
 	bodyDef.fixedRotation = true;
+	bodyDef.angle = rotation;
 	
-	bodyDef.position.Set(ptm(getPosition().x), ptm(getPosition().y));
+//	this->setAnchorPoint(Point(0, 0));
+	bodyDef.position.Set(ptm(positionX), ptm(positionY));
 	auto body = world->CreateBody(&bodyDef);
-
 	GB2ShapeCache::getInstancs()->addFixturesToBody(body, getShapeName());
 	this->setB2Body(body);
 	this->setPTMRatio(PTM_RATIO);

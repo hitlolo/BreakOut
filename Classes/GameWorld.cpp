@@ -34,11 +34,7 @@ bool GameWorld::init(int level)
 
 }
 
-bool GameWorld::initLevelData(int level)
-{
 
-	return true;
-}
 
 
 GameWorld::GameWorld()
@@ -46,7 +42,7 @@ GameWorld::GameWorld()
 , m_debugDraw(nullptr)
 , m_ball(nullptr)
 , m_paddle(nullptr)
-, m_maxSpeed(30)
+, m_maxSpeed(25)
 {
 	visibleSize = Director::getInstance()->getVisibleSize();
 	originPoint = Director::getInstance()->getVisibleOrigin();
@@ -135,6 +131,14 @@ void GameWorld::createEdgeBox()
 	
 }
 
+
+bool GameWorld::initLevelData(int level)
+{
+	m_brickLayer = BrickLayer::create(level, getPhysicsWorld());
+	this->addChild(m_brickLayer);
+	return true;
+}
+
 b2World* GameWorld::getPhysicsWorld() const
 {
 	return  m_world;
@@ -183,6 +187,7 @@ void GameWorld::update(float dt)
 	float32 speed = velocity.Length();
 	if (speed > m_maxSpeed) {
 		m_ball->getB2Body()->SetLinearDamping(0.5);
+		//m_ball->getB2Body()->SetLinearVelocity(b2Vec2(0, 25));
 	}
 	else if (speed < m_maxSpeed) {
 		m_ball->getB2Body()->SetLinearDamping(0.0);

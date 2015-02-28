@@ -24,7 +24,7 @@
 
 					<dict>
                         <key>density</key> <real>1</real>
-                        <key>friction</key> <real>0.1</real>
+                        <key>friction</key> <real>0</real>
                         <key>restitution</key> <real>1</real>
                         <key>filter_categoryBits</key> <integer>1</integer>
                         <key>filter_groupIndex</key> <integer>0</integer>
@@ -63,7 +63,7 @@
 
 					<dict>
                         <key>density</key> <real>2</real>
-                        <key>friction</key> <real>0.2</real>
+                        <key>friction</key> <real>0.1</real>
                         <key>restitution</key> <real>0</real>
                         <key>filter_categoryBits</key> <integer>2</integer>
                         <key>filter_groupIndex</key> <integer>0</integer>
@@ -76,19 +76,15 @@
 						<array>
 							<array>	
 								<string>{ 48.000,-12.000 }</string>	
-								<string>{ 48.000,11.000 }</string>	
-								<string>{ 45.000,13.000 }</string>	
+								<string>{ 48.000,12.000 }</string>	
+								<string>{ 44.000,16.000 }</string>	
 								<string>{ -44.000,16.000 }</string>	
 								<string>{ -48.000,12.000 }</string>	
 								<string>{ -48.000,-12.000 }</string>	
 								<string>{ -44.000,-16.000 }</string>	
 								<string>{ 44.000,-16.000 }</string>
 							</array>
-							<array>	
-								<string>{ 44.000,16.000 }</string>	
-								<string>{ -44.000,16.000 }</string>	
-								<string>{ 45.000,13.000 }</string>
-							</array>
+						
 						</array>
                     </dict>
 				</array>
@@ -102,7 +98,7 @@
 
 					<dict>
                         <key>density</key> <real>2</real>
-                        <key>friction</key> <real>0.2</real>
+                        <key>friction</key> <real>0.1</real>
                         <key>restitution</key> <real>0</real>
                         <key>filter_categoryBits</key> <integer>2</integer>
                         <key>filter_groupIndex</key> <integer>0</integer>
@@ -114,24 +110,16 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ -31.000,-12.000 }</string>	
-								<string>{ -27.000,-16.000 }</string>	
-								<string>{ 31.000,-12.000 }</string>	
-								<string>{ 30.000,13.000 }</string>	
-								<string>{ 29.000,16.000 }</string>	
-								<string>{ -27.000,16.000 }</string>	
-								<string>{ -31.000,12.000 }</string>
+								<string>{ 32.000,-12.000 }</string>	
+								<string>{ 32.000,12.000 }</string>	
+								<string>{ 28.000,16.000 }</string>	
+								<string>{ -28.000,16.000 }</string>	
+								<string>{ -32.000,12.000 }</string>	
+								<string>{ -32.000,-12.000 }</string>	
+								<string>{ -28.000,-16.000 }</string>	
+								<string>{ 28.000,-16.000 }</string>
 							</array>
-							<array>	
-								<string>{ 61.000,-16.000 }</string>	
-								<string>{ 31.000,-12.000 }</string>	
-								<string>{ -27.000,-16.000 }</string>
-							</array>
-							<array>	
-								<string>{ 31.000,11.000 }</string>	
-								<string>{ 30.000,13.000 }</string>	
-								<string>{ 31.000,-12.000 }</string>
-							</array>
+						
 						</array>
                     </dict>
 				</array>
@@ -145,7 +133,7 @@
 
 					<dict>
                         <key>density</key> <real>2</real>
-                        <key>friction</key> <real>0.2</real>
+                        <key>friction</key> <real>0.1</real>
                         <key>restitution</key> <real>0</real>
                         <key>filter_categoryBits</key> <integer>2</integer>
                         <key>filter_groupIndex</key> <integer>0</integer>
@@ -158,19 +146,15 @@
 						<array>
 							<array>	
 								<string>{ 64.000,-12.000 }</string>	
-								<string>{ 64.000,11.000 }</string>	
-								<string>{ 61.000,13.000 }</string>	
+								<string>{ 64.000,12.000 }</string>	
+								<string>{ 60.000,16.000 }</string>	
 								<string>{ -60.000,16.000 }</string>	
 								<string>{ -64.000,12.000 }</string>	
 								<string>{ -64.000,-12.000 }</string>	
 								<string>{ -60.000,-16.000 }</string>	
-								<string>{ 60.000,-15.000 }</string>
+								<string>{ 60.000,-16.000 }</string>
 							</array>
-							<array>	
-								<string>{ 60.000,16.000 }</string>	
-								<string>{ -60.000,16.000 }</string>	
-								<string>{ 61.000,13.000 }</string>
-							</array>
+			
 						</array>
                     </dict>
 				</array>
@@ -233,26 +217,7 @@
 							</array>
 						</array>
                     </dict>
-					<dict>
-                        <key>density</key> <real>2</real>
-                        <key>friction</key> <real>0</real>
-                        <key>restitution</key> <real>0</real>
-                        <key>filter_categoryBits</key> <integer>1</integer>
-                        <key>filter_groupIndex</key> <integer>0</integer>
-                        <key>filter_maskBits</key> <integer>65535</integer>
-                        <key>isSensor</key> <false/>
-                        <key>id</key> <string></string>
-                        <key>fixture_type</key> <string>POLYGON</string>
-
-						<key>polygons</key>
-						<array>
-							<array>	
-								<string>{ 73.000,91.000 }</string>	
-								<string>{ 33.000,91.000 }</string>	
-								<string>{ 33.000,51.000 }</string>
-							</array>
-						</array>
-                    </dict>
+				
 				</array>
 			</dict>
 		</dict>

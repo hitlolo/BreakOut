@@ -70,7 +70,7 @@ void GameController::map()
 
 void GameController::game(const unsigned int map)
 {
-	auto game = GameScene::create();
+	auto game = GameScene::create(map);
 	this->pushScene(game);
 }
 

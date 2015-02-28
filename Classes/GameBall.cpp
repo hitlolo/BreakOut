@@ -93,7 +93,7 @@ void GameBall::beReady()
 
 void GameBall::startGame()
 {
-	this->getB2Body()->SetLinearVelocity(b2Vec2(0, 30));
+	this->getB2Body()->SetLinearVelocity(b2Vec2(0, 25));
 	this->getB2Body()->SetAngularVelocity(5.0f);
 	this->setStarted(true);
 }

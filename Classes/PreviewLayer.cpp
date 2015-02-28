@@ -35,8 +35,7 @@ PreviewLayer::PreviewLayer(int level)
 {
 	String *file = String::createWithFormat("level%d.tmx", level);
 	tmxFileName = file->getCString();
-	CCLOG("%s", tmxFileName.c_str());
-
+	this->level = level;
 }
 
 PreviewLayer::~PreviewLayer()
@@ -87,6 +86,7 @@ void  PreviewLayer::onTouchEnded(Touch* touch, Event* event)
 
 	if (isTouchOnPanel(touch))
 	{
+		GameController::getInstance()->setSelectedLevel(level);
 		GameController::getInstance()->goState(GAME_STATE::GAME);
 	}
 }
@@ -110,28 +110,13 @@ bool  PreviewLayer::isTouchOnPanel(Touch* touch)
 void PreviewLayer::initFromTMXFile(std::string &file)
 {
 	brickLayer = TMXTiledMap::create(file);
-//brickLayer->setAnchorPoint(Point(0.5, 0.5));
-//	brickLayer->setPosition(CENTER);
-//	this->addChild(brickLayer);
 	auto bricks = brickLayer->getObjectGroup("tiles");
-	CCLOG("%f,%f,brickLayer->getPosition()", brickLayer->getPosition().x, brickLayer->getPosition().y);
-	//CCLOG("%f,%f", this->getPosition().x, this->getPosition().y);
-	//CCLOG("%f,%f", background->getAnchorPoint().x, background->getAnchorPoint().y);
-	CCLOG("%f,%f,brickLayer->getAnchorPoint()", brickLayer->getAnchorPoint().x, brickLayer->getAnchorPoint().y);
 	ValueVector objectsVector = bricks->getObjects();
-
 	for (auto brickObject : objectsVector)
 	{
 		this->addChild(createBrickWithDef(brickObject));	
 	}
-	CCLOG("%f,%f,this->getPosition()", this->getPosition().x, this->getPosition().y);
-	CCLOG("%f,%f,this->getAnchorPoint()", this->getAnchorPoint().x, this->getAnchorPoint().y);
 	this->addChild(brickLayer);
-//	brickLayer->setPosition(Point(-144, -256));
-	CCLOG("%f,%f,brickLayer->getPosition()", brickLayer->getPosition().x, brickLayer->getPosition().y);
-	//CCLOG("%f,%f", this->getPosition().x, this->getPosition().y);
-	//CCLOG("%f,%f", background->getAnchorPoint().x, background->getAnchorPoint().y);
-	CCLOG("%f,%f,brickLayer->getAnchorPoint()", brickLayer->getAnchorPoint().x, brickLayer->getAnchorPoint().y);
 }
 
 Sprite* PreviewLayer::createBrickWithDef(Value &def)
@@ -141,7 +126,6 @@ Sprite* PreviewLayer::createBrickWithDef(Value &def)
 	float positionY = brickDef["y"].asInt();
 	float rotation = brickDef["rotation"].asFloat();
 	std::string filename = getBrickColor(def);
-	CCLOG("%s", filename.c_str());
 	auto brick = Sprite::createWithSpriteFrameName(filename.c_str());
 	brick->setAnchorPoint(Point(0, 0));
 	brick->setPosition(Point(positionX, positionY));

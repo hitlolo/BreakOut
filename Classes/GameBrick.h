@@ -21,8 +21,8 @@ private:
 	void initBrick(b2World*, Value&);
 	void initImage(Value&);
 	void initLife(Value&);
-	bool initType(Value&);
-	void initPhysics(b2World*);
+	void initType(Value&);
+	void initPhysics(b2World*, Value&);
 
 	std::string getBrickColor(Value &def);
 	std::string getLongBrickColor(Value &def);

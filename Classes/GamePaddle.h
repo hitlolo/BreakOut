@@ -37,11 +37,8 @@ public:
 
 private:
 	std::string selectRandomFile();
-
 	void initPhysicsAttributes();
-
 	void initSelfImage();
-
 	void addFixturesToBody(b2Body*);
 public:
 	/** Body accessor when using box2d */

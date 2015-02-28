@@ -10,8 +10,9 @@ class GameScene :public Scene
 {
 
 public:
-	CREATE_FUNC(GameScene);
-	virtual bool init() override;
+	
+	static GameScene* create(int level);
+	bool init(int level);
 	GameScene();
 	~GameScene();
 private:	
