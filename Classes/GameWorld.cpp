@@ -29,7 +29,7 @@ bool GameWorld::init(int level)
 	initLevelData(level);
 	addBall();
 	addPaddle();
-	addStreak();
+
 	return true;
 	
 
@@ -43,7 +43,8 @@ GameWorld::GameWorld()
 , m_debugDraw(nullptr)
 , m_ball(nullptr)
 , m_paddle(nullptr)
-, m_maxSpeed(25)
+, m_streak(nullptr)
+//, m_maxSpeed(25)
 {
 	visibleSize = Director::getInstance()->getVisibleSize();
 	originPoint = Director::getInstance()->getVisibleOrigin();
@@ -88,10 +89,10 @@ void GameWorld::createPhysicsWorld()
 	m_world->SetDebugDraw(m_debugDraw);    //设置  
 	uint32 flags = 0;
 	flags += b2Draw::e_shapeBit;
-	//b2Draw::e_centerOfMassBit;   //获取需要显示debugdraw的块  
+	//flags += b2Draw::e_centerOfMassBit;   //获取需要显示debugdraw的块  
 	//b2Draw::e_aabbBit;  //AABB块  
-	//b2Draw::e_centerOfMassBit; 物体质心  
-	//b2Draw::e_jointBit;  //关节  
+	//flags += b2Draw::e_centerOfMassBit; //物体质心
+	//flags += b2Draw::e_jointBit;  //关节  
 	//b2Draw::e_shapeBit;   形状  
 	m_debugDraw->SetFlags(flags);   //需要显示那些东西  
 #endif
@@ -147,7 +148,7 @@ b2World* GameWorld::getPhysicsWorld() const
 
 void GameWorld::addBall()
 {
-	m_ball = GameBall::create(m_world);
+	m_ball = GameBall::create(m_world, m_groundBody);
 	this->addChild(m_ball);
 }
 
@@ -166,15 +167,12 @@ void GameWorld::addTouch()
 
 void GameWorld::addStreak()
 {
-	//	auto texture = SpriteFrameCache::getInstance()->getSpriteFrameByName("Ball_Darkgray.png");
+	
 	m_streak = MotionStreak::create(0.5f, 2.0f, 12.0f, Color3B(200, 200, 200), "Ball_LightGray.png");
 	m_streak->setPosition(m_ball->getPosition());
-//	m_streak->setAnchorPoint(Point(0, 0));
 	this->addChild(m_streak);
-//	CCLOG("%f,%f", m_streak->getPosition().x, m_streak->getPosition().y);
-//	sp = Sprite::createWithSpriteFrameName("Ball_Darkgray.png");
-//	this->addChild(sp);
-//	sp->setPosition(Point(0, 32));
+	m_ball->setZOrder(m_streak->getZOrder() + 1);
+
 }
 
 
@@ -198,21 +196,23 @@ void GameWorld::update(float dt)
 {
 	m_world->Step(dt, 10, 10);
 	m_world->ClearForces();
-	b2Vec2 velocity = m_ball->getB2Body()->GetLinearVelocity();
-	float32 speed = velocity.Length();
-	if (speed > m_maxSpeed) {
-		m_ball->getB2Body()->SetLinearDamping(0.5);
-		//m_ball->getB2Body()->SetLinearVelocity(b2Vec2(0, 25));
-	}
-	else if (speed < m_maxSpeed) {
-		m_ball->getB2Body()->SetLinearDamping(0.0);
-	}
+	
+	//float32 speed = velocity.Length();
+	//if (speed > m_maxSpeed) {
+	//	m_ball->getB2Body()->SetLinearDamping(0.5);
+	//	//m_ball->getB2Body()->SetLinearVelocity(b2Vec2(0, 25));
+	//}
+	//else if (speed < m_maxSpeed) {
+	//	m_ball->getB2Body()->SetLinearDamping(0.0);
+	//}
 
 	//streak
-	m_streak->setPosition(m_ball->getPosition());
+	if (m_streak)
+	{
+		m_streak->setPosition(m_ball->getPosition());
+	}
+	
 
-	//float angle =	m_ball->getB2Body()->GetAngle();
-	////CCLOG("ANGLE:%f",angle);
 }
 
 void GameWorld::onGameStart()
@@ -221,8 +221,12 @@ void GameWorld::onGameStart()
 		return;
 	else
 	{
-		m_ball->startGame();
+		CCLOG("start");
+
+		addStreak();
+		
 		this->setStarted(true);
+		m_ball->startGame();
 	}
 }
 
@@ -233,17 +237,52 @@ void GameWorld::onReturn()
 
 void GameWorld::onPaddleBeginMove(const std::vector<Touch*>& touches)
 {
-	m_paddle->onBeginMove(touches);
+	for (auto &touch : touches)
+	{
+		auto position = touch->getLocationInView();
+		position = Director::getInstance()->convertToGL(position);
+		b2Vec2 world_position = b2Vec2(ptm(position.x), ptm(position.y));
+		for (b2Fixture *fixture = m_paddle->getB2Body()->GetFixtureList(); fixture; fixture = fixture->GetNext())
+		{
+			if (fixture->TestPoint(world_position))
+			{
+				m_paddle->onBeginMove(world_position);
+				if (!getStarted())
+				{
+					
+					m_ball->onBeginMove(world_position);
+				}
+			}
+		}
+	}
+	
+	
 }
 void GameWorld::onPaddleMove(const std::vector<Touch*>& touches)
 {
 	m_paddle->onMove(touches);
+	if (!getStarted())
+	{
+		
+		m_ball->onMove(touches);
+	}
+		
 }
 void GameWorld::onPaddleEndMove()
 {
 	m_paddle->onMoveEnd();
+	if (!getStarted())
+	{
+		
+		m_ball->onMoveEnd();
+	}
 }
 void GameWorld::onPaddleCancelMove()
 {
 	m_paddle->onMoveCancel();
+	if (!getStarted())
+	{
+		
+		m_ball->onMoveEnd();
+	}
 }

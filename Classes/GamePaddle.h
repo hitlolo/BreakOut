@@ -25,14 +25,10 @@ typedef  enum class bar_type{
 class GamePaddle : virtual public Scale9Sprite, public PhysicsProtocol
 {
 public:
-	static GamePaddle* create(b2World*,b2Body*);
-	
+	static GamePaddle* create(b2World*,b2Body*);	
 	virtual bool init() override;
-
 	virtual void update(float time) override;
-
 	GamePaddle(b2World*, b2Body*);
-
 	~GamePaddle();
 
 private:
@@ -80,7 +76,7 @@ private:
 	// box2d specific
 	
 public:
-	void onBeginMove(const std::vector<Touch*>& touches);
+	void onBeginMove(const b2Vec2 position);
 	void onMove(const std::vector<Touch*>& touches);
 	void onMoveEnd();
 	void onMoveCancel();

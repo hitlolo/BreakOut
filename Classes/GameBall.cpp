@@ -1,8 +1,13 @@
 #include "GameBall.h"
 
-GameBall::GameBall(b2World* world)
+GameBall::GameBall(b2World* world, b2Body* ground)
 	:isStarted(false)
 	, m_world(world)
+	, m_groundBody(ground)
+	, m_mouseJoint(nullptr)
+	, m_joint_x(nullptr)
+	, m_maxSpeed(20)
+
 {
 	
 }
@@ -12,9 +17,9 @@ GameBall::~GameBall()
 
 }
 
-GameBall* GameBall::create(b2World* world)
+GameBall* GameBall::create(b2World* world, b2Body* ground)
 {
-	GameBall * ret = new (std::nothrow) GameBall(world);
+	GameBall * ret = new (std::nothrow) GameBall(world, ground);
 	if (ret && ret->init())
 	{
 		ret->autorelease();
@@ -83,6 +88,12 @@ void  GameBall::initPhysicsAttributes()
 	this->setB2Body(body);
 	this->setPTMRatio(PTM_RATIO);
 	this->setIgnoreBodyRotation(false);
+
+	b2PrismaticJointDef jointDef;
+	b2Vec2 worldAxis(1.0f, 0.0f);
+	jointDef.collideConnected = true;
+	jointDef.Initialize(getB2Body(), m_groundBody, getB2Body()->GetWorldCenter(), worldAxis);
+	m_joint_x = (b2PrismaticJoint*)getB2Body()->GetWorld()->CreateJoint(&jointDef);
 }
 
 
@@ -95,14 +106,65 @@ void GameBall::beReady()
 
 void GameBall::startGame()
 {
-	this->getB2Body()->SetLinearVelocity(b2Vec2(0, 25));
+	this->getB2Body()->GetWorld()->DestroyJoint(m_joint_x);
+	this->getB2Body()->SetLinearVelocity(b2Vec2(0, m_maxSpeed));
 	this->getB2Body()->SetAngularVelocity(5.0f);
 	this->setStarted(true);
-//	this->scheduleUpdate();
+	
+	this->scheduleUpdate();
 }
 
-//void GameBall::update(float time)
-//{
-////	m_streak->setPosition(this->convertToWorldSpace(Vec2::ZERO));
-//	sp->setPosition(getPosition());
-//}
+void GameBall::update(float time)
+{
+	b2Vec2 velocity = getB2Body()->GetLinearVelocity();
+	//ÔÈËÙÔË¶¯
+	velocity.Normalize();
+	velocity*= m_maxSpeed;
+	this->getB2Body()->SetLinearVelocity(velocity);
+}
+
+void GameBall::onBeginMove(const  b2Vec2 position)
+{
+	b2MouseJointDef mouseJointDef;
+	mouseJointDef.bodyA = m_groundBody;
+	mouseJointDef.bodyB = getB2Body();
+	mouseJointDef.target = position;
+	mouseJointDef.collideConnected = true;
+	mouseJointDef.maxForce = 1000.0f * getB2Body()->GetMass();
+
+	m_mouseJoint = (b2MouseJoint *)getB2Body()->GetWorld()->CreateJoint(&mouseJointDef);
+	getB2Body()->SetAwake(true);
+}
+
+void GameBall::onMove(const std::vector<Touch*>& touches)
+{
+
+	if (m_mouseJoint == NULL) return;
+	for (auto &touch : touches)
+	{	
+		auto position = touch->getLocationInView();
+		position = Director::getInstance()->convertToGL(position);
+		b2Vec2 world_position = b2Vec2(ptm(position.x), ptm(position.y));
+		m_mouseJoint->SetTarget(world_position);
+	}
+	
+	
+}
+
+void GameBall::onMoveEnd()
+{
+	if (m_mouseJoint)
+	{
+		getB2Body()->GetWorld()->DestroyJoint(m_mouseJoint);
+		m_mouseJoint = NULL;
+	}
+}
+
+void GameBall::onMoveCancel()
+{
+	if (m_mouseJoint)
+	{
+		getB2Body()->GetWorld()->DestroyJoint(m_mouseJoint);
+		m_mouseJoint = NULL;
+	}
+}

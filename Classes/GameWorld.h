@@ -38,8 +38,8 @@ private:
 	void addBackground();
 	void createPhysicsWorld();
 	void createEdgeBox();
-	//init with the TMX level data
-	bool initLevelData(int);
+
+	bool initLevelData(int);	//init with the TMX level data
 	void addBall();
 	void addPaddle();
 	void addTouch();
@@ -57,7 +57,7 @@ private:
 	GamePaddle    *m_paddle;
 	BrickLayer    *m_brickLayer;
 	MotionStreak  *m_streak;
-	int            m_maxSpeed;
+//	int            m_maxSpeed;
 
 protected:
 	virtual void onGameStart() override;

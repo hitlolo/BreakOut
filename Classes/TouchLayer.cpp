@@ -28,11 +28,12 @@ void TouchLayer::onTouchesMoved(const std::vector<Touch*>& touches, Event *unuse
 
 void TouchLayer::onTouchesEnded(const std::vector<Touch*>& touches, Event *unused_event)
 {
+	
+	getDelegator()->onPaddleEndMove();
 	if (!(getDelegator()->getStarted()))
 	{
 		getDelegator()->onGameStart();
 	}
-	getDelegator()->onPaddleEndMove();
 }
 
 void TouchLayer::onTouchesCancelled(const std::vector<Touch*>& touches, Event *unused_event)

@@ -5,7 +5,7 @@ GamePaddle::GamePaddle(b2World* world, b2Body* ground)
 , _ignoreBodyRotation(false)
 , m_world(world)
 , m_groundBody(ground)
-, m_type(BAR::LONG)
+, m_type(BAR::NORMAL)
 {
 	
 }
@@ -100,34 +100,26 @@ void GamePaddle::initPhysicsAttributes()
 	jointDef.collideConnected = true;
 	jointDef.Initialize(getB2Body(), m_groundBody, getB2Body()->GetWorldCenter(), worldAxis);
 	getB2Body()->GetWorld()->CreateJoint(&jointDef);
+	
 }
 
 
-void GamePaddle::onBeginMove(const std::vector<Touch*>& touches)
+void GamePaddle::onBeginMove(const b2Vec2 position)
 {
 	if (m_mouseJoint != NULL) return;
-	for (auto &touch : touches)
-	{
-		auto position = touch->getLocationInView();
-		position = Director::getInstance()->convertToGL(position);
-		b2Vec2 world_position = b2Vec2(ptm(position.x), ptm(position.y));
+	
+	b2MouseJointDef mouseJointDef;
+	mouseJointDef.bodyA = m_groundBody;
+	mouseJointDef.bodyB = getB2Body();
+	mouseJointDef.target = position;
+	mouseJointDef.collideConnected = true;
+	mouseJointDef.maxForce = 1000.0f * getB2Body()->GetMass();
 
-		for (b2Fixture *fixture = getB2Body()->GetFixtureList(); fixture; fixture = fixture->GetNext())
-		{
-			if (fixture->TestPoint(world_position))
-			{
-				b2MouseJointDef mouseJointDef;
-				mouseJointDef.bodyA = m_groundBody;
-				mouseJointDef.bodyB = getB2Body();
-				mouseJointDef.target = world_position;
-				mouseJointDef.collideConnected = true;
-				mouseJointDef.maxForce = 1000.0f * getB2Body()->GetMass();
-
-				m_mouseJoint = (b2MouseJoint *)getB2Body()->GetWorld()->CreateJoint(&mouseJointDef);
-				getB2Body()->SetAwake(true);
-			}
-		}
-	}
+	m_mouseJoint = (b2MouseJoint *)getB2Body()->GetWorld()->CreateJoint(&mouseJointDef);
+	getB2Body()->SetAwake(true);
+			
+		
+	
 }
 
 void GamePaddle::onMove(const std::vector<Touch*>& touches)

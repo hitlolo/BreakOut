@@ -14,23 +14,29 @@ USING_NS_CC;
 class GameBall :public PhysicsSprite, public PhysicsProtocol
 {
 public:
-	static GameBall* create(b2World*);
+	static GameBall* create(b2World*,b2Body*);
 	virtual bool init() override;
-	GameBall(b2World*);
+	GameBall(b2World*, b2Body*);
 	~GameBall();
 	void startGame();
-//	void update(float time) override;
+	void update(float time) override;
+public:
+	void onBeginMove(const b2Vec2 position);
+	void onMove(const std::vector<Touch*>& touches);
+	void onMoveEnd();
+	void onMoveCancel();
 private:
 	std::string selectRandomColor();
 	void initSelfImage();
-	void initPhysicsAttributes();
-	
+	void initPhysicsAttributes();	
 	void beReady();
 
 private:
-
-	b2World      *m_world;
-	Sprite* sp;
+	b2World          *m_world;
+	b2Body           *m_groundBody;
+	b2MouseJoint     *m_mouseJoint;
+	b2PrismaticJoint *m_joint_x;
+	int               m_maxSpeed;
 	CC_SYNTHESIZE(bool, isStarted, Started);
 	
 };

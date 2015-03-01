@@ -28,7 +28,8 @@ public:
 private:
 	static GameController* _controller; 
 	void nextScene(Scene*);
-	void pushScene(Scene*);
+	void pushSceneBySlideInR(Scene*);
+	void pushSceneByFadeIn(Scene*);
 	CC_SYNTHESIZE(GAME_STATE, curGameState, CurGameState);
 	CC_SYNTHESIZE(Scene*, curScene, CurScene);
 

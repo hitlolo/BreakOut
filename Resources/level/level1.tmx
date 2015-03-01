@@ -25,6 +25,9 @@
    </properties>
    <image width="64" height="32" source="D:/Programs/ChromeDownload/GAME_RES/Kenny/puzzle/puzzleGraphics/png/element_yellow_rectangle_glossy.png"/>
   </tile>
+  <tile id="3">
+   <image width="32" height="32" source="D:/Programs/ChromeDownload/GAME_RES/Kenny/puzzle/puzzleGraphics/png/element_yellow_square_glossy.png"/>
+  </tile>
  </tileset>
  <objectgroup name="tiles">
   <object gid="1" x="32" y="544">
@@ -342,28 +345,35 @@
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="512" y="256">
+  <object gid="2" x="480" y="256">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="512" y="224">
+  <object gid="2" x="480" y="224">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="512" y="192">
+  <object gid="2" x="480" y="192">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="384" y="192">
+  <object gid="2" x="352" y="192">
+   <properties>
+    <property name="color" value="purple"/>
+    <property name="life" value="2"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object gid="2" x="224" y="192">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
@@ -391,7 +401,7 @@
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="352" y="192">
+  <object gid="2" x="384" y="192">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
@@ -412,28 +422,28 @@
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="480" y="192">
+  <object gid="2" x="192" y="192">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="224" y="192">
+  <object gid="2" x="192" y="224">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="224" y="224">
+  <object gid="2" x="192" y="256">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="224" y="256">
+  <object gid="2" x="256" y="224">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
@@ -454,6 +464,13 @@
     <property name="type" value="0"/>
    </properties>
   </object>
+  <object gid="2" x="384" y="224">
+   <properties>
+    <property name="color" value="purple"/>
+    <property name="life" value="2"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
   <object gid="2" x="352" y="224">
    <properties>
     <property name="color" value="purple"/>
@@ -468,42 +485,35 @@
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="384" y="224">
+  <object gid="2" x="256" y="256">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="448" y="224">
+  <object gid="2" x="288" y="288">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="288" y="256">
+  <object gid="2" x="416" y="256">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="320" y="288">
+  <object gid="2" x="384" y="288">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="448" y="256">
-   <properties>
-    <property name="color" value="purple"/>
-    <property name="life" value="2"/>
-    <property name="type" value="0"/>
-   </properties>
-  </object>
-  <object gid="2" x="416" y="288">
+  <object gid="2" x="224" y="160">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
@@ -517,7 +527,7 @@
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="288" y="160">
+  <object gid="2" x="224" y="128">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
@@ -531,7 +541,7 @@
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="288" y="128">
+  <object gid="2" x="288" y="160">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
@@ -559,20 +569,6 @@
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="416" y="160">
-   <properties>
-    <property name="color" value="purple"/>
-    <property name="life" value="2"/>
-    <property name="type" value="0"/>
-   </properties>
-  </object>
-  <object gid="2" x="480" y="160">
-   <properties>
-    <property name="color" value="purple"/>
-    <property name="life" value="2"/>
-    <property name="type" value="0"/>
-   </properties>
-  </object>
   <object gid="2" x="448" y="160">
    <properties>
     <property name="color" value="purple"/>
@@ -580,7 +576,7 @@
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="480" y="128">
+  <object gid="2" x="416" y="160">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
@@ -594,6 +590,20 @@
     <property name="type" value="0"/>
    </properties>
   </object>
+  <object gid="2" x="416" y="128">
+   <properties>
+    <property name="color" value="purple"/>
+    <property name="life" value="2"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object gid="2" x="320" y="128">
+   <properties>
+    <property name="color" value="purple"/>
+    <property name="life" value="2"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
   <object gid="2" x="352" y="128">
    <properties>
     <property name="color" value="purple"/>
@@ -601,7 +611,7 @@
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="384" y="128">
+  <object gid="2" x="256" y="96">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
@@ -643,21 +653,7 @@
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="448" y="96">
-   <properties>
-    <property name="color" value="purple"/>
-    <property name="life" value="2"/>
-    <property name="type" value="0"/>
-   </properties>
-  </object>
-  <object gid="2" x="288" y="64">
-   <properties>
-    <property name="color" value="purple"/>
-    <property name="life" value="2"/>
-    <property name="type" value="0"/>
-   </properties>
-  </object>
-  <object gid="2" x="288" y="32">
+  <object gid="2" x="256" y="64">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
@@ -671,7 +667,21 @@
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="448" y="64">
+  <object gid="2" x="224" y="32">
+   <properties>
+    <property name="color" value="purple"/>
+    <property name="life" value="2"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object gid="2" x="416" y="64">
+   <properties>
+    <property name="color" value="purple"/>
+    <property name="life" value="2"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object gid="2" x="416" y="32">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
@@ -685,21 +695,14 @@
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="480" y="32">
+  <object gid="2" x="160" y="256">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
     <property name="type" value="0"/>
    </properties>
   </object>
-  <object gid="2" x="192" y="256">
-   <properties>
-    <property name="color" value="purple"/>
-    <property name="life" value="2"/>
-    <property name="type" value="0"/>
-   </properties>
-  </object>
-  <object gid="2" x="544" y="256">
+  <object gid="2" x="512" y="256">
    <properties>
     <property name="color" value="purple"/>
     <property name="life" value="2"/>
@@ -720,28 +723,7 @@
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object gid="3" x="512" y="448">
-   <properties>
-    <property name="color" value="yellow"/>
-    <property name="life" value="3"/>
-    <property name="type" value="1"/>
-   </properties>
-  </object>
   <object gid="3" x="416" y="512">
-   <properties>
-    <property name="color" value="yellow"/>
-    <property name="life" value="3"/>
-    <property name="type" value="1"/>
-   </properties>
-  </object>
-  <object gid="3" x="512" y="512">
-   <properties>
-    <property name="color" value="yellow"/>
-    <property name="life" value="3"/>
-    <property name="type" value="1"/>
-   </properties>
-  </object>
-  <object gid="3" x="0" y="64">
    <properties>
     <property name="color" value="yellow"/>
     <property name="life" value="3"/>
@@ -755,18 +737,39 @@
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object gid="3" x="0" y="128">
+  <object gid="3" x="96" y="128">
    <properties>
     <property name="color" value="yellow"/>
     <property name="life" value="3"/>
     <property name="type" value="1"/>
    </properties>
   </object>
-  <object gid="3" x="96" y="128">
+  <object gid="4" x="32" y="64">
    <properties>
     <property name="color" value="yellow"/>
     <property name="life" value="3"/>
-    <property name="type" value="1"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object gid="4" x="32" y="128">
+   <properties>
+    <property name="color" value="yellow"/>
+    <property name="life" value="3"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object gid="4" x="512" y="448">
+   <properties>
+    <property name="color" value="yellow"/>
+    <property name="life" value="3"/>
+    <property name="type" value="0"/>
+   </properties>
+  </object>
+  <object gid="4" x="512" y="512">
+   <properties>
+    <property name="color" value="yellow"/>
+    <property name="life" value="3"/>
+    <property name="type" value="0"/>
    </properties>
   </object>
  </objectgroup>

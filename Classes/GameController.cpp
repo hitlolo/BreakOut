@@ -64,14 +64,14 @@ void GameController::menu()
 void GameController::map()
 {
 	auto map = GameMap::createScene();
-	this->pushScene(map);
+	this->pushSceneBySlideInR(map);
 
 }
 
 void GameController::game(const unsigned int map)
 {
 	auto game = GameScene::create(map);
-	this->pushScene(game);
+	this->pushSceneByFadeIn(game);
 }
 
 void GameController::over()
@@ -87,10 +87,17 @@ void GameController::nextScene(Scene* next_scene)
 	Director::getInstance()->replaceScene(trasition);
 }
 
-void  GameController::pushScene(Scene* next_scene)
+void  GameController::pushSceneBySlideInR(Scene* next_scene)
 {
 	this->setCurScene(next_scene);
 	auto trasition = TransitionSlideInR::create(0.6f, next_scene);
+	Director::getInstance()->pushScene(trasition);
+}
+
+void  GameController::pushSceneByFadeIn(Scene* next_scene)
+{
+	this->setCurScene(next_scene);
+	auto trasition = TransitionProgressInOut::create(0.6f, next_scene);
 	Director::getInstance()->pushScene(trasition);
 }
 
