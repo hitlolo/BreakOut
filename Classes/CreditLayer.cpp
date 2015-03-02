@@ -69,6 +69,7 @@ void  CreditLayer::runInAnimation()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	auto action = Spawn::create(MoveTo::create(0.3f, Point(originPoint.x + visibleSize.width / 2, (originPoint.y + visibleSize.height / 2))), FadeIn::create(0.3f), nullptr);
 	this->runAction(action);
+	this->setVisible(true);
 }
 
 void  CreditLayer::runOutAnimation()
@@ -86,7 +87,7 @@ bool  CreditLayer::onTouchBegan(Touch* touch, Event* event)
 {
 	if (isVisible())
 	{
-		runOutAnimation();
+		onCancel();
 	}
 	return true;
 }
@@ -98,4 +99,15 @@ void  CreditLayer::onTouchEnded(Touch* touch, Event* event)
 void  CreditLayer::onTouchCancelled(Touch* touch, Event* event)
 {
 
+}
+
+void CreditLayer::onCancel()
+{
+	runOutAnimation();
+	this->playClickEffect();
+}
+
+void  CreditLayer::playClickEffect()
+{
+	getSoundEngine()->playClickEffect();
 }

@@ -17,55 +17,34 @@ class GameMenu :public Layer
 
 public:
 	static Scene* createScene();
-
 	CREATE_FUNC(GameMenu);
-
 	virtual bool init() override;
-
 	virtual void onEnter() override;
-
-	GameMenu();
-	
+	GameMenu();	
 	~GameMenu();
-
 	CC_SYNTHESIZE(SoundDelegate*, soundEngine, SoundEngine);
-
 	virtual void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event) override;
 
 private:
 	void addMenu();
-
 	void getMenuRoot(Node*);
-
 	void setTitleFontLineout();
-
 	void getButtonsFromRoot();
-
 	void addButtonListeners();
-
 	void setAndStartUIAnimation();
 
 private:
 	Node*     menuRoot;
-
 	Button*   buttonStart;
-
 	Button*   buttonOptions;
-
 	Button*   buttonCredits;
-
 	Button*   buttonTutorial;
-
+	OptionLayer* optionLayer;
+	CreditLayer* creditLayer;
 	void startGame(Ref* sender);
-
 	void showOptions(Ref* sender);
-
 	void showCredits(Ref* sender);
-
 	void showTutorial(Ref* sender);
-
-
-
 	void playClickEffect();
 };
 #endif

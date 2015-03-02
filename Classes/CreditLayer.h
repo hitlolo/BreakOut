@@ -16,7 +16,7 @@ public:
 	virtual void onEnter() override;
 	CreditLayer();
 	~CreditLayer();
-
+	void onCancel();
 public:
 	CC_SYNTHESIZE(SoundDelegate*, soundEngine, SoundEngine);
 private:
@@ -24,6 +24,7 @@ private:
 	void setTouchListeners();
 	void runInAnimation();
 	void runOutAnimation();
+	void playClickEffect();
 private:
 	bool onTouchBegan(Touch* touch, Event* event);
 	void onTouchEnded(Touch* touch, Event* event);

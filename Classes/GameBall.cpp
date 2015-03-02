@@ -81,6 +81,7 @@ void  GameBall::initPhysicsAttributes()
 	bodyDef.linearDamping = 0.0f;
 	bodyDef.angularDamping = 0.0f;
 	bodyDef.fixedRotation = true;
+	bodyDef.userData = this;
 	bodyDef.position.Set(  ptm(288), ptm(96) );
 	auto body = m_world->CreateBody(&bodyDef);
 

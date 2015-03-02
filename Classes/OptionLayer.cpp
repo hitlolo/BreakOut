@@ -90,6 +90,12 @@ void OptionLayer::getItemsFromRoot()
 	effectCheck->setSelectedState(getSoundEngine()->isEffectOn());
 }
 
+void OptionLayer::onCancel()
+{
+	this->playClickEffect();
+	this->runOutAnimation();
+}
+
 void OptionLayer::setClickListenersToItems()
 {
 	cancelButton->addClickEventListener(CC_CALLBACK_1(OptionLayer::onCancelCallBack,this));
@@ -99,8 +105,7 @@ void OptionLayer::setClickListenersToItems()
 
 void  OptionLayer::onCancelCallBack(Ref* sender)
 {
-	this->playClickEffect();
-	this->runOutAnimation();
+	onCancel();
 }
 void  OptionLayer::onMusicCheckBoxCallback(Ref *pSender, ui::CheckBoxEventType event_type)
 {

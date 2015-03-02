@@ -25,7 +25,9 @@ buttonStart(nullptr),
 buttonOptions(nullptr),
 buttonCredits(nullptr),
 buttonTutorial(nullptr),
-menuRoot(nullptr)
+menuRoot(nullptr),
+optionLayer(nullptr),
+creditLayer(nullptr)
 {
 	soundEngine = GameSound::getInstance();
 }
@@ -116,16 +118,16 @@ void GameMenu::startGame(Ref* sender)
 void GameMenu::showOptions(Ref* sender)
 {
 	this->playClickEffect();
-	auto  options = OptionLayer::create();
-	this->addChild(options);
+	optionLayer = OptionLayer::create();
+	this->addChild(optionLayer);
 
 }
 
 void GameMenu::showCredits(Ref* sender)
 {
 	this->playClickEffect();
-	auto  credit = CreditLayer::create();
-	this->addChild(credit);
+	creditLayer = CreditLayer::create();
+	this->addChild(creditLayer);
 	
 }
 
@@ -154,9 +156,23 @@ void GameMenu::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 {
 	if (keyCode == EventKeyboard::KeyCode::KEY_BACK)
 	{
-		Director::getInstance()->end();
-		#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)  
-			exit(0);
-		#endif  
+		if (optionLayer&&optionLayer->isVisible())
+		{
+			optionLayer->onCancel();
+			optionLayer = nullptr;
+		}
+		else if (creditLayer&&creditLayer->isVisible())
+		{
+			creditLayer->onCancel();
+			creditLayer = nullptr;
+		}
+		else
+		{
+			Director::getInstance()->end();
+			#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)  
+				exit(0);
+			#endif  
+		}
+		
 	}
 }

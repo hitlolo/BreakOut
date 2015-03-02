@@ -44,6 +44,7 @@ GameWorld::GameWorld()
 , m_ball(nullptr)
 , m_paddle(nullptr)
 , m_streak(nullptr)
+, m_particle(nullptr)
 //, m_maxSpeed(25)
 {
 	visibleSize = Director::getInstance()->getVisibleSize();
@@ -167,12 +168,16 @@ void GameWorld::addTouch()
 
 void GameWorld::addStreak()
 {
+	m_particle = ParticleSystemQuad::create("motionstreak.plist");
+	this->addChild(m_particle);
+	m_particle->setPosition(m_ball->getPosition());
 	
 	m_streak = MotionStreak::create(0.5f, 2.0f, 12.0f, Color3B(200, 200, 200), "Ball_LightGray.png");
+	m_streak->setAnchorPoint(Point(0.5, 0.5));
 	m_streak->setPosition(m_ball->getPosition());
 	this->addChild(m_streak);
 	m_ball->setZOrder(m_streak->getZOrder() + 1);
-
+	
 }
 
 
@@ -197,19 +202,13 @@ void GameWorld::update(float dt)
 	m_world->Step(dt, 10, 10);
 	m_world->ClearForces();
 	
-	//float32 speed = velocity.Length();
-	//if (speed > m_maxSpeed) {
-	//	m_ball->getB2Body()->SetLinearDamping(0.5);
-	//	//m_ball->getB2Body()->SetLinearVelocity(b2Vec2(0, 25));
-	//}
-	//else if (speed < m_maxSpeed) {
-	//	m_ball->getB2Body()->SetLinearDamping(0.0);
-	//}
-
-	//streak
 	if (m_streak)
 	{
 		m_streak->setPosition(m_ball->getPosition());
+	}
+	if (m_particle)
+	{
+		m_particle->setPosition(m_ball->getPosition());
 	}
 	
 
@@ -221,8 +220,6 @@ void GameWorld::onGameStart()
 		return;
 	else
 	{
-		CCLOG("start");
-
 		addStreak();
 		
 		this->setStarted(true);

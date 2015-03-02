@@ -89,6 +89,7 @@ void GamePaddle::initPhysicsAttributes()
 	b2BodyDef bodyDef;
 	bodyDef.type = b2BodyType::b2_dynamicBody;
 	bodyDef.position.Set(ptm(288), ptm(64));
+	bodyDef.userData = this;
 //	bodyDef.position.Set(ptm(88), ptm(32));
 	m_body = m_world->CreateBody(&bodyDef);
 

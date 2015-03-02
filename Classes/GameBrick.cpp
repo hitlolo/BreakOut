@@ -55,8 +55,6 @@ void GameBrick::initImage(Value &def)
 	//float rotation = brickDef["rotation"].asFloat();
 	std::string filename = getBrickColor(def);
 	this->initWithSpriteFrameName(filename.c_str());
-//	CCLOG("%s", filename.c_str());
-//	this->setAnchorPoint(Point(0, 0));
 //	this->setPosition(Point(positionX, positionY));
 //	this->setRotation(rotation);
 }
@@ -131,7 +129,6 @@ void GameBrick::initPhysics(b2World* world, Value& def)
 	float positionY = brickDef["y"].asInt();
 	positionX += this->getContentSize().width / 2;
 	positionY += this->getContentSize().height / 2;
-//	CCLOG("%f,",this->getContentSize().width);
 	float rotation = brickDef["rotation"].asFloat();
 	b2BodyDef bodyDef;
 	bodyDef.type = b2BodyType::b2_staticBody;
@@ -139,15 +136,15 @@ void GameBrick::initPhysics(b2World* world, Value& def)
 	bodyDef.angularDamping = 0.0f;
 	bodyDef.fixedRotation = true;
 	bodyDef.angle = rotation;
+	bodyDef.userData = this;
 	
-//	this->setAnchorPoint(Point(0, 0));
 	bodyDef.position.Set(ptm(positionX), ptm(positionY));
 	auto body = world->CreateBody(&bodyDef);
 	GB2ShapeCache::getInstancs()->addFixturesToBody(body, getShapeName());
 	this->setB2Body(body);
 	this->setPTMRatio(PTM_RATIO);
 	this->setIgnoreBodyRotation(false);
-
+	
 }
 
 std::string GameBrick::getShapeName()

@@ -13,13 +13,10 @@ class OptionLayer :public Layer
 {
 public:
 	CREATE_FUNC(OptionLayer);
-
 	virtual bool init() override;
-
 	virtual void onEnter() override;
-
 	CC_SYNTHESIZE(SoundDelegate*, soundEngine, SoundEngine);
-
+	void onCancel();
 private:
 	void initSoundEngine();
 	void addCSBRootFile();

@@ -57,6 +57,7 @@ private:
 	GamePaddle    *m_paddle;
 	BrickLayer    *m_brickLayer;
 	MotionStreak  *m_streak;
+	ParticleSystemQuad *m_particle;
 //	int            m_maxSpeed;
 
 protected:
