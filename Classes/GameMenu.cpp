@@ -53,6 +53,7 @@ void GameMenu::onEnter()
 {
 	Layer::onEnter();
 	this->setAndStartUIAnimation();
+	getSoundEngine()->playBackgroundMusic();
 }
 
 void GameMenu::getMenuRoot(Node* root)
@@ -168,6 +169,7 @@ void GameMenu::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 		}
 		else
 		{
+			//getSoundEngine()->end();
 			Director::getInstance()->end();
 			#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)  
 				exit(0);

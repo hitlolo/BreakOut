@@ -126,6 +126,9 @@
     <ClCompile Include="..\Classes\PreviewLayer.cpp">
       <Filter>classes\Game\Map</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ContactListener.cpp">
+      <Filter>classes\Game\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -208,6 +211,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\PreviewLayer.h">
       <Filter>classes\Game\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ContactListener.h">
+      <Filter>classes\Game\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

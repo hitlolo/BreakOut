@@ -32,10 +32,7 @@ bool GameWorld::init(int level)
 
 	return true;
 	
-
 }
-
-
 
 
 GameWorld::GameWorld()
@@ -45,13 +42,12 @@ GameWorld::GameWorld()
 , m_paddle(nullptr)
 , m_streak(nullptr)
 , m_particle(nullptr)
+, m_contact(nullptr)
 //, m_maxSpeed(25)
 {
 	visibleSize = Director::getInstance()->getVisibleSize();
 	originPoint = Director::getInstance()->getVisibleOrigin();
-
-	isStarted = false;
-	
+	isStarted = false;	
 	GB2ShapeCache::getInstancs()->addShapesWithFile("breakout.plist");
 }
 
@@ -60,6 +56,7 @@ GameWorld::~GameWorld()
 
 	CC_SAFE_DELETE(m_world);
 	CC_SAFE_DELETE(m_debugDraw);
+	CC_SAFE_DELETE(m_contact);
 }
 
 void GameWorld::onEnter()
@@ -98,6 +95,8 @@ void GameWorld::createPhysicsWorld()
 	m_debugDraw->SetFlags(flags);   //需要显示那些东西  
 #endif
 
+	m_contact = new ContactListener();
+	m_world->SetContactListener(m_contact);
 	
 }
 

@@ -15,6 +15,7 @@
 #include "TouchLayer.h"
 #include "GameController.h"
 #include "BrickLayer.h"
+#include "ContactListener.h"
 
 
 USING_NS_CC;
@@ -58,6 +59,7 @@ private:
 	BrickLayer    *m_brickLayer;
 	MotionStreak  *m_streak;
 	ParticleSystemQuad *m_particle;
+	ContactListener    *m_contact;
 //	int            m_maxSpeed;
 
 protected:

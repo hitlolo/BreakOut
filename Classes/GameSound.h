@@ -15,40 +15,34 @@ public:
 	static GameSound* getInstance();
 
 	GameSound();
-
 	~GameSound();
 
 	void preLoad();
-
 	void unLoad(std::string file);
 
 public:
 
 	CC_SYNTHESIZE(bool, music_on, MusicOn);
-
 	CC_SYNTHESIZE(bool, effect_on, EffectOn);
 
 	virtual bool isMusicOn() override;
-
 	virtual bool isEffectOn() override;
-
 	virtual void musicOn() override;
-
 	virtual void musicOff() override;
-
 	virtual void effectOn() override;
-
 	virtual void effectOff() override;
 
 	virtual void playBackgroundMusic() override;
-
+	virtual void stopBackgroundMusic() override;
 	virtual void playClickEffect() override;
-
 	virtual void playSwitchEffect() override;
+
+	virtual void playMelody(MELODY melody) override;
+
+	virtual void end() override;
 
 private:
 	static GameSound*  _gameSound;
-
 	SimpleAudioEngine* _audioEngine;
 };
 

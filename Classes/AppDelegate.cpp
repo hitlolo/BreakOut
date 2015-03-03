@@ -10,6 +10,7 @@ AppDelegate::AppDelegate() {
 
 AppDelegate::~AppDelegate() 
 {
+	SimpleAudioEngine::getInstance()->end();
 }
 
 //if you want a different context,just modify the value of glContextAttrs
