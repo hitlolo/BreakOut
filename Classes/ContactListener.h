@@ -5,11 +5,23 @@
 #include "Box2D\Box2D.h"
 USING_NS_CC;
 
-typedef enum class collide_type
+typedef enum class collide_bit
 {
+	BOTTOM = 8,
 	BALL = 1,
 	PADDLE = 2,
-	BRICK = 4
+	BRICK = 4,
+	WALL = 16,
+
+}COLLIDE_BIT;
+
+typedef enum class collide_type
+{
+	BALL_WALL = 0,
+	BALL_BOTTOM,
+	BALL_BRICK,
+	BALL_PADDLE,
+	UNKNOWN
 
 }COLLIDE_TYPE;
 
@@ -24,6 +36,14 @@ public:
 	{
 		return (m_fixtureA == other.m_fixtureA) && (m_fixtureB == other.m_fixtureB);
 	}
+public:
+	bool isBallAndBrick();
+	bool isBallAndPaddle();
+	bool isBallAndWall();
+	bool isBallAndBottom();
+	collide_type getCollideType();
+	b2Fixture* getBrickFixture();
+
 };
 
 class ContactListener :public b2ContactListener

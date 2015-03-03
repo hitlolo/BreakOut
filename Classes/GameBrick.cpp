@@ -42,21 +42,15 @@ void GameBrick::initBrick(b2World* world, Value& def)
 	this->initType(def);
 	this->initLife(def);
 	this->initPhysics(world, def);
-
-	
+	this->initMelodyType(def);
 
 }
 
 void GameBrick::initImage(Value &def)
 {
 	auto brickDef = def.asValueMap();
-	//float positionX = brickDef["x"].asInt();
-	//float positionY = brickDef["y"].asInt();
-	//float rotation = brickDef["rotation"].asFloat();
 	std::string filename = getBrickColor(def);
 	this->initWithSpriteFrameName(filename.c_str());
-//	this->setPosition(Point(positionX, positionY));
-//	this->setRotation(rotation);
 }
 
 void GameBrick::initType(Value& def)
@@ -69,6 +63,29 @@ void GameBrick::initLife(Value&  def)
 {
 	auto brickDef = def.asValueMap();
 	lifePoint = brickDef["life"].asInt();
+}
+
+void GameBrick::initMelodyType(Value& def)
+{
+	auto brickDef = def.asValueMap();
+	auto color = brickDef["color"].asString();
+	if (color == "white")
+		this->melodyType = MELODY::SO;
+	else if (color == "blue")
+		this->melodyType = MELODY::FA;
+	else if (color == "yellow")
+		this->melodyType = MELODY::RE;
+	else if (color == "red")
+		this->melodyType = MELODY::DO;
+	else if (color == "purple")
+		this->melodyType = MELODY::LA;
+	else if (color == "green")
+		this->melodyType = MELODY::MI;
+}
+
+melody GameBrick::getMelodyType()
+{
+	return this->melodyType;
 }
 
 std::string GameBrick::getBrickColor(Value &def)

@@ -37,12 +37,12 @@ void GameSound::preLoad()
 	SimpleAudioEngine::getInstance()->preloadEffect("switch3.ogg");
 
 	//MELODY
-	SimpleAudioEngine::getInstance()->preloadEffect("do.wav");
-	SimpleAudioEngine::getInstance()->preloadEffect("re.wav");
-	SimpleAudioEngine::getInstance()->preloadEffect("mi.wav");
-	SimpleAudioEngine::getInstance()->preloadEffect("fa.wav");
-	SimpleAudioEngine::getInstance()->preloadEffect("so.wav");
-	SimpleAudioEngine::getInstance()->preloadEffect("la.wav");
+	SimpleAudioEngine::getInstance()->preloadEffect("melody/do.wav");
+	SimpleAudioEngine::getInstance()->preloadEffect("melody/re.wav");
+	SimpleAudioEngine::getInstance()->preloadEffect("melody/mi.wav");
+	SimpleAudioEngine::getInstance()->preloadEffect("melody/fa.wav");
+	SimpleAudioEngine::getInstance()->preloadEffect("melody/so.wav");
+	SimpleAudioEngine::getInstance()->preloadEffect("melody/la.wav");
 	
 }
 
@@ -97,7 +97,15 @@ void GameSound::playBackgroundMusic()
 	if (!music_on)
 		return;
 
-	SimpleAudioEngine::getInstance()->playBackgroundMusic("rockyou.mp3", true);
+	bool isPlaying = SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying();
+	if (isPlaying)
+	{
+		return;
+	}
+	else
+	{
+		SimpleAudioEngine::getInstance()->playBackgroundMusic("rockyou.mp3", true);
+	}
 }
 
 void GameSound::stopBackgroundMusic()
@@ -132,22 +140,22 @@ void GameSound::playMelody(MELODY melody)
 	switch (melody)
 	{
 	case MELODY::DO:
-		SimpleAudioEngine::getInstance()->playEffect("do.wav");
+		SimpleAudioEngine::getInstance()->playEffect("melody/do.wav");
 		break;
 	case MELODY::RE:
-		SimpleAudioEngine::getInstance()->playEffect("re.wav");
+		SimpleAudioEngine::getInstance()->playEffect("melody/re.wav");
 		break;
 	case MELODY::MI:
-		SimpleAudioEngine::getInstance()->playEffect("mi.wav");
+		SimpleAudioEngine::getInstance()->playEffect("melody/mi.wav");
 		break;
 	case MELODY::FA:
-		SimpleAudioEngine::getInstance()->playEffect("fa.wav");
+		SimpleAudioEngine::getInstance()->playEffect("melody/fa.wav");
 		break;
 	case MELODY::SO:
-		SimpleAudioEngine::getInstance()->playEffect("so.wav");
+		SimpleAudioEngine::getInstance()->playEffect("melody/so.wav");
 		break;
 	case MELODY::LA:
-		SimpleAudioEngine::getInstance()->playEffect("la.ogg");
+		SimpleAudioEngine::getInstance()->playEffect("melody/la.ogg");
 		break;
 	case MELODY::XI:
 		break;

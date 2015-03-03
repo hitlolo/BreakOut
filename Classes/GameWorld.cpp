@@ -117,8 +117,11 @@ void GameWorld::createEdgeBox()
 	boxShapeDef.friction = 0;
 	//wall definitions
 	//BOTTOM
+	boxShapeDef.filter.categoryBits = 8;
 	groundEdge.Set(b2Vec2(0, 0), b2Vec2( ptm(visibleSize.width) , 0));
 	m_groundBody->CreateFixture(&boxShapeDef);
+
+	boxShapeDef.filter.categoryBits = 16;
 	// top
 	groundEdge.Set(b2Vec2(0, ptm(visibleSize.height)), b2Vec2( ptm(visibleSize.width), ptm(visibleSize.height) ));
 	m_groundBody->CreateFixture(&boxShapeDef);

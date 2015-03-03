@@ -5,6 +5,7 @@
 #include "PhysicsSprite.h"
 #include "PhysicsProtocol.h"
 #include "GB2ShapeCache-x.h"
+#include "GameSound.h"
 
 USING_NS_CC;
 
@@ -17,6 +18,9 @@ public:
 	GameBrick();
 	~GameBrick();
 
+	void initMelodyType(Value&);
+	melody getMelodyType();
+
 private:
 	void initBrick(b2World*, Value&);
 	void initImage(Value&);
@@ -28,6 +32,8 @@ private:
 	std::string getLongBrickColor(Value &def);
 	std::string getShortBrickColor(Value &def);
 	std::string getShapeName();
+
+	melody melodyType;
 	//type 1 = long ,0 = short
 	CC_SYNTHESIZE(bool, is_longBrick, IsLong);
 	CC_SYNTHESIZE(int, lifePoint, LifePoint);
