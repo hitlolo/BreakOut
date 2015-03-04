@@ -64,7 +64,7 @@ void GameLogo::loadPNGOver(Texture2D* texture)
 
 void GameLogo::loadMusicAndEffects()
 {
-	GameSound::getInstance()->preLoad();
+//	GameSound::getInstance()->preLoad();
 }
 
 void GameLogo::overLoading()

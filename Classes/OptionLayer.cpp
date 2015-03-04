@@ -39,7 +39,7 @@ void OptionLayer::addCSBRootFile()
 
 void  OptionLayer::setTouchListeners()
 {
-	auto eventListener = EventListenerTouchOneByOne::create();
+	eventListener = EventListenerTouchOneByOne::create();
 	eventListener->setSwallowTouches(true);
 	eventListener->onTouchBegan = CC_CALLBACK_2(OptionLayer::onTouchBegan, this);
 	eventListener->onTouchCancelled = CC_CALLBACK_2(OptionLayer::onTouchCancelled, this);
@@ -49,18 +49,24 @@ void  OptionLayer::setTouchListeners()
 
 void  OptionLayer::runInAnimation()
 {
-	auto action = Spawn::create(MoveTo::create(0.3f, CENTER), FadeIn::create(0.3f), nullptr);
+	eventListener->setEnabled(true);
+	this->setVisible(true);
+	this->setScale(1.0f);
+	auto action = Spawn::create(MoveTo::create(0.3f, CENTER), FadeIn::create(0.3f) ,nullptr);
 	this->runAction(action);
 }
 
 void OptionLayer::runOutAnimation()
 {
+	eventListener->setEnabled(false);
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point nextLocation = Point(this->getContentSize().width + visibleSize.width, visibleSize.height / 2);
 	auto action = Spawn::create(MoveTo::create(0.3f, nextLocation), FadeOut::create(0.3f), ScaleBy::create(0.3f, 0.3f), nullptr);
 	auto set = CallFunc::create(CC_CALLBACK_0(OptionLayer::setVisible, this, false));
-	auto remove = CallFunc::create(CC_CALLBACK_0(OptionLayer::removeFromParent, this));
-	auto action_ = Sequence::create(action, set, remove, nullptr);
+	//auto remove = CallFunc::create(CC_CALLBACK_0(OptionLayer::removeFromParent, this));
+	//auto action_ = Sequence::create(set,action, remove, nullptr);
+	auto action_ = Sequence::create(set, action, nullptr);
+	
 	this->runAction(action_);
 }
 
@@ -88,6 +94,12 @@ void OptionLayer::getItemsFromRoot()
 	soundCheck->setSelectedState(getSoundEngine()->isMusicOn());
 	effectCheck = dynamic_cast<ui::CheckBox*>(panel->getChildByName("effectCheck"));
 	effectCheck->setSelectedState(getSoundEngine()->isEffectOn());
+}
+
+void OptionLayer::onShow()
+{
+	this->playClickEffect();
+	this->runInAnimation();
 }
 
 void OptionLayer::onCancel()

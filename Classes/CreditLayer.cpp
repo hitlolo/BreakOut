@@ -55,7 +55,7 @@ void CreditLayer::addCSBRootFile()
 
 void CreditLayer::setTouchListeners()
 {
-	auto eventListener = EventListenerTouchOneByOne::create();
+	eventListener = EventListenerTouchOneByOne::create();
 	eventListener->setSwallowTouches(true);
 	eventListener->onTouchBegan = CC_CALLBACK_2(CreditLayer::onTouchBegan, this);
 	eventListener->onTouchCancelled = CC_CALLBACK_2(CreditLayer::onTouchCancelled, this);
@@ -65,21 +65,26 @@ void CreditLayer::setTouchListeners()
 
 void  CreditLayer::runInAnimation()
 {
+	eventListener->setEnabled(true);
 	Point originPoint = Director::getInstance()->getVisibleOrigin();
 	Size visibleSize = Director::getInstance()->getVisibleSize();
+	this->setVisible(true);
+	this->setScale(1.0f);
 	auto action = Spawn::create(MoveTo::create(0.3f, Point(originPoint.x + visibleSize.width / 2, (originPoint.y + visibleSize.height / 2))), FadeIn::create(0.3f), nullptr);
 	this->runAction(action);
-	this->setVisible(true);
+	
 }
 
 void  CreditLayer::runOutAnimation()
 {
+	eventListener->setEnabled(false);
 	Point originPoint = Director::getInstance()->getVisibleOrigin();
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	auto action = Spawn::create(MoveTo::create(0.3f, Point(getContentSize().width + visibleSize.width, (originPoint.y + visibleSize.height / 2))), FadeOut::create(0.3f), ScaleBy::create(0.3f, 0.3f), nullptr);
 	auto set = CallFunc::create(CC_CALLBACK_0(CreditLayer::setVisible, this, false));
-	auto remove = CallFunc::create(CC_CALLBACK_0(CreditLayer::removeFromParent, this));
-	auto action_ = Sequence::create(action, set, remove, nullptr);
+//	auto remove = CallFunc::create(CC_CALLBACK_0(CreditLayer::removeFromParent, this));
+//	auto action_ = Sequence::create(action, set, remove, nullptr);
+	auto action_ = Sequence::create(action, set, nullptr);
 	this->runAction(action_);
 }
 
@@ -103,8 +108,15 @@ void  CreditLayer::onTouchCancelled(Touch* touch, Event* event)
 
 void CreditLayer::onCancel()
 {
-	runOutAnimation();
 	this->playClickEffect();
+	runOutAnimation();
+	
+}
+
+void CreditLayer::onShow()
+{
+	this->playClickEffect();
+	runInAnimation();
 }
 
 void  CreditLayer::playClickEffect()

@@ -2,13 +2,14 @@
 #define BREAK_OUT_SOUND
 
 #include "cocos2d.h"
+#include "audio/include/AudioEngine.h"
 #include "SimpleAudioEngine.h"
 #include "SoundDelegate.h"
 #include "GameData.h"
 
 USING_NS_CC;
 USING_NS_CCD;
-
+//using namespace experimental;
 class GameSound :public SoundDelegate
 {
 public:
@@ -44,6 +45,9 @@ public:
 private:
 	static GameSound*  _gameSound;
 	SimpleAudioEngine* _audioEngine;
+
+private:
+	int background_id;
 };
 
 

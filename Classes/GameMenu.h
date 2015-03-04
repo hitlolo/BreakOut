@@ -20,6 +20,7 @@ public:
 	CREATE_FUNC(GameMenu);
 	virtual bool init() override;
 	virtual void onEnter() override;
+	virtual void onExit() override;
 	GameMenu();	
 	~GameMenu();
 	CC_SYNTHESIZE(SoundDelegate*, soundEngine, SoundEngine);

@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
 #include "GameController.h"
+//#include "GameSound.h"
 
 USING_NS_CC;
 
@@ -10,7 +11,7 @@ AppDelegate::AppDelegate() {
 
 AppDelegate::~AppDelegate() 
 {
-	SimpleAudioEngine::getInstance()->end();
+	//SimpleAudioEngine::getInstance()->end();
 }
 
 //if you want a different context,just modify the value of glContextAttrs

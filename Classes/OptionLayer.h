@@ -17,6 +17,7 @@ public:
 	virtual void onEnter() override;
 	CC_SYNTHESIZE(SoundDelegate*, soundEngine, SoundEngine);
 	void onCancel();
+	void onShow();
 private:
 	void initSoundEngine();
 	void addCSBRootFile();
@@ -32,6 +33,7 @@ private:
 	ui::CheckBox   *soundCheck;
 	ui::CheckBox   *effectCheck;
 	ui::Button     *cancelButton;
+	EventListenerTouchOneByOne *eventListener;
 private:
 	void onCancelCallBack(Ref* sender);
 	void onMusicCheckBoxCallback(Ref *pSender, ui::CheckBoxEventType event_type);

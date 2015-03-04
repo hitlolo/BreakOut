@@ -17,6 +17,7 @@ public:
 	CreditLayer();
 	~CreditLayer();
 	void onCancel();
+	void onShow();
 public:
 	CC_SYNTHESIZE(SoundDelegate*, soundEngine, SoundEngine);
 private:
@@ -29,6 +30,9 @@ private:
 	bool onTouchBegan(Touch* touch, Event* event);
 	void onTouchEnded(Touch* touch, Event* event);
 	void onTouchCancelled(Touch* touch, Event* event);
+
+private:
+	EventListenerTouchOneByOne *eventListener;
 };
 
 #endif

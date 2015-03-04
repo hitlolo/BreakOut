@@ -11,24 +11,17 @@ class GameLogo :public Layer
 {
 public:
 	virtual bool init() override;
-
 	static Scene* createScene();
-
 	CREATE_FUNC(GameLogo);
 
 private:
 	void startLoading();
-
 	void loadRes();
-
 	void addLogoAndLoad();
-
 	void loadPNG();
-
-	void loadPNGOver(Texture2D* texture);
-	void loadMusicAndEffects();
-	void overLoading();
-	void startGame();
+	void loadPNGOver(Texture2D* texture);	void loadMusicAndEffects();
+	void overLoading();
+	void startGame();
 };
 
 #endif

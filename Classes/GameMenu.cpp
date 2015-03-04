@@ -34,7 +34,7 @@ creditLayer(nullptr)
 
 GameMenu::~GameMenu()
 {
-
+	soundEngine = nullptr;
 }
 
 void GameMenu::addMenu()
@@ -54,6 +54,23 @@ void GameMenu::onEnter()
 	Layer::onEnter();
 	this->setAndStartUIAnimation();
 	getSoundEngine()->playBackgroundMusic();
+	//if (optionLayer)
+	//	optionLayer->onCancel();
+	//if (creditLayer)
+	//	creditLayer->onCancel();
+
+}
+
+void GameMenu::onExit()
+{
+	Layer::onExit();
+//	this->stopAllActions();
+//	this->removeAllChildrenWithCleanup(false);
+	this->removeChild(optionLayer);
+	this->removeChild(creditLayer);
+	optionLayer = nullptr;
+	creditLayer = nullptr;
+	
 }
 
 void GameMenu::getMenuRoot(Node* root)
@@ -118,17 +135,26 @@ void GameMenu::startGame(Ref* sender)
 
 void GameMenu::showOptions(Ref* sender)
 {
-	this->playClickEffect();
-	optionLayer = OptionLayer::create();
-	this->addChild(optionLayer);
-
+	//this->playClickEffect();
+	if (!optionLayer)
+	{
+		optionLayer = OptionLayer::create();
+		this->addChild(optionLayer);
+	}
+	else
+		optionLayer->onShow();
+	
 }
 
 void GameMenu::showCredits(Ref* sender)
 {
-	this->playClickEffect();
-	creditLayer = CreditLayer::create();
-	this->addChild(creditLayer);
+	if (!creditLayer)
+	{
+		creditLayer = CreditLayer::create();
+		this->addChild(creditLayer);
+	}
+	else
+		creditLayer->onShow();
 	
 }
 
@@ -156,24 +182,26 @@ void GameMenu::playClickEffect()
 void GameMenu::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 {
 	if (keyCode == EventKeyboard::KeyCode::KEY_BACK)
-	{
+	{	
+		
 		if (optionLayer&&optionLayer->isVisible())
 		{
 			optionLayer->onCancel();
-			optionLayer = nullptr;
 		}
 		else if (creditLayer&&creditLayer->isVisible())
 		{
 			creditLayer->onCancel();
-			creditLayer = nullptr;
+		//	creditLayer = nullptr;
 		}
 		else
 		{
-			//getSoundEngine()->end();
+			
+			getSoundEngine()->end();
 			Director::getInstance()->end();
 			#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)  
 				exit(0);
 			#endif  
+		
 		}
 		
 	}
