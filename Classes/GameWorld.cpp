@@ -49,6 +49,7 @@ GameWorld::GameWorld()
 	originPoint = Director::getInstance()->getVisibleOrigin();
 	isStarted = false;	
 	GB2ShapeCache::getInstancs()->addShapesWithFile("breakout.plist");
+	setSoundEngine(GameSound::getInstance());
 }
 
 GameWorld::~GameWorld()
@@ -79,6 +80,7 @@ void GameWorld::createPhysicsWorld()
 	//1.gravity
 	b2Vec2 gravity = b2Vec2(0.0f, 0.0f);
 	m_world = new b2World(gravity);
+	m_world->SetAllowSleeping(false);
 
 	
 	//2.debug
@@ -95,6 +97,7 @@ void GameWorld::createPhysicsWorld()
 	m_debugDraw->SetFlags(flags);   //需要显示那些东西  
 #endif
 
+	//add contact listener
 	m_contact = new ContactListener();
 	m_world->SetContactListener(m_contact);
 	
@@ -199,6 +202,36 @@ void GameWorld::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4& transform
 }
 #endif
 
+//deal contact
+void GameWorld::logic()
+{
+	std::vector<CustomContact>& contactVector = this->m_contact->getContactVector();
+	for (auto contact : contactVector)
+	{
+		auto collideType = contact.getCollideType();
+		//play melody
+		switch (collideType)
+		{
+			case COLLIDE_TYPE::BALL_BRICK:
+			{
+				auto brick = (GameBrick*)(contact.getBrickFixture()->GetBody()->GetUserData());
+				getSoundEngine()->playMelody(brick->getMelodyType());
+				break;
+			}
+			case COLLIDE_TYPE::BALL_PADDLE:
+			{
+				getSoundEngine()->playMelody(MELODY::XI);
+				break;
+			}
+			default:
+				return;
+			
+		}
+	}
+
+
+}
+
 void GameWorld::update(float dt)
 {
 	m_world->Step(dt, 10, 10);
@@ -213,7 +246,8 @@ void GameWorld::update(float dt)
 		m_particle->setPosition(m_ball->getPosition());
 	}
 	
-
+	//contact
+	logic();
 }
 
 void GameWorld::onGameStart()

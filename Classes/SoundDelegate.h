@@ -1,15 +1,6 @@
 #pragma once
 
-typedef enum class melody
-{
-	DO = 0,
-	RE,
-	MI,
-	FA,
-	SO,
-	LA,
-	XI
-}MELODY;
+#include  "SoundData.h"
 
 class SoundDelegate
 {
@@ -32,4 +23,6 @@ public:
 	virtual void playMelody(MELODY melody) = 0;
 
 	virtual void end() = 0;
+	virtual void pause() = 0;
+	virtual void resume() = 0;
 };

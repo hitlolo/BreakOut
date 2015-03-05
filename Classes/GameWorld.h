@@ -16,6 +16,7 @@
 #include "GameController.h"
 #include "BrickLayer.h"
 #include "ContactListener.h"
+#include "GameSound.h"
 
 
 USING_NS_CC;
@@ -60,6 +61,7 @@ private:
 	MotionStreak  *m_streak;
 	ParticleSystemQuad *m_particle;
 	ContactListener    *m_contact;
+	CC_SYNTHESIZE(SoundDelegate*, soundEngine, SoundEngine);
 //	int            m_maxSpeed;
 
 protected:
@@ -69,6 +71,9 @@ protected:
 	virtual void onPaddleEndMove() override;
 	virtual void onPaddleCancelMove() override;
 	virtual void onReturn() override;
+
+private:
+	void logic();
 };
 
 #endif

@@ -41,10 +41,12 @@ public:
 	virtual void playMelody(MELODY melody) override;
 
 	virtual void end() override;
+	virtual void pause() override;
+	virtual void resume() override;
 
 private:
 	static GameSound*  _gameSound;
-	SimpleAudioEngine* _audioEngine;
+//	SimpleAudioEngine* _audioEngine;
 
 private:
 	int background_id;

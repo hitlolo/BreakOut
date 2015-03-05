@@ -5,7 +5,7 @@
 #include "PhysicsSprite.h"
 #include "PhysicsProtocol.h"
 #include "GB2ShapeCache-x.h"
-#include "GameSound.h"
+#include "SoundData.h"
 
 USING_NS_CC;
 
@@ -19,7 +19,7 @@ public:
 	~GameBrick();
 
 	void initMelodyType(Value&);
-	melody getMelodyType();
+	melody& getMelodyType();
 
 private:
 	void initBrick(b2World*, Value&);

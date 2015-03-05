@@ -187,6 +187,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\PhysicsSprite.h" />
     <ClInclude Include="..\Classes\PreviewLayer.h" />
     <ClInclude Include="..\Classes\ShapeCache.h" />
+    <ClInclude Include="..\Classes\SoundData.h" />
     <ClInclude Include="..\Classes\SoundDelegate.h" />
     <ClInclude Include="..\Classes\test.h" />
     <ClInclude Include="..\Classes\TouchLayer.h" />

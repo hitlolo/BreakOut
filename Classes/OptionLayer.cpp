@@ -51,7 +51,7 @@ void  OptionLayer::runInAnimation()
 {
 	eventListener->setEnabled(true);
 	this->setVisible(true);
-	this->setScale(1.0f);
+//	this->setScale(1.0f);
 	auto action = Spawn::create(MoveTo::create(0.3f, CENTER), FadeIn::create(0.3f) ,nullptr);
 	this->runAction(action);
 }
@@ -61,11 +61,12 @@ void OptionLayer::runOutAnimation()
 	eventListener->setEnabled(false);
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point nextLocation = Point(this->getContentSize().width + visibleSize.width, visibleSize.height / 2);
-	auto action = Spawn::create(MoveTo::create(0.3f, nextLocation), FadeOut::create(0.3f), ScaleBy::create(0.3f, 0.3f), nullptr);
+//	auto action = Spawn::create(MoveTo::create(0.3f, nextLocation), FadeOut::create(0.3f), ScaleBy::create(0.3f, 0.3f), nullptr);
+	auto action = Spawn::create(MoveTo::create(0.3f, nextLocation), FadeOut::create(0.3f), nullptr);
 	auto set = CallFunc::create(CC_CALLBACK_0(OptionLayer::setVisible, this, false));
 	//auto remove = CallFunc::create(CC_CALLBACK_0(OptionLayer::removeFromParent, this));
 	//auto action_ = Sequence::create(set,action, remove, nullptr);
-	auto action_ = Sequence::create(set, action, nullptr);
+	auto action_ = Sequence::create(action, set, nullptr);
 	
 	this->runAction(action_);
 }
@@ -158,7 +159,7 @@ void  OptionLayer::onTouchEnded(Touch* touch, Event* event)
 {
 	if (!isTouchOnPanel(touch))
 	{
-		runOutAnimation();
+		this->onCancel();
 	}
 }
 

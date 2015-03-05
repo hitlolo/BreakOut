@@ -8,6 +8,7 @@
 #include "PhysicsProtocol.h"
 #include "PhysicsSprite.h"
 #include "GB2ShapeCache-x.h"
+#include "SoundData.h"
 
 USING_NS_CC;
 USING_NS_UI;
@@ -72,7 +73,8 @@ private:
 	float         m_ptm;
 	bool          _ignoreBodyRotation;
 private:
-	bar_type    m_type;
+	bar_type      m_type;
+	melody        m_melody;
 	// box2d specific
 	
 public:

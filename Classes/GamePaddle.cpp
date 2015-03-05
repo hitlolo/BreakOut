@@ -6,6 +6,7 @@ GamePaddle::GamePaddle(b2World* world, b2Body* ground)
 , m_world(world)
 , m_groundBody(ground)
 , m_type(BAR::NORMAL)
+, m_melody(MELODY::XI)
 {
 	
 }

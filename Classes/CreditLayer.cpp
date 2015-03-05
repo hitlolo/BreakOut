@@ -69,7 +69,7 @@ void  CreditLayer::runInAnimation()
 	Point originPoint = Director::getInstance()->getVisibleOrigin();
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	this->setVisible(true);
-	this->setScale(1.0f);
+//	this->setScale(1.0f);
 	auto action = Spawn::create(MoveTo::create(0.3f, Point(originPoint.x + visibleSize.width / 2, (originPoint.y + visibleSize.height / 2))), FadeIn::create(0.3f), nullptr);
 	this->runAction(action);
 	
@@ -80,7 +80,8 @@ void  CreditLayer::runOutAnimation()
 	eventListener->setEnabled(false);
 	Point originPoint = Director::getInstance()->getVisibleOrigin();
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	auto action = Spawn::create(MoveTo::create(0.3f, Point(getContentSize().width + visibleSize.width, (originPoint.y + visibleSize.height / 2))), FadeOut::create(0.3f), ScaleBy::create(0.3f, 0.3f), nullptr);
+//	auto action = Spawn::create(MoveTo::create(0.3f, Point(getContentSize().width + visibleSize.width, (originPoint.y + visibleSize.height / 2))), FadeOut::create(0.3f), ScaleBy::create(0.3f, 0.3f), nullptr);
+	auto action = Spawn::create(MoveTo::create(0.3f, Point(getContentSize().width + visibleSize.width, (originPoint.y + visibleSize.height / 2))), FadeOut::create(0.3f), nullptr);
 	auto set = CallFunc::create(CC_CALLBACK_0(CreditLayer::setVisible, this, false));
 //	auto remove = CallFunc::create(CC_CALLBACK_0(CreditLayer::removeFromParent, this));
 //	auto action_ = Sequence::create(action, set, remove, nullptr);
@@ -109,14 +110,14 @@ void  CreditLayer::onTouchCancelled(Touch* touch, Event* event)
 void CreditLayer::onCancel()
 {
 	this->playClickEffect();
-	runOutAnimation();
+	this->runOutAnimation();
 	
 }
 
 void CreditLayer::onShow()
 {
 	this->playClickEffect();
-	runInAnimation();
+	this->runInAnimation();
 }
 
 void  CreditLayer::playClickEffect()

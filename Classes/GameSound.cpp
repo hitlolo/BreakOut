@@ -15,16 +15,26 @@ GameSound* GameSound::getInstance()
 
 GameSound::GameSound() :music_on(true), effect_on(true), background_id(-1)
 {
-	_audioEngine = SimpleAudioEngine::getInstance();
+//	_audioEngine = SimpleAudioEngine::getInstance();
 
 }
 
 GameSound::~GameSound()
 {
-	_audioEngine = nullptr;
+//	_audioEngine = nullptr;
 	CC_SAFE_DELETE(_gameSound);
 	_gameSound = nullptr;
 	
+}
+
+void GameSound::pause()
+{
+	experimental::AudioEngine::pauseAll();
+}
+
+void GameSound::resume()
+{
+	experimental::AudioEngine::resumeAll();
 }
 
 void GameSound::end()
@@ -59,18 +69,18 @@ void GameSound::preLoad()
 	SimpleAudioEngine::getInstance()->preloadEffect("switch3.ogg");
 
 	//MELODY
-	SimpleAudioEngine::getInstance()->preloadEffect("melody/do.wav");
-	SimpleAudioEngine::getInstance()->preloadEffect("melody/re.wav");
-	SimpleAudioEngine::getInstance()->preloadEffect("melody/mi.wav");
-	SimpleAudioEngine::getInstance()->preloadEffect("melody/fa.wav");
-	SimpleAudioEngine::getInstance()->preloadEffect("melody/so.wav");
-	SimpleAudioEngine::getInstance()->preloadEffect("melody/la.wav");
+	SimpleAudioEngine::getInstance()->preloadEffect("melody/do.ogg");
+	SimpleAudioEngine::getInstance()->preloadEffect("melody/re.ogg");
+	SimpleAudioEngine::getInstance()->preloadEffect("melody/mi.ogg");
+	SimpleAudioEngine::getInstance()->preloadEffect("melody/fa.ogg");
+	SimpleAudioEngine::getInstance()->preloadEffect("melody/so.ogg");
+	SimpleAudioEngine::getInstance()->preloadEffect("melody/la.ogg");
 	
 }
 
 void  GameSound::unLoad(std::string file)
 {
-	_audioEngine->unloadEffect(file.c_str());
+//	_audioEngine->unloadEffect(file.c_str());
 }
 
 bool GameSound::isMusicOn()
@@ -114,7 +124,7 @@ void GameSound::playBackgroundMusic()
 //	bool isPlaying = SimpleAudioEngine::getInstance()->isBackgroundMusicPlaying();
 	if (background_id == experimental::AudioEngine::INVALID_AUDIO_ID)
 	{
-		background_id = experimental::AudioEngine::play2d("rockyou.mp3", true);
+		background_id = experimental::AudioEngine::play2d("rockyou.mp3", true,0.5f);
 	}
 	else
 	{
@@ -126,7 +136,7 @@ void GameSound::playBackgroundMusic()
 		else
 		{
 			//SimpleAudioEngine::getInstance()->playBackgroundMusic("rockyou.mp3", true);
-			background_id = experimental::AudioEngine::play2d("rockyou.mp3", true);
+			background_id = experimental::AudioEngine::play2d("rockyou.mp3", true,0.5f);
 		}
 	}
 	
@@ -173,29 +183,30 @@ void GameSound::playMelody(MELODY melody)
 	{
 	case MELODY::DO:
 		//SimpleAudioEngine::getInstance()->playEffect("melody/do.wav");
-		experimental::AudioEngine::play2d("melody/do.wav", false);
+		experimental::AudioEngine::play2d("melody/do.ogg", false);
 		break;
 	case MELODY::RE:
 		//SimpleAudioEngine::getInstance()->playEffect("melody/re.wav");
-		experimental::AudioEngine::play2d("melody/re.wav", false);
+		experimental::AudioEngine::play2d("melody/re.ogg", false);
 		break;
 	case MELODY::MI:
 		//SimpleAudioEngine::getInstance()->playEffect("melody/mi.wav");
-		experimental::AudioEngine::play2d("melody/mi.wav", false);
+		experimental::AudioEngine::play2d("melody/mi.ogg", false);
 		break;
 	case MELODY::FA:
 		//SimpleAudioEngine::getInstance()->playEffect("melody/fa.wav");
-		experimental::AudioEngine::play2d("melody/fa.wav", false);
+		experimental::AudioEngine::play2d("melody/fa.ogg", false);
 		break;
 	case MELODY::SO:
 		//SimpleAudioEngine::getInstance()->playEffect("melody/so.wav");
-		experimental::AudioEngine::play2d("melody/so.wav", false);
+		experimental::AudioEngine::play2d("melody/so.ogg", false);
 		break;
 	case MELODY::LA:
 		//SimpleAudioEngine::getInstance()->playEffect("melody/la.ogg");
-		experimental::AudioEngine::play2d("melody/la.wav", false);
+		experimental::AudioEngine::play2d("melody/la.ogg", false);
 		break;
 	case MELODY::XI:
+		experimental::AudioEngine::play2d("melody/xi.ogg", false);
 		break;
 
 	}

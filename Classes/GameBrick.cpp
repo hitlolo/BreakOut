@@ -83,7 +83,7 @@ void GameBrick::initMelodyType(Value& def)
 		this->melodyType = MELODY::MI;
 }
 
-melody GameBrick::getMelodyType()
+melody& GameBrick::getMelodyType()
 {
 	return this->melodyType;
 }

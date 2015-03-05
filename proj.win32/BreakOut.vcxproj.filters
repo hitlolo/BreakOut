@@ -215,6 +215,9 @@
     <ClInclude Include="..\Classes\ContactListener.h">
       <Filter>classes\Game\Game</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\SoundData.h">
+      <Filter>classes\Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
