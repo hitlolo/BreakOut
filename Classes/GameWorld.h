@@ -17,6 +17,8 @@
 #include "BrickLayer.h"
 #include "ContactListener.h"
 #include "GameSound.h"
+#include "GameShatter.h"
+#include "ShatterSprite.h"
 
 
 USING_NS_CC;
@@ -41,7 +43,7 @@ private:
 	void createPhysicsWorld();
 	void createEdgeBox();
 
-	bool initLevelData(int);	//init with the TMX level data
+	bool addBrickLayer(int);	//init with the TMX level data
 	void addBall();
 	void addPaddle();
 	void addTouch();
@@ -62,6 +64,10 @@ private:
 	ParticleSystemQuad *m_particle;
 	ContactListener    *m_contact;
 	CC_SYNTHESIZE(SoundDelegate*, soundEngine, SoundEngine);
+
+#if 1
+	DrawNode       *m_draw;
+#endif
 //	int            m_maxSpeed;
 
 protected:

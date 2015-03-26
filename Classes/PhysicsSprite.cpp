@@ -216,6 +216,8 @@ void PhysicsSprite::setPosition(const Vec2 &pos)
 
 	float angle = _pB2Body->GetAngle();
 	_pB2Body->SetTransform(b2Vec2(pos.x / _PTMRatio, pos.y / _PTMRatio), angle);
+	Sprite::setPosition(pos);
+	//SET_DIRTY_RECURSIVELY();
 #endif
 
 }

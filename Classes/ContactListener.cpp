@@ -5,12 +5,22 @@ CustomContact::CustomContact(b2Contact* contact)
 {
 	m_fixtureA = contact->GetFixtureA();
 	m_fixtureB = contact->GetFixtureB();
+	//m_manifold = new b2WorldManifold();
+	contact->GetWorldManifold(&m_manifold);
 }
 
 CustomContact::~CustomContact()
 {
 	m_fixtureA = nullptr;
 	m_fixtureB = nullptr;
+//	delete m_manifold;
+//	m_manifold = nullptr;
+//	CC_SAFE_DELETE(m_manifold);
+}
+
+b2Vec2 CustomContact::getContactPoint()
+{
+	return m_manifold.points[0];
 }
 
 b2Fixture* CustomContact::getBrickFixture()
@@ -141,6 +151,7 @@ void ContactListener::EndContact(b2Contact* contact)   // Called when two fixtur
 	if (pos != contactVector.end()) 
 	{
 		contactVector.erase(pos);
+		
 	}
 }
 

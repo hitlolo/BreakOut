@@ -7,6 +7,7 @@ class PhysicsProtocol
 {
 protected:
 	float ptm(float);
+	float mtp(float);
 };
 
 #endif

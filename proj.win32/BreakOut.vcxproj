@@ -141,6 +141,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\BrickLayer.cpp" />
     <ClCompile Include="..\Classes\ContactListener.cpp" />
     <ClCompile Include="..\Classes\CreditLayer.cpp" />
+    <ClCompile Include="..\Classes\Explosion.cpp" />
     <ClCompile Include="..\Classes\GameBall.cpp" />
     <ClCompile Include="..\Classes\GameBrick.cpp" />
     <ClCompile Include="..\Classes\GameController.cpp" />
@@ -149,6 +150,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\GameMenu.cpp" />
     <ClCompile Include="..\Classes\GamePaddle.cpp" />
     <ClCompile Include="..\Classes\GameScene.cpp" />
+    <ClCompile Include="..\Classes\GameShatter.cpp" />
     <ClCompile Include="..\Classes\GameSound.cpp" />
     <ClCompile Include="..\Classes\GameWorld.cpp" />
     <ClCompile Include="..\Classes\GB2ShapeCache-x.cpp" />
@@ -159,6 +161,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\PhysicsSprite.cpp" />
     <ClCompile Include="..\Classes\PreviewLayer.cpp" />
     <ClCompile Include="..\Classes\ShapeCache.cpp" />
+    <ClCompile Include="..\Classes\ShatterCommand.cpp" />
+    <ClCompile Include="..\Classes\ShatterSprite.cpp" />
     <ClCompile Include="..\Classes\test.cpp" />
     <ClCompile Include="..\Classes\TouchLayer.cpp" />
     <ClCompile Include="main.cpp" />
@@ -166,8 +170,10 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\BrickLayer.h" />
+    <ClInclude Include="..\Classes\ContactData.h" />
     <ClInclude Include="..\Classes\ContactListener.h" />
     <ClInclude Include="..\Classes\CreditLayer.h" />
+    <ClInclude Include="..\Classes\Explosion.h" />
     <ClInclude Include="..\Classes\GameBall.h" />
     <ClInclude Include="..\Classes\GameBrick.h" />
     <ClInclude Include="..\Classes\GameController.h" />
@@ -177,6 +183,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\GameMenu.h" />
     <ClInclude Include="..\Classes\GamePaddle.h" />
     <ClInclude Include="..\Classes\GameScene.h" />
+    <ClInclude Include="..\Classes\GameShatter.h" />
     <ClInclude Include="..\Classes\GameSound.h" />
     <ClInclude Include="..\Classes\GameWorld.h" />
     <ClInclude Include="..\Classes\GB2ShapeCache-x.h" />
@@ -187,6 +194,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\PhysicsSprite.h" />
     <ClInclude Include="..\Classes\PreviewLayer.h" />
     <ClInclude Include="..\Classes\ShapeCache.h" />
+    <ClInclude Include="..\Classes\ShatterCommand.h" />
+    <ClInclude Include="..\Classes\ShatterSprite.h" />
     <ClInclude Include="..\Classes\SoundData.h" />
     <ClInclude Include="..\Classes\SoundDelegate.h" />
     <ClInclude Include="..\Classes\test.h" />

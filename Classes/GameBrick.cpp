@@ -1,7 +1,7 @@
 #include "GameBrick.h"
 
 GameBrick::GameBrick()
-	:lifePoint(1)
+	:hpPoint(1)
 	, is_longBrick(false)
 {
 
@@ -39,11 +39,15 @@ bool GameBrick::init(b2World* world, Value &def)
 void GameBrick::initBrick(b2World* world, Value& def)
 {
 	this->initImage(def);
+	this->initHP(def);
 	this->initType(def);
-	this->initLife(def);
-	this->initPhysics(world, def);
-	this->initMelodyType(def);
+	this->initPhysics(world, def);	
+	
 
+	
+	this->initMelodyType(def);
+	this->setOriginLocation();
+//	this->scheduleUpdate();
 }
 
 void GameBrick::initImage(Value &def)
@@ -51,6 +55,10 @@ void GameBrick::initImage(Value &def)
 	auto brickDef = def.asValueMap();
 	std::string filename = getBrickColor(def);
 	this->initWithSpriteFrameName(filename.c_str());
+//	float positionX = brickDef["x"].asInt();
+//	float positionY = brickDef["y"].asInt();
+//	this->setPosition(Point(positionX, positionY));
+//	this->setAnchorPoint(Point(0.0, 0.0));
 }
 
 void GameBrick::initType(Value& def)
@@ -59,10 +67,10 @@ void GameBrick::initType(Value& def)
 	is_longBrick = brickDef["type"].asBool();
 }
 
-void GameBrick::initLife(Value&  def)
+void GameBrick::initHP(Value&  def)
 {
 	auto brickDef = def.asValueMap();
-	lifePoint = brickDef["life"].asInt();
+	hpPoint = brickDef["life"].asInt();
 }
 
 void GameBrick::initMelodyType(Value& def)
@@ -152,15 +160,20 @@ void GameBrick::initPhysics(b2World* world, Value& def)
 	bodyDef.linearDamping = 0.0f;
 	bodyDef.angularDamping = 0.0f;
 	bodyDef.fixedRotation = true;
+	bodyDef.gravityScale = 0.0f;
 	bodyDef.angle = rotation;
 	bodyDef.userData = this;
 	
 	bodyDef.position.Set(ptm(positionX), ptm(positionY));
+	
+//	bodyDef.position.Set(ptm(getPosition().x), ptm(getPosition().y));
 	auto body = world->CreateBody(&bodyDef);
 	GB2ShapeCache::getInstancs()->addFixturesToBody(body, getShapeName());
 	this->setB2Body(body);
 	this->setPTMRatio(PTM_RATIO);
 	this->setIgnoreBodyRotation(false);
+	//this->setPosition(Point(positionX, positionY));
+
 	
 }
 
@@ -175,3 +188,75 @@ std::string GameBrick::getShapeName()
 		return std::string("brick_short");
 	}
 }
+
+Vec2 GameBrick::getOriginLocation()
+{
+	return originLocation;
+}
+
+void GameBrick::setOriginLocation()
+{
+	originLocation = getPosition();
+}
+
+void GameBrick::collision(b2Vec2 point)
+{
+	//1
+	PlayMelody();
+	//2 shake
+	shake();
+	//3 check life
+	if (hpPoint != 0)
+	{
+		hpDown();
+	}
+	//4 deal collision
+	else if (hpPoint == 0)
+	{
+		auto shatter = GameShatter::create(this, point);
+		this->getParent()->addChild(shatter);
+//		this->removeFromParent();
+	}
+	else
+	{
+
+	}
+
+	
+	//5 deal gift
+
+//	CCLOG("%f,%f,draw_point", draw_point.x, draw_point.y);
+}
+
+void GameBrick::PlayMelody()
+{
+	GameSound::getInstance()->playMelody(getMelodyType());
+}
+
+void GameBrick::shake()
+{
+	auto move_up = JumpBy::create(0.1f, Point(0, 0), 5,1);
+	this->runAction(move_up);
+//	this->setPosition(Point(100, 100));
+}
+
+void GameBrick::hpDown()
+{
+	this->hpPoint -= 1;
+}
+
+void GameBrick::collapse(Point point)
+{
+
+}
+
+void GameBrick::explosion()
+{
+
+}
+
+//void GameBrick::update(float time)
+//{
+//	this->setPosition(Vec2((getB2Body()->GetPosition().x) * PTM_RATIO, getB2Body()->GetPosition().y * PTM_RATIO));
+//
+//}

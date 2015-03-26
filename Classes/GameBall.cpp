@@ -80,7 +80,9 @@ void  GameBall::initPhysicsAttributes()
 	bodyDef.type = b2BodyType::b2_dynamicBody;
 	bodyDef.linearDamping = 0.0f;
 	bodyDef.angularDamping = 0.0f;
-	bodyDef.fixedRotation = true;
+	bodyDef.fixedRotation = false;
+	bodyDef.gravityScale = 0.0f;
+//	bodyDef.bullet = true;
 	bodyDef.userData = this;
 	bodyDef.position.Set(  ptm(288), ptm(96) );
 	auto body = m_world->CreateBody(&bodyDef);

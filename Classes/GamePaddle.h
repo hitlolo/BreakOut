@@ -83,6 +83,9 @@ public:
 	void onMoveEnd();
 	void onMoveCancel();
 
+public:
+	
+
 };
 
 #endif

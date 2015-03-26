@@ -60,6 +60,11 @@ std::string BrickLayer::getFileName()
 	return std::string(file->getCString());
 }
 
+std::vector<GameBrick*> BrickLayer::getBricks()
+{
+	return this->m_bricksVector; 
+}
+
 
 
 

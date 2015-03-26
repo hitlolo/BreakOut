@@ -105,9 +105,6 @@
     <ClCompile Include="..\Classes\GameBrick.cpp">
       <Filter>classes\Items\Brick</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GameController.cpp">
-      <Filter>classes\Game\Controller</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GameLogo.cpp">
       <Filter>classes\Game\Logo</Filter>
     </ClCompile>
@@ -128,6 +125,21 @@
     </ClCompile>
     <ClCompile Include="..\Classes\ContactListener.cpp">
       <Filter>classes\Game\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameShatter.cpp">
+      <Filter>classes\Items\Brick</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ShatterCommand.cpp">
+      <Filter>classes\Items\Brick</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Explosion.cpp">
+      <Filter>classes\Items\Brick</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameController.cpp">
+      <Filter>classes\Game\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ShatterSprite.cpp">
+      <Filter>classes\Items\Brick</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -217,6 +229,21 @@
     </ClInclude>
     <ClInclude Include="..\Classes\SoundData.h">
       <Filter>classes\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameShatter.h">
+      <Filter>classes\Items\Brick</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ShatterCommand.h">
+      <Filter>classes\Items\Brick</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ContactData.h">
+      <Filter>classes\Game\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Explosion.h">
+      <Filter>classes\Items\Brick</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ShatterSprite.h">
+      <Filter>classes\Items\Brick</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

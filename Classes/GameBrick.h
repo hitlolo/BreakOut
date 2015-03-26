@@ -5,11 +5,12 @@
 #include "PhysicsSprite.h"
 #include "PhysicsProtocol.h"
 #include "GB2ShapeCache-x.h"
-#include "SoundData.h"
+#include "GameSound.h"
+#include "GameShatter.h"
 
 USING_NS_CC;
 
-
+class GameShatter;
 class GameBrick :public PhysicsSprite,public PhysicsProtocol
 {
 public:
@@ -17,16 +18,18 @@ public:
 	bool init(b2World*,Value&);
 	GameBrick();
 	~GameBrick();
-
-	void initMelodyType(Value&);
-	melody& getMelodyType();
+	Vec2 getOriginLocation();
+//	virtual void update(float time) override;
 
 private:
 	void initBrick(b2World*, Value&);
 	void initImage(Value&);
-	void initLife(Value&);
+	void initHP(Value&);
 	void initType(Value&);
 	void initPhysics(b2World*, Value&);
+	void initMelodyType(Value&);
+	void setOriginLocation();
+	melody& getMelodyType();
 
 	std::string getBrickColor(Value &def);
 	std::string getLongBrickColor(Value &def);
@@ -36,7 +39,20 @@ private:
 	melody melodyType;
 	//type 1 = long ,0 = short
 	CC_SYNTHESIZE(bool, is_longBrick, IsLong);
-	CC_SYNTHESIZE(int, lifePoint, LifePoint);
+	CC_SYNTHESIZE(int, hpPoint, HpPoint);
+
+public:
+	void collision(b2Vec2 point);
+
+private:
+	void shake();
+	void PlayMelody();
+	void hpDown();
+	void collapse(Point point);
+	void explosion();
+
+private:
+	Vec2 originLocation;
 };
 
 

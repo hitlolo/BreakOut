@@ -22,13 +22,26 @@ bool GameWorld::init(int level)
 		return false;
 	}
 	
-	addBackground();
+//	addBackground();
 	addTouch();
 	createPhysicsWorld();
 	createEdgeBox();
-	initLevelData(level);
+	addBrickLayer(level);
 	addBall();
 	addPaddle();
+	
+	//auto   shatter = GameShatter::create(m_world);
+	//this->addChild(shatter);
+	//shatter->setPosition(CENTER);
+	//V3F_C4B_T2F_POLY s{nullptr,0};
+	//auto sp = ShatterSprite::create(s, "grey_button08.png");
+	//this->addChild(sp);
+	//sp->setPosition(CENTER);
+
+#if 1
+	m_draw = DrawNode::create();
+	this->addChild(m_draw,100);
+#endif
 
 	return true;
 	
@@ -78,9 +91,10 @@ void GameWorld::addBackground()
 void GameWorld::createPhysicsWorld()
 {
 	//1.gravity
-	b2Vec2 gravity = b2Vec2(0.0f, 0.0f);
+	b2Vec2 gravity = b2Vec2(0.0f, -10.0f);
 	m_world = new b2World(gravity);
-	m_world->SetAllowSleeping(false);
+	m_world->SetAllowSleeping(true);
+	
 
 	
 	//2.debug
@@ -109,6 +123,7 @@ void GameWorld::createEdgeBox()
 	groundBodyDef.position.Set(0, 0);
 	groundBodyDef.angularDamping = 0.0f;
 	groundBodyDef.linearDamping = 0.0f;
+
 	std::string *ground = new std::string("ground");
 	groundBodyDef.userData = ground;
 
@@ -140,7 +155,7 @@ void GameWorld::createEdgeBox()
 }
 
 
-bool GameWorld::initLevelData(int level)
+bool GameWorld::addBrickLayer(int level)
 {
 	m_brickLayer = BrickLayer::create(level, getPhysicsWorld());
 	this->addChild(m_brickLayer);
@@ -214,8 +229,20 @@ void GameWorld::logic()
 		{
 			case COLLIDE_TYPE::BALL_BRICK:
 			{
+				//MELODY
 				auto brick = (GameBrick*)(contact.getBrickFixture()->GetBody()->GetUserData());
-				getSoundEngine()->playMelody(brick->getMelodyType());
+				//LIFE
+				b2Vec2 point = contact.getContactPoint();
+				//CCLOG("%f,%f", point.x, point.y);
+				//Vec2 draw_point = Vec2(mtp(point.x), mtp(point.y));
+				////CCLOG("%f,%f,draw_point", draw_point.x, draw_point.y);
+
+				//m_draw->drawCircle(draw_point, 8.0f, CC_DEGREES_TO_RADIANS(0), 50, false, Color4F(CCRANDOM_0_1(), CCRANDOM_0_1(), CCRANDOM_0_1(), 1));
+				//CCLOG("%f,%f,draw_point", draw_point.x, draw_point.y);
+				//m_draw->drawRect(Vec2(23, 23), Vec2(7, 7), Color4F(1, 1, 0, 1));
+
+				brick->collision(point);
+				
 				break;
 			}
 			case COLLIDE_TYPE::BALL_PADDLE:
@@ -235,6 +262,7 @@ void GameWorld::logic()
 void GameWorld::update(float dt)
 {
 	m_world->Step(dt, 10, 10);
+	logic();
 	m_world->ClearForces();
 	
 	if (m_streak)
@@ -247,7 +275,7 @@ void GameWorld::update(float dt)
 	}
 	
 	//contact
-	logic();
+	
 }
 
 void GameWorld::onGameStart()

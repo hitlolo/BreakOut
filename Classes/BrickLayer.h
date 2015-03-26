@@ -13,6 +13,7 @@ public:
 	bool init(int, b2World*);
 	BrickLayer(int, b2World*);
 	~BrickLayer();
+	std::vector<GameBrick*> getBricks();
 private:
 	int                          m_curLevel;
 	b2World*                     m_world;

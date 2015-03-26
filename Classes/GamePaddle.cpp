@@ -90,7 +90,9 @@ void GamePaddle::initPhysicsAttributes()
 	b2BodyDef bodyDef;
 	bodyDef.type = b2BodyType::b2_dynamicBody;
 	bodyDef.position.Set(ptm(288), ptm(64));
-	bodyDef.userData = this;
+	bodyDef.gravityScale = 0.0f;
+	bodyDef.userData = this; 
+	bodyDef.awake = true;
 //	bodyDef.position.Set(ptm(88), ptm(32));
 	m_body = m_world->CreateBody(&bodyDef);
 
@@ -110,15 +112,21 @@ void GamePaddle::onBeginMove(const b2Vec2 position)
 {
 	if (m_mouseJoint != NULL) return;
 	
-	b2MouseJointDef mouseJointDef;
-	mouseJointDef.bodyA = m_groundBody;
-	mouseJointDef.bodyB = getB2Body();
-	mouseJointDef.target = position;
-	mouseJointDef.collideConnected = true;
-	mouseJointDef.maxForce = 1000.0f * getB2Body()->GetMass();
 
-	m_mouseJoint = (b2MouseJoint *)getB2Body()->GetWorld()->CreateJoint(&mouseJointDef);
-	getB2Body()->SetAwake(true);
+	else
+	{
+		b2MouseJointDef mouseJointDef;
+		mouseJointDef.bodyA = m_groundBody;
+		mouseJointDef.bodyB = getB2Body();
+		mouseJointDef.target = position;
+		mouseJointDef.collideConnected = true;
+		mouseJointDef.maxForce = 1000.0f * getB2Body()->GetMass();
+
+		m_mouseJoint = (b2MouseJoint *)getB2Body()->GetWorld()->CreateJoint(&mouseJointDef);
+	}
+
+	
+//	getB2Body()->SetAwake(true);
 			
 		
 	
@@ -139,19 +147,19 @@ void GamePaddle::onMove(const std::vector<Touch*>& touches)
 }
 void GamePaddle::onMoveEnd()
 {
-	if (m_mouseJoint) 
-	{
-		getB2Body()->GetWorld()->DestroyJoint(m_mouseJoint);
-		m_mouseJoint = NULL;
-	}
+	//if (m_mouseJoint) 
+	//{
+	//	getB2Body()->GetWorld()->DestroyJoint(m_mouseJoint);
+	//	m_mouseJoint = NULL;
+	//}
 }
 void GamePaddle::onMoveCancel()
 {
-	if (m_mouseJoint)
+	/*if (m_mouseJoint)
 	{
 		getB2Body()->GetWorld()->DestroyJoint(m_mouseJoint);
 		m_mouseJoint = NULL;
-	}
+	}*/
 }
 
 
