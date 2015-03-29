@@ -2,33 +2,31 @@
 #define BREAK_OUT_SHATTER_SPRITE
 
 #include "cocos2d.h"
-#include <iostream>
+#include "Box2D\Box2D.h"
+#include "PhysicsProtocol.h"
+//#include <iostream>
 
 USING_NS_CC;
 
-struct V3F_C4B_T2F_POLY
-{
-	//! top left
-	V3F_C4B_T2F  *vertice;
-	GLuint        count;  //poly count
 
-};
-
-class ShatterSprite :public Sprite
+class ShatterSprite :public Sprite, public PhysicsProtocol
 {
 
 public:
-	static ShatterSprite* create(V3F_C4B_T2F_POLY poly,std::string file);
-	ShatterSprite(V3F_C4B_T2F_POLY poly);
+	static ShatterSprite* create(std::vector<b2Vec2>, Sprite*);
+	ShatterSprite(std::vector<b2Vec2>, Sprite*);
 	~ShatterSprite();
 	void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags);
-	bool init(std::string file);
+	bool init(Sprite*);
 private:
-	V3F_C4B_T2F_POLY poly_data;
-	CustomCommand    command;
+	std::vector<b2Vec2> poly_data;
+	int                 poly_count;
+	V2F_C4F_T2F        *vertices;
+	CustomCommand       command;
+	Sprite             *originSprite;
 	void onDraw();
 
-
+	void setVerticesAndCoords();
 };
 
 

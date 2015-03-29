@@ -18,7 +18,7 @@ public:
 	bool init(b2World*,Value&);
 	GameBrick();
 	~GameBrick();
-	Vec2 getOriginLocation();
+	b2Vec2 getOriginLocation();
 //	virtual void update(float time) override;
 
 private:
@@ -42,7 +42,8 @@ private:
 	CC_SYNTHESIZE(int, hpPoint, HpPoint);
 
 public:
-	void collision(b2Vec2 point);
+	//return hp
+	int collision(b2Vec2 point);
 
 private:
 	void shake();
@@ -52,7 +53,7 @@ private:
 	void explosion();
 
 private:
-	Vec2 originLocation;
+	b2Vec2 originLocation;
 };
 
 

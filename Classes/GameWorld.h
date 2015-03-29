@@ -80,6 +80,7 @@ protected:
 
 private:
 	void logic();
+	void brickBomb(GameBrick*, b2Vec2);
 };
 
 #endif

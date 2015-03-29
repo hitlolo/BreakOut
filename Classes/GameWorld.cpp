@@ -34,9 +34,75 @@ bool GameWorld::init(int level)
 	//this->addChild(shatter);
 	//shatter->setPosition(CENTER);
 	//V3F_C4B_T2F_POLY s{nullptr,0};
-	//auto sp = ShatterSprite::create(s, "grey_button08.png");
-	//this->addChild(sp);
-	//sp->setPosition(CENTER);
+
+	//std::vector<b2Vec2> test;
+	//test.resize(3);
+	////-0.490350f
+	////test[0] = b2Vec2(0.117446f, -0.216859f);
+	////test[1] = b2Vec2(0.104618f, -0.5f);
+	////test[2] = b2Vec2(0.326847f, -0.5f);
+	//test[0] = b2Vec2(0.063890f, 0.288177f);
+	//test[1] = b2Vec2(0.104618f, -0.5f);
+	//test[2] = b2Vec2(0.326847f, -0.5f);
+	////test.resize(4);
+	//////-0.490350f
+	////test[0] = b2Vec2(0.5, 0.5);
+	////test[1] = b2Vec2(-0.5, 0.5f);
+	////test[2] = b2Vec2(-0.5, -0.5f);
+	////test[3] = b2Vec2(0.5, -0.5f);
+
+	//for (int32 i = 0; i < test.size(); ++i)
+	//{
+	//	int32 i1 = i;
+	//	int32 i2 = i + 1 < test.size() ? i + 1 : 0;
+	//	b2Vec2 edge = test[i2] - test[i1];
+
+	//	CCLOG("%f,%f,edge.LengthSquared() ", edge.LengthSquared(), 0.5f * b2_linearSlop);
+	//	if (edge.LengthSquared() < 0.5f * b2_linearSlop)
+	//	{
+	//		CCLOG("test[%d],test[%d] small!!", i1, i2);
+	//	}
+	//}
+
+	//float area = 0.0f;
+	////float p1X = 0.0, p1Y = 0.0;
+	////float inv3 = 1.0 / 3.0;
+	//int iCycle, iCount; 
+	//float iArea;
+	//iArea = 0.0f;
+	//iCount = test.size();
+
+	//for (iCycle = 0; iCycle<iCount; iCycle++)
+	//{
+	//	iArea = iArea + (test[iCycle].x*test[(iCycle + 1) % iCount].y - test[(iCycle + 1) % iCount].x*test[iCycle].y);
+	//}
+	//area = 0.5f*iArea;
+	//CCLOG("%f,area  zzzzzzzzzz ", area);
+	//
+	//b2BodyDef bodyDef;
+	//bodyDef.type = b2_staticBody;
+
+	////bodyDef.position = position;
+	////	bodyDef.position = origin_body->GetUserData();
+	////bodyDef.angle = origin_body->GetAngle();
+	//bodyDef.position.Set(ptm(100), ptm(100));
+	//b2FixtureDef fixtureDef;
+	//fixtureDef.density = 1.0f;
+	//fixtureDef.friction = 0.0f;
+	//fixtureDef.restitution = 0.0f;
+	////	fixtureDef.filter= origFixture->GetFilterData();
+	//b2PolygonShape polyShape;
+	//b2Body* body = NULL;
+	//b2Vec2 *points = new b2Vec2[test.size()];
+	//for (int i = 0; i < test.size(); i++)
+	//{
+	//	points[i] = test[i];
+	//}
+	//polyShape.Set(points, test.size());
+	//fixtureDef.shape = &polyShape;
+	//body = m_world->CreateBody(&bodyDef);
+	//body->CreateFixture(&fixtureDef);
+
 
 #if 1
 	m_draw = DrawNode::create();
@@ -221,6 +287,7 @@ void GameWorld::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4& transform
 void GameWorld::logic()
 {
 	std::vector<CustomContact>& contactVector = this->m_contact->getContactVector();
+	std::map<GameBrick*,b2Vec2> undealCollideBrick;
 	for (auto contact : contactVector)
 	{
 		auto collideType = contact.getCollideType();
@@ -229,20 +296,10 @@ void GameWorld::logic()
 		{
 			case COLLIDE_TYPE::BALL_BRICK:
 			{
-				//MELODY
 				auto brick = (GameBrick*)(contact.getBrickFixture()->GetBody()->GetUserData());
-				//LIFE
 				b2Vec2 point = contact.getContactPoint();
-				//CCLOG("%f,%f", point.x, point.y);
-				//Vec2 draw_point = Vec2(mtp(point.x), mtp(point.y));
-				////CCLOG("%f,%f,draw_point", draw_point.x, draw_point.y);
-
-				//m_draw->drawCircle(draw_point, 8.0f, CC_DEGREES_TO_RADIANS(0), 50, false, Color4F(CCRANDOM_0_1(), CCRANDOM_0_1(), CCRANDOM_0_1(), 1));
-				//CCLOG("%f,%f,draw_point", draw_point.x, draw_point.y);
-				//m_draw->drawRect(Vec2(23, 23), Vec2(7, 7), Color4F(1, 1, 0, 1));
-
-				brick->collision(point);
-				
+				undealCollideBrick[brick] = point;
+				//brick->collision(point);		
 				break;
 			}
 			case COLLIDE_TYPE::BALL_PADDLE:
@@ -256,7 +313,19 @@ void GameWorld::logic()
 		}
 	}
 
+	for (auto collide_brick : undealCollideBrick)
+	{
+		auto brick = collide_brick.first;
+		auto point = collide_brick.second;
+		int brick_hp = brick->collision(point);
+		//if (brick_hp <= 0)
+		{
+			brickBomb(brick, point);
+		}
+	}
 
+
+	undealCollideBrick.clear();
 }
 
 void GameWorld::update(float dt)
@@ -346,4 +415,12 @@ void GameWorld::onPaddleCancelMove()
 		
 		m_ball->onMoveEnd();
 	}
+}
+
+
+void GameWorld::brickBomb(GameBrick* brick, b2Vec2 point)
+{
+	GameShatter* shatter = GameShatter::create(brick, point);
+	this->addChild(shatter);
+	shatter->bomb();
 }

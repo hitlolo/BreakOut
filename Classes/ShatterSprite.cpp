@@ -1,41 +1,45 @@
 #include "ShatterSprite.h"
 
-ShatterSprite* ShatterSprite::create(V3F_C4B_T2F_POLY poly, std::string file)
+ShatterSprite* ShatterSprite::create(std::vector<b2Vec2> vertices, Sprite *sprite)
 {
-	ShatterSprite *sprite = new (std::nothrow) ShatterSprite(poly);
-	if (sprite && sprite->init(file))
+	ShatterSprite *shatter = new (std::nothrow) ShatterSprite(vertices, sprite);
+	if (shatter && shatter->init(sprite))
 	{
-		sprite->autorelease();
-		return sprite;
+		shatter->autorelease();
+		return shatter;
 	}
-	CC_SAFE_DELETE(sprite);
+	CC_SAFE_DELETE(shatter);
 
 	
 	
 	return nullptr;
 }
 
-bool ShatterSprite::init(std::string file)
+bool ShatterSprite::init(Sprite *sprite)
 {
-	if (!Sprite::initWithSpriteFrameName(file))
+	if (!Sprite::initWithSpriteFrame(sprite->getSpriteFrame()))
 	{
 		return false;
 	}
 	this->setGLProgram(GLProgramCache::getInstance()->getGLProgram(GLProgram::SHADER_NAME_POSITION_TEXTURE));
-	auto action = RotateBy::create(1.0f, -90);
-	auto s = RepeatForever::create(action);
-	this->runAction(s);
+//	auto action = RotateBy::create(1.0f, -90);
+//	auto s = RepeatForever::create(action);
+//	this->runAction(s);
+
+	setVerticesAndCoords();
 	return true;
 }
 
-ShatterSprite::ShatterSprite(V3F_C4B_T2F_POLY poly)
+ShatterSprite::ShatterSprite(std::vector<b2Vec2> vertices, Sprite* sprite)
 {
-	this->poly_data = poly;
+	this->poly_data = vertices;
+	this->poly_count = vertices.size();
+	this->originSprite = sprite;
 }
 
 ShatterSprite::~ShatterSprite()
 {
-	delete[] poly_data.vertice;
+
 }
 
 void ShatterSprite::draw(Renderer *renderer, const Mat4 &transform, uint32_t flags)
@@ -49,13 +53,13 @@ void ShatterSprite::draw(Renderer *renderer, const Mat4 &transform, uint32_t fla
 	if (_insideBounds)
 #endif
 	{
-		command.init(_globalZOrder,_transform,flags);
+		_transformUpdated = _transformDirty = _inverseDirty = true;
+		//setDirtyRecursively(true);
+		//setNodeToParentTransform(_transform);
+		_transform.set(transform);
+		command.init(_globalZOrder, transform, flags);
 		command.func = std::bind(&ShatterSprite::onDraw, this);
 		renderer->addCommand(&command);
-		//CCLOG("%f,%f,%f,%f,transform1", _transform.m[0], _transform.m[1], _transform.m[2], _transform.m[3]);
-		//CCLOG("%f,%f,%f,%f,transform2", _transform.m[4], _transform.m[5], _transform.m[6], _transform.m[7]);
-		//CCLOG("%f,%f,%f,%f,transform3", _transform.m[8], _transform.m[9], _transform.m[10], _transform.m[11]);
-		//CCLOG("%f,%f,%f,%f,transform4", _transform.m[12], _transform.m[13], _transform.m[14], _transform.m[15]);
 
 #if CC_SPRITE_DEBUG_DRAW
 		_debugDrawNode->clear();
@@ -70,36 +74,18 @@ void ShatterSprite::draw(Renderer *renderer, const Mat4 &transform, uint32_t fla
 	}
 }
 
-void ShatterSprite::onDraw()
+void ShatterSprite::setVerticesAndCoords()
 {
-	//获得当前HelloWorld的shader
-	//Node::draw();
-	
-	auto glProgram = getGLProgram();
-	//使用此shader
-	glProgram->use();
-	//设置该shader的一些内置uniform,主要是MVP，即model-view-project矩阵
-	glProgram->setUniformsForBuiltins(_transform);
-
-	
-
-	auto size = Director::getInstance()->getWinSize();
-	//指定将要绘制的三角形的三个顶点，分别位到屏幕左下角，右下角和正中间的顶端
-	float vertercies[] = 
+	float vertercies[] =
 	{
-		0,0,
+		0, 0,
 		49, 0,   //第二个点的坐标
 		0, 49,
-		0,49,
-		49,49,
-		49,0
-	}; 
+		0, 49,
+		49, 49,
+		49, 0
+	};
 
-	//指定每一个顶点的颜色，颜色值是RGBA格式的，取值范围是0-1
-	float color[] = {
-		0, 1, 0, 1,    //第一个点的颜色，绿色
-		1, 0, 0, 1,  //第二个点的颜色, 红色
-		0, 0, 1, 1 };  //第三个点的颜色， 蓝色
 	float coord[] = {
 		0.214844, 0.838867,    //第一个点的颜色，绿色
 		0.406250, 0.838867,  //第二个点的颜色, 红色
@@ -107,20 +93,55 @@ void ShatterSprite::onDraw()
 		0.214844, 0.791016,
 		0.406250, 0.791016,
 		0.406250, 0.838867
-	};  //
+	};
+
+	vertices = new V2F_C4F_T2F[poly_data.size()];
+	for (int i = 0, j = 0, k = 0; i < poly_data.size(); i++)
+	{
+		//vertices[i].vertices.x = vertercies[j++];
+		//vertices[i].vertices.y = vertercies[j++];
+		vertices[i].vertices.x = poly_data[i].x *PTM_RATIO;
+		vertices[i].vertices.y = poly_data[i].y *PTM_RATIO;
+
+		vertices[i].texCoords.u = coord[k++];
+		vertices[i].texCoords.v = coord[k++];
+	}
+
+	//CCPoint ap = originSprite->getAnchorPoint();
+	//unsigned long ow = csx->getTexture()->getContentSize().width;
+	//ow *= ap.x;
+	//unsigned long oh = csx->getTexture()->getContentSize().height;
+	//oh *= ap.y;
+	//for (int i = 0; i<numVertices; i++)
+	//{
+	//	b2Vec2 v = poly->GetVertex(i);
+	//	points[i].x = v.x*metor / scalex + ow;
+	//	points[i].y = v.y*metor / scaley + oh;
+	//}
+}
+
+void ShatterSprite::onDraw()
+{
+	
+	auto glProgram = getGLProgram();	
+	glProgram->use();
+	//glProgram->setUniformsForBuiltins(_modelViewTransform);
+	glProgram->setUniformsForBuiltins(_transform);
+
 	//激活名字为position和color的vertex attribute
 	//Director::getInstance()->pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
 //	Director::getInstance()->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, _modelViewTransform);
 	GL::enableVertexAttribs(GL::VERTEX_ATTRIB_FLAG_POSITION | GL::VERTEX_ATTRIB_FLAG_COLOR | GL::VERTEX_ATTRIB_FLAG_TEX_COORD);
 	//分别给position和color指定数据源
 	glBindTexture(GL_TEXTURE_2D, this->_texture->getName());
-	glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 2, GL_FLOAT, GL_FALSE, 0, vertercies);
+	glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 2, GL_FLOAT, GL_FALSE, sizeof(V2F_C4F_T2F), &vertices->vertices);
 //	glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_FLOAT, GL_FALSE, 0, color);
-	glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_TEX_COORD, 2, GL_FLOAT, GL_FALSE, 0, coord);
-//	glTexCoordPointer(2, GL_FLOAT, sizeof(coord), coord);
+	glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_TEX_COORD, 2, GL_FLOAT, GL_FALSE, sizeof(V2F_C4F_T2F), &vertices->texCoords);
+//	glVertexPointer(2, GL_FLOAT, 0, vertercies);
+//glTexCoordPointer(2, GL_FLOAT, 0, coord);
 
 	//绘制三角形，所谓的draw call就是指这个函数调用
-	glDrawArrays(GL_POLYGON, 0, 4);
+	glDrawArrays(GL_TRIANGLE_FAN, 0, poly_data.size());
 	//通知cocos2d-x 的renderer，让它在合适的时候调用这些OpenGL命令
 //	CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, 3);
 	//如果出错了，可以使用这个函数来获取出错信息

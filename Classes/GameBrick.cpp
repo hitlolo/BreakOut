@@ -189,17 +189,17 @@ std::string GameBrick::getShapeName()
 	}
 }
 
-Vec2 GameBrick::getOriginLocation()
+b2Vec2 GameBrick::getOriginLocation()
 {
 	return originLocation;
 }
 
 void GameBrick::setOriginLocation()
 {
-	originLocation = getPosition();
+	originLocation = getB2Body()->GetPosition();
 }
 
-void GameBrick::collision(b2Vec2 point)
+int GameBrick::collision(b2Vec2 point)
 {
 	//1
 	PlayMelody();
@@ -213,19 +213,20 @@ void GameBrick::collision(b2Vec2 point)
 	//4 deal collision
 	else if (hpPoint == 0)
 	{
-		auto shatter = GameShatter::create(this, point);
-		this->getParent()->addChild(shatter);
+		
 //		this->removeFromParent();
 	}
 	else
 	{
 
 	}
-
-	
+//	auto shatter = GameShatter::create(this, point);
+//	this->getParent()->addChild(shatter);
+//	shatter->bomb();
 	//5 deal gift
 
 //	CCLOG("%f,%f,draw_point", draw_point.x, draw_point.y);
+	return hpPoint;
 }
 
 void GameBrick::PlayMelody()
@@ -235,7 +236,7 @@ void GameBrick::PlayMelody()
 
 void GameBrick::shake()
 {
-	auto move_up = JumpBy::create(0.1f, Point(0, 0), 5,1);
+	auto move_up = JumpBy::create(0.05f, Point(0, 0), 5,1);
 	this->runAction(move_up);
 //	this->setPosition(Point(100, 100));
 }
