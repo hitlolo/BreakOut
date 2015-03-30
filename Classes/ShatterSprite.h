@@ -3,30 +3,33 @@
 
 #include "cocos2d.h"
 #include "Box2D\Box2D.h"
+#include "PhysicsSprite.h"
 #include "PhysicsProtocol.h"
 //#include <iostream>
 
 USING_NS_CC;
 
 
-class ShatterSprite :public Sprite, public PhysicsProtocol
+class ShatterSprite :public PhysicsSprite, public PhysicsProtocol
 {
 
 public:
-	static ShatterSprite* create(std::vector<b2Vec2>, Sprite*);
-	ShatterSprite(std::vector<b2Vec2>, Sprite*);
+	static ShatterSprite* create(b2Body* body, Sprite* originSprite);
+	ShatterSprite(b2Body* body, Sprite* originSprite);
 	~ShatterSprite();
-	void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags);
-	bool init(Sprite*);
+	virtual void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags) override;
+	bool init(b2Body* body, Sprite* originSprite);
 private:
-	std::vector<b2Vec2> poly_data;
 	int                 poly_count;
 	V2F_C4F_T2F        *vertices;
 	CustomCommand       command;
 	Sprite             *originSprite;
+	Rect                textureRect;
+	//bool                textureRect_Rotated;
 	void onDraw();
 
-	void setVerticesAndCoords();
+	void initTextureRect(Sprite* originSprite);
+	void setVerticesAndCoords(b2Body* body);
 };
 
 

@@ -41,7 +41,7 @@ public:
 	virtual void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse);
 
 public:
-	std::vector<CustomContact>& getContactVector();
+	std::vector<CustomContact> getContactVector();
 
 private:
 	std::vector<CustomContact> contactVector;

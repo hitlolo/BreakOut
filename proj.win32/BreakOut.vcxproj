@@ -141,7 +141,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\BrickLayer.cpp" />
     <ClCompile Include="..\Classes\ContactListener.cpp" />
     <ClCompile Include="..\Classes\CreditLayer.cpp" />
-    <ClCompile Include="..\Classes\Explosion.cpp" />
     <ClCompile Include="..\Classes\GameBall.cpp" />
     <ClCompile Include="..\Classes\GameBrick.cpp" />
     <ClCompile Include="..\Classes\GameController.cpp" />
@@ -161,7 +160,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\PhysicsSprite.cpp" />
     <ClCompile Include="..\Classes\PreviewLayer.cpp" />
     <ClCompile Include="..\Classes\ShapeCache.cpp" />
-    <ClCompile Include="..\Classes\ShatterCommand.cpp" />
     <ClCompile Include="..\Classes\ShatterSprite.cpp" />
     <ClCompile Include="..\Classes\test.cpp" />
     <ClCompile Include="..\Classes\TouchLayer.cpp" />
@@ -173,7 +171,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\ContactData.h" />
     <ClInclude Include="..\Classes\ContactListener.h" />
     <ClInclude Include="..\Classes\CreditLayer.h" />
-    <ClInclude Include="..\Classes\Explosion.h" />
     <ClInclude Include="..\Classes\GameBall.h" />
     <ClInclude Include="..\Classes\GameBrick.h" />
     <ClInclude Include="..\Classes\GameController.h" />
@@ -194,7 +191,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\PhysicsSprite.h" />
     <ClInclude Include="..\Classes\PreviewLayer.h" />
     <ClInclude Include="..\Classes\ShapeCache.h" />
-    <ClInclude Include="..\Classes\ShatterCommand.h" />
     <ClInclude Include="..\Classes\ShatterSprite.h" />
     <ClInclude Include="..\Classes\SoundData.h" />
     <ClInclude Include="..\Classes\SoundDelegate.h" />

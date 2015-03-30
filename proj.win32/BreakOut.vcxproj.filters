@@ -129,12 +129,6 @@
     <ClCompile Include="..\Classes\GameShatter.cpp">
       <Filter>classes\Items\Brick</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\ShatterCommand.cpp">
-      <Filter>classes\Items\Brick</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Explosion.cpp">
-      <Filter>classes\Items\Brick</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GameController.cpp">
       <Filter>classes\Game\Controller</Filter>
     </ClCompile>
@@ -233,14 +227,8 @@
     <ClInclude Include="..\Classes\GameShatter.h">
       <Filter>classes\Items\Brick</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\ShatterCommand.h">
-      <Filter>classes\Items\Brick</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\ContactData.h">
       <Filter>classes\Game\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Explosion.h">
-      <Filter>classes\Items\Brick</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ShatterSprite.h">
       <Filter>classes\Items\Brick</Filter>

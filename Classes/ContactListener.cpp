@@ -139,9 +139,20 @@ void ContactListener::BeginContact(b2Contact* contact)  // Called when two fixtu
 	if (contact)
 	{
 		CustomContact myContact(contact);
-		contactVector.push_back(myContact);
+		if (myContact.getCollideType() != collide_type::UNKNOWN)
+		{
+			contactVector.push_back(myContact);
+			
+		}
+		/*if (myContact.getCollideType() == collide_type::BALL_BRICK)
+		{
+			CCLOG("START,%d,,,,%f,%f", myContact.getCollideType(), myContact.getContactPoint().x, myContact.getContactPoint().y);
+		}*/
+		
 		
 	}
+
+	
 }
 void ContactListener::EndContact(b2Contact* contact)   // Called when two fixtures cease to touch.
 {
@@ -153,22 +164,25 @@ void ContactListener::EndContact(b2Contact* contact)   // Called when two fixtur
 		contactVector.erase(pos);
 		
 	}
+	//CCLOG("END");
 }
 
 void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold)
 {
 	B2_NOT_USED(contact);
 	B2_NOT_USED(oldManifold);
+	//CCLOG("PRE");
 }
 
 void ContactListener::PostSolve(b2Contact* contact, const b2ContactImpulse* impulse)
 {
 	B2_NOT_USED(contact);
 	B2_NOT_USED(impulse);
+	//CCLOG("POST");
 }
 
 
-std::vector<CustomContact>& ContactListener::getContactVector()
+std::vector<CustomContact> ContactListener::getContactVector()
 {
 	return contactVector;
 }

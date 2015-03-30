@@ -16,7 +16,7 @@ GameShatter* GameShatter::create(GameBrick* target, b2Vec2 point)
 }
 
 GameShatter::GameShatter(GameBrick* target, b2Vec2 point)
-	:m_cut(3), m_left(0.0f), m_right(0.0f), m_up(0.0f), m_bottom(0.0f)
+	:m_cut(5), m_left(0.0f), m_right(0.0f), m_up(0.0f), m_bottom(0.0f)
 	, m_RayFixture(nullptr)
 {
 	
@@ -160,7 +160,7 @@ float GameShatter::getRandomAngle()
 	random_device randomDevice;
 	mt19937      mt(randomDevice());
 	//	mt = new mt19937(randomDevice());
-	uniform_real_distribution<float> dist(20.0f, 160.0f);
+	uniform_real_distribution<float> dist(5.0f, 170.0f);
 	float angle;
 
 	do
@@ -420,28 +420,28 @@ void  GameShatter::splitBrick(b2Body* body, b2Vec2& start, b2Vec2& end)
 
 	}
 
-	if (is_created == false)
+	//if (is_created == false)
 
-	{
-		for (int i = 0; i < shapeAVertices.size(); i++)
-		{
-			b2Vec2 point = b2Vec2(shapeAVertices[i].x, shapeAVertices[i].y);
-			//contact_point
-			point = body->GetWorldPoint(point);
-			Vec2 contact_point = Vec2(Vec2(mtp(point.x), mtp(point.y)));
-			Vec2 locate_point = this->getPosition();
-			Vec2 draw_point = contact_point - locate_point;
-			//	start -= locate_point;
-			//	end -= locate_point;
-			//	CCLOG("%f,%f,start", start.x, start.y);
-			//	CCLOG("%f,%f,end", end.x, end.y);
-			m_draw->drawCircle(draw_point, 1.0f, CC_DEGREES_TO_RADIANS(0), 50, false, Color4F(1, 0, 0, 1));
-			//	auto s = String::createWithFormat("%d", i);
-			//auto label = Label::createWithTTF(s->getCString(), "arial.ttf", 20);
+	//{
+	//	for (int i = 0; i < shapeAVertices.size(); i++)
+	//	{
+	//		b2Vec2 point = b2Vec2(shapeAVertices[i].x, shapeAVertices[i].y);
+	//		//contact_point
+	//		point = body->GetWorldPoint(point);
+	//		Vec2 contact_point = Vec2(Vec2(mtp(point.x), mtp(point.y)));
+	//		Vec2 locate_point = this->getPosition();
+	//		Vec2 draw_point = contact_point - locate_point;
+	//		//	start -= locate_point;
+	//		//	end -= locate_point;
+	//		//	CCLOG("%f,%f,start", start.x, start.y);
+	//		//	CCLOG("%f,%f,end", end.x, end.y);
+	//		m_draw->drawCircle(draw_point, 1.0f, CC_DEGREES_TO_RADIANS(0), 50, false, Color4F(1, 0, 0, 1));
+	//		//	auto s = String::createWithFormat("%d", i);
+	//		//auto label = Label::createWithTTF(s->getCString(), "arial.ttf", 20);
 
-			CCLOG("%f,%f,%d !area:%f!!!!AAAAAAAA!!!fail!!!!!!", shapeAVertices[i].x, shapeAVertices[i].y, i, areaA);
-		}
-	}
+	//		CCLOG("%f,%f,%d !area:%f!!!!AAAAAAAA!!!fail!!!!!!", shapeAVertices[i].x, shapeAVertices[i].y, i, areaA);
+	//	}
+	//}
 
 	
 
@@ -458,28 +458,30 @@ void  GameShatter::splitBrick(b2Body* body, b2Vec2& start, b2Vec2& end)
 		is_created = createShatter(body, shapeBVertices);
 	}
 
-	if (is_created == false)
+	//if (is_created == false)
 
-	{
-		for (int i = 0; i < shapeBVertices.size(); i++)
-		{
-			b2Vec2 point = b2Vec2(shapeBVertices[i].x, shapeBVertices[i].y);
-			//contact_point
-			point = body->GetWorldPoint(point);
-			Vec2 contact_point = Vec2(Vec2(mtp(point.x), mtp(point.y)));
-			Vec2 locate_point = this->getPosition();
-			Vec2 draw_point = contact_point - locate_point;
-			//	start -= locate_point;
-			//	end -= locate_point;
-			//	CCLOG("%f,%f,start", start.x, start.y);
-			//	CCLOG("%f,%f,end", end.x, end.y);
-			m_draw->drawCircle(draw_point, 1.0f, CC_DEGREES_TO_RADIANS(0), 50, false, Color4F(0, 1, 0, 1));
-			//	auto s = String::createWithFormat("%d", i);
-			//auto label = Label::createWithTTF(s->getCString(), "arial.ttf", 20);
+	//{
+	//	for (int i = 0; i < shapeBVertices.size(); i++)
+	//	{
+	//		b2Vec2 point = b2Vec2(shapeBVertices[i].x, shapeBVertices[i].y);
+	//		//contact_point
+	//		point = body->GetWorldPoint(point);
+	//		Vec2 contact_point = Vec2(Vec2(mtp(point.x), mtp(point.y)));
+	//		Vec2 locate_point = this->getPosition();
+	//		Vec2 draw_point = contact_point - locate_point;
+	//		//	start -= locate_point;
+	//		//	end -= locate_point;
+	//		//	CCLOG("%f,%f,start", start.x, start.y);
+	//		//	CCLOG("%f,%f,end", end.x, end.y);
+	//		m_draw->drawCircle(draw_point, 1.0f, CC_DEGREES_TO_RADIANS(0), 50, false, Color4F(0, 1, 0, 1));
+	//		//	auto s = String::createWithFormat("%d", i);
+	//		//auto label = Label::createWithTTF(s->getCString(), "arial.ttf", 20);
 
-			CCLOG("%f,%f,%d !!!area:%f!!BBBBBBB fail!!!!!!!!!", shapeBVertices[i].x, shapeBVertices[i].y, i, areaB);
-		}
-	}
+	//		CCLOG("%f,%f,%d !!!area:%f!!BBBBBBB fail!!!!!!!!!", shapeBVertices[i].x, shapeBVertices[i].y, i, areaB);
+	//	}
+	//}
+
+
 	//for (int i = 0; i < shapeBVertices.size(); i++)
 	//{
 	//	b2Vec2 point = b2Vec2(shapeBVertices[i].x, shapeBVertices[i].y);
@@ -569,7 +571,8 @@ bool GameShatter::createShatter(b2Body* origin_body, std::vector<b2Vec2> vertice
 		b2Fixture* origFixture = origin_body->GetFixtureList();
 
 		b2BodyDef bodyDef;
-		bodyDef.type = b2_staticBody;
+		//bodyDef.type = b2_staticBody;
+		bodyDef.type = b2_dynamicBody;
 		b2Vec2  position;
 		if (origin_body == this->m_targetBody)
 		{
@@ -589,6 +592,7 @@ bool GameShatter::createShatter(b2Body* origin_body, std::vector<b2Vec2> vertice
 		fixtureDef.density = origFixture->GetDensity();
 		fixtureDef.friction = origFixture->GetFriction();
 		fixtureDef.restitution = origFixture->GetRestitution();
+		fixtureDef.isSensor = true;
 		//	fixtureDef.filter= origFixture->GetFilterData();
 
 		b2PolygonShape polyShape;
@@ -712,11 +716,21 @@ bool GameShatter::compare(b2Vec2 a, b2Vec2 b)
 
 void  GameShatter::createNewBodyAndNewSprite()
 {
-	//for (auto i = newBody_vector.begin(); i != newBody_vector.end();++i)
-	//{
-	//	b2Body* body = *i;
+	for (auto newBody : newBody_vector)
+	{
+		auto shatter = ShatterSprite::create(newBody, m_target);
+		this->getParent()->addChild(shatter);
+		this->shatter_vector.push_back(shatter);
 
-	//}
+	}
+
+	for (auto shatter : shatter_vector)
+	{
+		auto body = shatter->getB2Body();
+		// setting a velocity for the debris  
+		b2Vec2 v(0.1, 0.1);
+		body->ApplyLinearImpulse(v, body->GetLocalCenter(), true);
+	}
 }
 void  GameShatter::cleanOldBodyAndSprite()
 {

@@ -33,6 +33,10 @@ bool GameBrick::init(b2World* world, Value &def)
 		return false;
 	}
 	initBrick(world,def);
+	//Vec2 p = this->_rect.origin;
+	//CCLOG("%f,%f,texture _rect .origin.x,.y", p.x, p.y);
+	//CCLOG("%f,%f,texture _rect .this->_rect.size.w,.h", this->_rect.size.width, this->_rect.size.height);
+	//CCLOG("%f,%f,texture _content.w,.h", this->getTexture()->getContentSize().width, this->getTexture()->getContentSize().height);
 	return true;
 }
 
@@ -48,6 +52,7 @@ void GameBrick::initBrick(b2World* world, Value& def)
 	this->initMelodyType(def);
 	this->setOriginLocation();
 //	this->scheduleUpdate();
+	this->setVisible(false);
 }
 
 void GameBrick::initImage(Value &def)
