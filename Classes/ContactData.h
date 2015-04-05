@@ -2,11 +2,13 @@
 
 typedef enum class collide_bit
 {
-	BOTTOM = 8,
+
 	BALL = 1,
 	PADDLE = 2,
 	BRICK = 4,
+	BOTTOM = 8,
 	WALL = 16,
+	SHATTER = 32
 
 }COLLIDE_BIT;
 

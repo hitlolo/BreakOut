@@ -170,6 +170,9 @@ void GameWorld::addBackground()
 void GameWorld::createPhysicsWorld()
 {
 	//1.gravity
+	//m_worldAABB = new b2AABB();
+	//m_worldAABB->lowerBound.Set(0, 0);
+	//m_worldAABB->upperBound.Set(ptm(visibleSize.width), ptm(visibleSize.height));
 	b2Vec2 gravity = b2Vec2(0.0f, -10.0f);
 	m_world = new b2World(gravity);
 	m_world->SetAllowSleeping(true);
@@ -183,9 +186,9 @@ void GameWorld::createPhysicsWorld()
 	uint32 flags = 0;
 	flags += b2Draw::e_shapeBit;
 	//flags += b2Draw::e_centerOfMassBit;   //获取需要显示debugdraw的块  
-	b2Draw::e_aabbBit;  //AABB块  
+//	flags += b2Draw::e_aabbBit;  //AABB块  
 	//flags += b2Draw::e_centerOfMassBit; //物体质心
-	flags += b2Draw::e_jointBit;  //关节  
+	//flags += b2Draw::e_jointBit;  //关节  
 	//b2Draw::e_shapeBit;   形状  
 	m_debugDraw->SetFlags(flags);   //需要显示那些东西  
 #endif
@@ -299,59 +302,8 @@ void GameWorld::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4& transform
 //deal contact
 void GameWorld::logic()
 {
-	std::vector<CustomContact> contactVector = this->m_contact->getContactVector();
-	std::map<GameBrick*,b2Vec2> undealCollideBrick;
-	for (auto contact : contactVector)
-	{
-		auto collideType = contact.getCollideType();
-		//play melody
-		CCLOG("contact type  %d.!", collideType);
-		switch (collideType)
-		{
-			case COLLIDE_TYPE::BALL_BRICK:
-			{
-				CCLOG("contact!");
-				auto brick = (GameBrick*)(contact.getBrickFixture()->GetBody()->GetUserData());
-				b2Vec2 point = contact.getContactPoint();
-				undealCollideBrick[brick] = point;
-				CCLOG("contact! point %f.%f", mtp(point.x), mtp(point.y));
-				//brick->collision(point);		
-	/*			auto label = Label::createWithTTF("contact", "arial.ttf", 40);
-				label->setColor(Color3B(255, 0, 0));
-				label->setPosition(Point(mtp(point.x),mtp(point.y)));
-				this->addChild(label);
-				label->runAction(FadeOut::create(1.0f));*/
-				break;
-			}
-			case COLLIDE_TYPE::BALL_PADDLE:
-			{
-				getSoundEngine()->playMelody(MELODY::XI);
-				break;
-			}
-			case COLLIDE_TYPE::BALL_BOTTOM:
-			{
-				getSoundEngine()->playMelody(MELODY::FA);
-				break;
-			}
-			default:
-				return;
-			
-		}
-	}
-
-	for (auto collide_brick : undealCollideBrick)
-	{
-		auto brick = collide_brick.first;
-		auto point = collide_brick.second;
-		int brick_hp = brick->collision(point);
-		//if (brick_hp <= 0)
-		{
-			brickBomb(brick, point);
-		}
-	}
-
-
-	undealCollideBrick.clear();
+	this->dealContact();
+	this->destroyOutsideBodied();
 }
 
 void GameWorld::update(float dt)
@@ -449,4 +401,95 @@ void GameWorld::brickBomb(GameBrick* brick, b2Vec2 point)
 	GameShatter* shatter = GameShatter::create(brick, point);
 	this->addChild(shatter);
 	shatter->bomb();
+}
+
+void GameWorld::dealContact()
+{
+	std::vector<CustomContact> contactVector = this->m_contact->getContactVector();
+	std::map<GameBrick*, b2Vec2> undealCollideBrick;
+	for (auto contact : contactVector)
+	{
+		auto collideType = contact.getCollideType();
+		//play melody
+		//CCLOG("contact type  %d.!", collideType);
+		switch (collideType)
+		{
+		case COLLIDE_TYPE::BALL_BRICK:
+		{
+			//CCLOG("contact!");
+			auto brick = (GameBrick*)(contact.getBrickFixture()->GetBody()->GetUserData());
+			b2Vec2 point = contact.getContactPoint();
+			undealCollideBrick[brick] = point;
+			//CCLOG("contact! point %f.%f", mtp(point.x), mtp(point.y));
+			//brick->collision(point);		
+			/*			auto label = Label::createWithTTF("contact", "arial.ttf", 40);
+			label->setColor(Color3B(255, 0, 0));
+			label->setPosition(Point(mtp(point.x),mtp(point.y)));
+			this->addChild(label);
+			label->runAction(FadeOut::create(1.0f));*/
+			break;
+		}
+		case COLLIDE_TYPE::BALL_PADDLE:
+		{
+			getSoundEngine()->playMelody(MELODY::XI);
+			break;
+		}
+		case COLLIDE_TYPE::BALL_BOTTOM:
+		{
+			getSoundEngine()->playMelody(MELODY::FA);
+			break;
+		}
+		default:
+			return;
+
+		}
+	}
+
+	for (auto collide_brick : undealCollideBrick)
+	{
+		auto brick = collide_brick.first;
+		auto point = collide_brick.second;
+		int brick_hp = brick->collision(point);
+		if (brick_hp <= 0)
+		{
+			brickBomb(brick, point);
+		}
+	}
+
+	undealCollideBrick.clear();
+
+}
+void GameWorld::destroyOutsideBodied()
+{
+	AABBQuery query;
+	b2AABB aabb;
+	std::vector<b2Body*> outBodies;
+	aabb.lowerBound.Set(0, 0);
+	aabb.upperBound.Set(ptm(visibleSize.width), ptm(visibleSize.height));
+	m_world->QueryAABB(&query, aabb);
+	std::vector<b2Body*> inBodies = query.getInScreenBodies();
+	for (b2Body* body = m_world->GetBodyList(); body; body = body->GetNext())
+	{
+		std::vector<b2Body*>::iterator it_targetBody;
+		it_targetBody = std::find(inBodies.begin(), inBodies.end(), body);
+		if (it_targetBody != inBodies.end())
+		{
+			continue;
+		}
+		else
+		{
+			outBodies.push_back(body);
+		}
+	}
+
+	for (auto body : outBodies)
+	{
+		Sprite* sprite = (Sprite*)body->GetUserData();
+		body->SetUserData(nullptr);
+
+		m_world->DestroyBody(body);
+
+		if (sprite)
+			sprite->removeFromParentAndCleanup(true);
+	}
 }

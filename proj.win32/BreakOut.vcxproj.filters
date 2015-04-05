@@ -135,6 +135,9 @@
     <ClCompile Include="..\Classes\ShatterSprite.cpp">
       <Filter>classes\Items\Brick</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\AABBQuery.cpp">
+      <Filter>classes\Game\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -232,6 +235,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\ShatterSprite.h">
       <Filter>classes\Items\Brick</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AABBQuery.h">
+      <Filter>classes\Game\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

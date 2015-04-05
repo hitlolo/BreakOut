@@ -52,7 +52,7 @@ void GameBrick::initBrick(b2World* world, Value& def)
 	this->initMelodyType(def);
 	this->setOriginLocation();
 //	this->scheduleUpdate();
-	this->setVisible(false);
+//	this->setVisible(false);
 }
 
 void GameBrick::initImage(Value &def)

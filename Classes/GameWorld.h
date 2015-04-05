@@ -19,6 +19,7 @@
 #include "GameSound.h"
 #include "GameShatter.h"
 #include "ShatterSprite.h"
+#include "AABBQuery.h"
 
 
 USING_NS_CC;
@@ -61,6 +62,7 @@ private:
 	GamePaddle    *m_paddle;
 	BrickLayer    *m_brickLayer;
 	MotionStreak  *m_streak;
+//	b2AABB        *m_worldAABB;
 	ParticleSystemQuad *m_particle;
 	ContactListener    *m_contact;
 	CC_SYNTHESIZE(SoundDelegate*, soundEngine, SoundEngine);
@@ -80,6 +82,8 @@ protected:
 
 private:
 	void logic();
+	void dealContact();
+	void destroyOutsideBodied();
 	void brickBomb(GameBrick*, b2Vec2);
 };
 

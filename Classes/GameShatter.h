@@ -6,6 +6,7 @@
 #include "GameBrick.h"
 #include "math\CCMath.h"
 #include "ShatterSprite.h"
+#include "ContactData.h"
 #include <map> 
 USING_NS_CC;
 
@@ -34,6 +35,7 @@ private:
 	int         m_cut;
 	b2Vec2      m_collidePoint; //int world
 	b2Vec2      m_exploPoint;
+	float       m_explosionRadius;
 	GameBrick  *m_target;
 	b2Vec2      m_targetLocation;
 	Texture2D  *m_originTexture;
@@ -76,7 +78,7 @@ private:
 
 	bool PointCompare(const b2Vec2 &a, const b2Vec2 &b, const b2Vec2 &center);
 	void ClockwiseSortPoints(std::vector<b2Vec2> &vector);
-
+	b2Vec2 setExplosionVelocity(b2Body* body);
 	void  createNewBodyAndNewSprite();
 	void  cleanOldBodyAndSprite();
 };

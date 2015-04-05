@@ -16,8 +16,9 @@ GameShatter* GameShatter::create(GameBrick* target, b2Vec2 point)
 }
 
 GameShatter::GameShatter(GameBrick* target, b2Vec2 point)
-	:m_cut(5), m_left(0.0f), m_right(0.0f), m_up(0.0f), m_bottom(0.0f)
+	:m_cut(3), m_left(0.0f), m_right(0.0f), m_up(0.0f), m_bottom(0.0f)
 	, m_RayFixture(nullptr)
+	, m_explosionRadius(50.0f)
 {
 	
 	m_target = target;
@@ -592,8 +593,12 @@ bool GameShatter::createShatter(b2Body* origin_body, std::vector<b2Vec2> vertice
 		fixtureDef.density = origFixture->GetDensity();
 		fixtureDef.friction = origFixture->GetFriction();
 		fixtureDef.restitution = origFixture->GetRestitution();
-		fixtureDef.isSensor = true;
-		//	fixtureDef.filter= origFixture->GetFilterData();
+		//fixtureDef.isSensor = true;
+		fixtureDef.filter.groupIndex = 0;
+		fixtureDef.filter.categoryBits = (uint16)collide_bit::SHATTER;
+		fixtureDef.filter.maskBits = (uint16)collide_bit::PADDLE;
+
+
 
 		b2PolygonShape polyShape;
 		b2Body* body = NULL;
@@ -728,8 +733,8 @@ void  GameShatter::createNewBodyAndNewSprite()
 	{
 		auto body = shatter->getB2Body();
 		// setting a velocity for the debris  
-		b2Vec2 v(0.1, 0.1);
-		body->ApplyLinearImpulse(v, body->GetLocalCenter(), true);
+		
+		body->SetLinearVelocity(setExplosionVelocity(body));
 	}
 }
 void  GameShatter::cleanOldBodyAndSprite()
@@ -873,4 +878,57 @@ void GameShatter::ClockwiseSortPoints(std::vector<b2Vec2> &vector)
 		}
 	}
 
+}
+
+
+b2Vec2 GameShatter::setExplosionVelocity(b2Body* body)
+{
+	float distX = body->GetWorldCenter().x - m_exploPoint.x;
+	if (distX<0) {
+		if (distX<-m_explosionRadius) 
+		{
+			distX = 0;
+		}
+		else 
+		{
+			distX = -m_explosionRadius - distX;
+		}
+	}
+	else 
+	{
+		if (distX>m_explosionRadius)
+		{
+			distX = 0;
+		}
+		else 
+		{
+			distX = m_explosionRadius - distX;
+		}
+	}
+	float distY = body->GetWorldCenter().y - m_exploPoint.y;
+	if (distY<0) 
+	{
+		if (distY<-m_explosionRadius)
+		{
+			distY = 0;
+		}
+		else 
+		{
+			distY = -m_explosionRadius - distY;
+		}
+	}
+	else 
+	{
+		if (distY>m_explosionRadius)
+		{
+			distY = 0;
+		}
+		else 
+		{
+			distY = m_explosionRadius - distY;
+		}
+	}
+	distX *= 0.1;
+	distY *= 0.1;
+	return b2Vec2(distX, distY);
 }
