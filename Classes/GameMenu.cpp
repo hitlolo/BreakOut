@@ -82,6 +82,7 @@ void GameMenu::setTitleFontLineout()
 {
 	auto title = dynamic_cast<Text*>(menuRoot->getChildByName("textTitle"));
 	title->enableOutline(Color4B(25, 26, 25, 155), 3);
+	title->enableShadow(Color4B::BLACK,Size(8,-8),2);
 }
 
 void GameMenu::getButtonsFromRoot()

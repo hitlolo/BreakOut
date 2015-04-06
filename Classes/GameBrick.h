@@ -25,7 +25,8 @@ private:
 	void initBrick(b2World*, Value&);
 	void initImage(Value&);
 	void initHP(Value&);
-	void initCoinPoint(Value&);
+	void initCoinPoint();
+	void initCoinLabel();
 	void initType(Value&);
 	void initPhysics(b2World*, Value&);
 	void initMelodyType(Value&);
