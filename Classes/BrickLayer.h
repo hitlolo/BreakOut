@@ -18,6 +18,7 @@ private:
 	int                          m_curLevel;
 	b2World*                     m_world;
 	std::vector<GameBrick*>      m_bricksVector;
+	int                          m_brickCount;
 	
 private:
 	std::string getFileName();

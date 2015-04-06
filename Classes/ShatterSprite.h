@@ -30,6 +30,9 @@ private:
 
 	void initTextureRect(Sprite* originSprite);
 	void setVerticesAndCoords(b2Body* body);
+	void cleanUp();
+public:
+	void bomb(b2Vec2 velocity);
 };
 
 

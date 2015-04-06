@@ -25,6 +25,7 @@ private:
 	void initBrick(b2World*, Value&);
 	void initImage(Value&);
 	void initHP(Value&);
+	void initCoinPoint(Value&);
 	void initType(Value&);
 	void initPhysics(b2World*, Value&);
 	void initMelodyType(Value&);
@@ -40,6 +41,7 @@ private:
 	//type 1 = long ,0 = short
 	CC_SYNTHESIZE(bool, is_longBrick, IsLong);
 	CC_SYNTHESIZE(int, hpPoint, HpPoint);
+	CC_SYNTHESIZE(int, coinPoint, CoinPoint);
 
 public:
 	//return hp
@@ -49,11 +51,13 @@ private:
 	void shake();
 	void PlayMelody();
 	void hpDown();
+	void coinLabelJump();
 	void collapse(Point point);
 	void explosion();
 
 private:
 	b2Vec2 originLocation;
+	Label  *m_label;
 };
 
 

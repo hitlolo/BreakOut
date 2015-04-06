@@ -83,7 +83,7 @@ protected:
 private:
 	void logic();
 	void dealContact();
-	void destroyOutsideBodied();
+	void destroyOutsideBodies();
 	void brickBomb(GameBrick*, b2Vec2);
 };
 

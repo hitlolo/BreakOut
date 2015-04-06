@@ -2,6 +2,7 @@
 
 GameBrick::GameBrick()
 	:hpPoint(1)
+	, m_label(nullptr)
 	, is_longBrick(false)
 {
 
@@ -47,12 +48,15 @@ void GameBrick::initBrick(b2World* world, Value& def)
 	this->initType(def);
 	this->initPhysics(world, def);	
 	
+	
 
 	
 	this->initMelodyType(def);
 	this->setOriginLocation();
 //	this->scheduleUpdate();
 //	this->setVisible(false);
+
+	this->initCoinPoint(def);
 }
 
 void GameBrick::initImage(Value &def)
@@ -77,6 +81,13 @@ void GameBrick::initHP(Value&  def)
 	auto brickDef = def.asValueMap();
 	hpPoint = brickDef["life"].asInt();
 }
+
+void GameBrick::initCoinPoint(Value& def)
+{
+	auto brickDef = def.asValueMap();
+	coinPoint = brickDef["life"].asInt() * 100;
+}
+
 
 void GameBrick::initMelodyType(Value& def)
 {
@@ -210,6 +221,8 @@ int GameBrick::collision(b2Vec2 point)
 	PlayMelody();
 	//2 shake
 	shake();
+
+	coinLabelJump();
 	//3 check life
 	if (hpPoint != 0)
 	{
@@ -258,6 +271,33 @@ void GameBrick::collapse(Point point)
 
 void GameBrick::explosion()
 {
+
+}
+
+void GameBrick::coinLabelJump()
+{
+	if (m_label == nullptr)
+	{
+		String *text = String::createWithFormat("+%d", coinPoint);
+		m_label = Label::createWithTTF(text->getCString(), "kenpixel_future.ttf", 10);
+		m_label->enableOutline(Color4B(0, 0, 0, 255), 1);
+		m_label->setGlobalZOrder(100);
+		this->addChild(m_label);
+		m_label->setPosition(Point(this->getContentSize().width / 2, this->getContentSize().height / 2));
+	}
+	else
+	{
+		m_label->setVisible(true);
+		m_label->setPosition(Point(this->getContentSize().width / 2, this->getContentSize().height / 2));
+		m_label->setOpacity(255);
+
+	}
+	auto fade = FadeOut::create(0.7f);
+	auto jump = JumpBy::create(0.7f, Point(0, 0), 30, 1);
+	auto visibel = CallFunc::create(CC_CALLBACK_0(Label::setVisible, m_label, false));
+	auto action = Sequence::createWithTwoActions(Spawn::create(fade, jump, nullptr), visibel);
+	m_label->runAction(action);
+
 
 }
 

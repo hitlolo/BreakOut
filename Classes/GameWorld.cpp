@@ -22,7 +22,7 @@ bool GameWorld::init(int level)
 		return false;
 	}
 	
-//	addBackground();
+	addBackground();
 	addTouch();
 	createPhysicsWorld();
 	createEdgeBox();
@@ -186,7 +186,7 @@ void GameWorld::createPhysicsWorld()
 	uint32 flags = 0;
 	flags += b2Draw::e_shapeBit;
 	//flags += b2Draw::e_centerOfMassBit;   //获取需要显示debugdraw的块  
-//	flags += b2Draw::e_aabbBit;  //AABB块  
+	//flags += b2Draw::e_aabbBit;  //AABB块  
 	//flags += b2Draw::e_centerOfMassBit; //物体质心
 	//flags += b2Draw::e_jointBit;  //关节  
 	//b2Draw::e_shapeBit;   形状  
@@ -303,7 +303,7 @@ void GameWorld::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4& transform
 void GameWorld::logic()
 {
 	this->dealContact();
-	this->destroyOutsideBodied();
+	//this->destroyOutsideBodies();
 }
 
 void GameWorld::update(float dt)
@@ -434,7 +434,7 @@ void GameWorld::dealContact()
 			getSoundEngine()->playMelody(MELODY::XI);
 			break;
 		}
-		case COLLIDE_TYPE::BALL_BOTTOM:
+		case COLLIDE_TYPE::BALL_WALL:
 		{
 			getSoundEngine()->playMelody(MELODY::FA);
 			break;
@@ -459,37 +459,39 @@ void GameWorld::dealContact()
 	undealCollideBrick.clear();
 
 }
-void GameWorld::destroyOutsideBodied()
+void GameWorld::destroyOutsideBodies()
 {
-	AABBQuery query;
-	b2AABB aabb;
+	//AABBQuery query;
+	//b2AABB aabb;
 	std::vector<b2Body*> outBodies;
-	aabb.lowerBound.Set(0, 0);
-	aabb.upperBound.Set(ptm(visibleSize.width), ptm(visibleSize.height));
-	m_world->QueryAABB(&query, aabb);
-	std::vector<b2Body*> inBodies = query.getInScreenBodies();
+	//aabb.lowerBound.Set(0, 0);
+	//aabb.upperBound.Set(ptm(visibleSize.width), ptm(visibleSize.height));
+	//m_world->QueryAABB(&query, aabb);
+	//std::vector<b2Body*> inBodies = query.getInScreenBodies();
 	for (b2Body* body = m_world->GetBodyList(); body; body = body->GetNext())
 	{
-		std::vector<b2Body*>::iterator it_targetBody;
-		it_targetBody = std::find(inBodies.begin(), inBodies.end(), body);
-		if (it_targetBody != inBodies.end())
-		{
-			continue;
-		}
-		else
+		//std::vector<b2Body*>::iterator it_targetBody;
+		//it_targetBody = std::find(inBodies.begin(), inBodies.end(), body);
+		b2Vec2 position = body->GetPosition();
+		if (position.y < -1 || position.x < -1 || position.x > ptm(visibleSize.width))
 		{
 			outBodies.push_back(body);
 		}
+	
 	}
 
 	for (auto body : outBodies)
 	{
-		Sprite* sprite = (Sprite*)body->GetUserData();
+		PhysicsSprite* sprite = (PhysicsSprite*)body->GetUserData();
+		if (sprite)
+			sprite->removeFromParentAndCleanup(true);
 		body->SetUserData(nullptr);
 
 		m_world->DestroyBody(body);
-
-		if (sprite)
-			sprite->removeFromParentAndCleanup(true);
+		body = nullptr;
+		
+	
 	}
+	
+	//outBodies.clear();
 }

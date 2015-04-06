@@ -18,7 +18,7 @@ GameShatter* GameShatter::create(GameBrick* target, b2Vec2 point)
 GameShatter::GameShatter(GameBrick* target, b2Vec2 point)
 	:m_cut(3), m_left(0.0f), m_right(0.0f), m_up(0.0f), m_bottom(0.0f)
 	, m_RayFixture(nullptr)
-	, m_explosionRadius(50.0f)
+	, m_explosionRadius(30.0f)
 {
 	
 	m_target = target;
@@ -269,7 +269,7 @@ void GameShatter::bomb()
 
 	createNewBodyAndNewSprite();
 	cleanOldBodyAndSprite();
-
+	this->removeFromParentAndCleanup(true);
 }
 
 float32 GameShatter::ReportFixture(b2Fixture* fixture, const b2Vec2& point, const b2Vec2& normal, float32 fraction)
@@ -584,7 +584,7 @@ bool GameShatter::createShatter(b2Body* origin_body, std::vector<b2Vec2> vertice
 		{
 			position = origin_body->GetPosition();
 		}
-
+	//	CCLOG("%f,%f  location", mtp(position.x), mtp(position.y));
 		bodyDef.position = position;
 		//	bodyDef.position = origin_body->GetUserData();
 		bodyDef.angle = origin_body->GetAngle();
@@ -733,8 +733,8 @@ void  GameShatter::createNewBodyAndNewSprite()
 	{
 		auto body = shatter->getB2Body();
 		// setting a velocity for the debris  
-		
-		body->SetLinearVelocity(setExplosionVelocity(body));
+		shatter->bomb(setExplosionVelocity(body));
+		//body->SetLinearVelocity();
 	}
 }
 void  GameShatter::cleanOldBodyAndSprite()
@@ -752,12 +752,13 @@ void  GameShatter::cleanOldBodyAndSprite()
 	for (auto body : eraser)
 	{
 		Sprite* sprite = (Sprite*)body->GetUserData();
+		if (sprite)
+			sprite->removeFromParentAndCleanup(true);
 		body->SetUserData(nullptr);
 	
 		m_world->DestroyBody(body);	
 	
-		if (sprite)
-			sprite->removeFromParentAndCleanup(true);
+		
 	}
 }
 

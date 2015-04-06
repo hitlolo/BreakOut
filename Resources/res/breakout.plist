@@ -23,7 +23,7 @@
 				<array>
 
 					<dict>
-                        <key>density</key> <real>1</real>
+                        <key>density</key> <real>0</real>
                         <key>friction</key> <real>0.1</real>
                         <key>restitution</key> <real>1</real>
                         <key>filter_categoryBits</key> <integer>1</integer>
@@ -62,7 +62,7 @@
 				<array>
 
 					<dict>
-                        <key>density</key> <real>2</real>
+                        <key>density</key> <real>0</real>
                         <key>friction</key> <real>0.2</real>
                         <key>restitution</key> <real>0</real>
                         <key>filter_categoryBits</key> <integer>2</integer>
@@ -100,7 +100,7 @@
 				<array>
 
 					<dict>
-                        <key>density</key> <real>2</real>
+                        <key>density</key> <real>0</real>
                         <key>friction</key> <real>0.2</real>
                         <key>restitution</key> <real>0</real>
                         <key>filter_categoryBits</key> <integer>2</integer>
@@ -138,7 +138,7 @@
 				<array>
 
 					<dict>
-                        <key>density</key> <real>2</real>
+                        <key>density</key> <real>0</real>
                         <key>friction</key> <real>0.2</real>
                         <key>restitution</key> <real>0</real>
                         <key>filter_categoryBits</key> <integer>2</integer>
@@ -172,9 +172,9 @@
 				<array>
 
 					<dict>
-                        <key>density</key> <real>2</real>
+                        <key>density</key> <real>1</real>
                         <key>friction</key> <real>0</real>
-                        <key>restitution</key> <real>0</real>
+                        <key>restitution</key> <real>0.2</real>
                         <key>filter_categoryBits</key> <integer>4</integer>
                         <key>filter_groupIndex</key> <integer>0</integer>
                         <key>filter_maskBits</key> <integer>1</integer>
@@ -202,9 +202,9 @@
 				<array>
 
 					<dict>
-                        <key>density</key> <real>2</real>
+                        <key>density</key> <real>1</real>
                         <key>friction</key> <real>0</real>
-                        <key>restitution</key> <real>0</real>
+                        <key>restitution</key> <real>0.2</real>
                         <key>filter_categoryBits</key> <integer>4</integer>
                         <key>filter_groupIndex</key> <integer>0</integer>
                         <key>filter_maskBits</key> <integer>1</integer>

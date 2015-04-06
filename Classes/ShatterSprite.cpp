@@ -225,3 +225,19 @@ void ShatterSprite::onDraw()
 
 	CCLOG("%f,%f position", this->getPositionX(), this->getPositionY());*/
 }
+
+void ShatterSprite::bomb(b2Vec2 velocity)
+{
+	this->getB2Body()->SetLinearVelocity(velocity);
+	auto action = Sequence::createWithTwoActions(DelayTime::create(2.5f), CallFunc::create(CC_CALLBACK_0(ShatterSprite::cleanUp, this)));
+	this->runAction(action);
+}
+
+void ShatterSprite::cleanUp()
+{
+	auto body = this->getB2Body();
+	auto world = body->GetWorld();
+	world->DestroyBody(body);
+	this->_pB2Body = NULL;
+	this->removeFromParentAndCleanup(true);
+}

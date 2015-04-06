@@ -17,6 +17,7 @@ BrickLayer* BrickLayer::create(int level, b2World* world)
 
 BrickLayer::BrickLayer(int level, b2World* world)
 	:m_curLevel(level)
+	, m_brickCount(0)
 	, m_world(world)
 {
 
@@ -48,6 +49,7 @@ void BrickLayer::initLevelData(int level)
 		auto brick = GameBrick::create(m_world, brickObject);
 		tmx_map->addChild(brick);
 		m_bricksVector.push_back(brick);
+		m_brickCount += 1;
 	}
 	this->addChild(tmx_map);
 }
