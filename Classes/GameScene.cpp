@@ -42,8 +42,3 @@ void GameScene::startGameByLevel(int level)
 	this->addChild(gameWorld);
 
 }
-
-void GameScene::initLevelDataTMX(int level)
-{
-
-}

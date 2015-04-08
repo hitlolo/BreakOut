@@ -167,6 +167,13 @@ void GameSound::playClickEffect()
 	experimental::AudioEngine::play2d("click1.ogg", false);
 }
 
+void GameSound::playSwingEffect()
+{
+	if (!effect_on)
+		return;
+	experimental::AudioEngine::play2d("rollover3.wav", false);
+}
+
 void GameSound::playSwitchEffect()
 {
 	if (!effect_on)

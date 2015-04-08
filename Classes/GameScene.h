@@ -17,8 +17,6 @@ public:
 	~GameScene();
 private:	
 	void startGameByLevel(int);
-	void initLevelDataTMX(int);
-
 };
 
 #endif

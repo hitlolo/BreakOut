@@ -19,6 +19,7 @@ public:
 	virtual void stopBackgroundMusic() = 0;
 	virtual void playClickEffect() = 0;
 	virtual void playSwitchEffect() = 0;
+	virtual void playSwingEffect() = 0;
 
 	virtual void playMelody(MELODY melody) = 0;
 

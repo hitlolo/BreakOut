@@ -138,6 +138,9 @@
     <ClCompile Include="..\Classes\AABBQuery.cpp">
       <Filter>classes\Game\Game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\TutorialLayer.cpp">
+      <Filter>classes\Menu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -238,6 +241,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\AABBQuery.h">
       <Filter>classes\Game\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TutorialLayer.h">
+      <Filter>classes\Menu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -47,7 +47,7 @@ private:
 	bool addBrickLayer(int);	//init with the TMX level data
 	void addBall();
 	void addPaddle();
-	void addTouch();
+	void addTouchLayer();
 	void addStreak();
 
 private:
@@ -83,7 +83,6 @@ protected:
 private:
 	void logic();
 	void dealContact();
-	void destroyOutsideBodies();
 	void brickBomb(GameBrick*, b2Vec2);
 };
 

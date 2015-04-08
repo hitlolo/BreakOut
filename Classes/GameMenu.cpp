@@ -27,7 +27,8 @@ buttonCredits(nullptr),
 buttonTutorial(nullptr),
 menuRoot(nullptr),
 optionLayer(nullptr),
-creditLayer(nullptr)
+creditLayer(nullptr),
+tutorLayer(nullptr)
 {
 	soundEngine = GameSound::getInstance();
 }
@@ -68,8 +69,10 @@ void GameMenu::onExit()
 //	this->removeAllChildrenWithCleanup(false);
 	this->removeChild(optionLayer);
 	this->removeChild(creditLayer);
+	this->removeChild(tutorLayer);
 	optionLayer = nullptr;
 	creditLayer = nullptr;
+	tutorLayer  = nullptr;
 	
 }
 
@@ -139,6 +142,7 @@ void GameMenu::showOptions(Ref* sender)
 	//this->playClickEffect();
 	if (!optionLayer)
 	{
+		this->playClickEffect();
 		optionLayer = OptionLayer::create();
 		this->addChild(optionLayer);
 	}
@@ -151,6 +155,7 @@ void GameMenu::showCredits(Ref* sender)
 {
 	if (!creditLayer)
 	{
+		this->playClickEffect();
 		creditLayer = CreditLayer::create();
 		this->addChild(creditLayer);
 	}
@@ -161,7 +166,15 @@ void GameMenu::showCredits(Ref* sender)
 
 void GameMenu::showTutorial(Ref* sender)
 {
-	this->playClickEffect();
+	//this->playClickEffect();
+	if (!tutorLayer)
+	{
+		this->playClickEffect();
+		tutorLayer = TutorialLayer::create();
+		this->addChild(tutorLayer);
+	}
+	else
+		tutorLayer->onShow();
 
 }
 

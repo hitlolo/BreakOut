@@ -37,6 +37,7 @@ public:
 	virtual void stopBackgroundMusic() override;
 	virtual void playClickEffect() override;
 	virtual void playSwitchEffect() override;
+	virtual void playSwingEffect() override;
 
 	virtual void playMelody(MELODY melody) override;
 

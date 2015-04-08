@@ -60,27 +60,29 @@ private:
 	std::map<b2Body*, b2Vec2>   targetBody_map;
 	std::vector<ShatterSprite*> shatter_vector;
 
-//	std::vector<PhysicsSprite*> slicedSprite_vector;
-	
+
+private:
+	///split shape
 	void   initBoundary();
 	b2Vec2 getExploPoint();
-	float getRandomAngle();
-	void  splitBrick(b2Body* body, b2Vec2& start, b2Vec2& end);
-	bool  createShatter(b2Body*, std::vector<b2Vec2>);
-	float det(float x1, float y1, float x2, float y2, float x3, float y3);
-	void  arrangeClockwise(std::vector<b2Vec2>);
-	bool  compare(b2Vec2 a,b2Vec2 b);
-	float getArea(std::vector<b2Vec2> vector);
-	void  removeTargetBodyAndPoint(b2Body* body);
-	float32 sb2Cross(const b2Vec2& a, const b2Vec2& b);
-	bool CheckSegmentLength(std::vector<b2Vec2>);
-	bool pointInBody(const b2Vec2& point);
-
-	bool PointCompare(const b2Vec2 &a, const b2Vec2 &b, const b2Vec2 &center);
-	void ClockwiseSortPoints(std::vector<b2Vec2> &vector);
+	float  getRandomAngle();
+	bool   pointInBody(const b2Vec2& point);
+	float  getArea(std::vector<b2Vec2> vector);
+	void   splitBrick(b2Body* body, b2Vec2& start, b2Vec2& end);
+	bool   createShatter(b2Body*, std::vector<b2Vec2>);
+	bool   PointCompare(const b2Vec2 &a, const b2Vec2 &b, const b2Vec2 &center);
+	void   ClockwiseSortPoints(std::vector<b2Vec2> &vector);
 	b2Vec2 setExplosionVelocity(b2Body* body);
+
+
+	void  removeTargetBodyAndPoint(b2Body* body);
 	void  createNewBodyAndNewSprite();
 	void  cleanOldBodyAndSprite();
+
+	float det(float x1, float y1, float x2, float y2, float x3, float y3);
+	void  arrangeClockwise(std::vector<b2Vec2>);
+	bool  CheckSegmentLength(std::vector<b2Vec2>);
+
 };
 
 #endif

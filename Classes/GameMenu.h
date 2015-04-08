@@ -8,6 +8,7 @@
 #include "GameController.h"
 #include "OptionLayer.h"
 #include "CreditLayer.h"
+#include "TutorialLayer.h"
 
 USING_NS_CC;
 USING_NS_UI;
@@ -42,6 +43,7 @@ private:
 	Button*   buttonTutorial;
 	OptionLayer* optionLayer;
 	CreditLayer* creditLayer;
+	TutorialLayer* tutorLayer;
 	void startGame(Ref* sender);
 	void showOptions(Ref* sender);
 	void showCredits(Ref* sender);
