@@ -156,6 +156,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\GB2ShapeCache-x.cpp" />
     <ClCompile Include="..\Classes\GLES-Render.cpp" />
     <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\HudLayer.cpp" />
     <ClCompile Include="..\Classes\OptionLayer.cpp" />
     <ClCompile Include="..\Classes\PhysicsProtocol.cpp" />
     <ClCompile Include="..\Classes\PhysicsSprite.cpp" />
@@ -189,6 +190,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\GB2ShapeCache-x.h" />
     <ClInclude Include="..\Classes\GLES-Render.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\HudLayer.h" />
     <ClInclude Include="..\Classes\OptionLayer.h" />
     <ClInclude Include="..\Classes\PhysicsProtocol.h" />
     <ClInclude Include="..\Classes\PhysicsSprite.h" />

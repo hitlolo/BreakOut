@@ -20,6 +20,7 @@
 #include "GameShatter.h"
 #include "ShatterSprite.h"
 #include "AABBQuery.h"
+#include "HudLayer.h"
 
 
 USING_NS_CC;
@@ -48,6 +49,7 @@ private:
 	void addBall();
 	void addPaddle();
 	void addTouchLayer();
+	void addHUD();
 	void addStreak();
 
 private:
@@ -61,6 +63,7 @@ private:
 	GameBall      *m_ball;
 	GamePaddle    *m_paddle;
 	BrickLayer    *m_brickLayer;
+	HudLayer      *m_hud;
 	MotionStreak  *m_streak;
 //	b2AABB        *m_worldAABB;
 	ParticleSystemQuad *m_particle;

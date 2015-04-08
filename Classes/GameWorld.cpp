@@ -23,7 +23,9 @@ bool GameWorld::init(int level)
 	}
 	
 	addBackground();
+	addHUD();
 	addTouchLayer();
+
 	createPhysicsWorld();
 	createEdgeBox();
 	addBrickLayer(level);
@@ -48,6 +50,7 @@ GameWorld::GameWorld()
 , m_streak(nullptr)
 , m_particle(nullptr)
 , m_contact(nullptr)
+, m_hud(nullptr)
 //, m_maxSpeed(25)
 {
 	visibleSize = Director::getInstance()->getVisibleSize();
@@ -80,6 +83,12 @@ void GameWorld::addBackground()
 	background->setPosition(CENTER);
 	this->addChild(background);
 
+}
+
+void GameWorld::addHUD()
+{
+	m_hud = HudLayer::create();
+	this->addChild(m_hud);
 }
 
 void GameWorld::createPhysicsWorld()

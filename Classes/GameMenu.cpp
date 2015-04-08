@@ -207,6 +207,11 @@ void GameMenu::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 			creditLayer->onCancel();
 		//	creditLayer = nullptr;
 		}
+		else if (tutorLayer&&tutorLayer->isVisible())
+		{
+			tutorLayer->onCancel();
+			//	creditLayer = nullptr;
+		}
 		else
 		{
 			
