@@ -362,11 +362,17 @@ void GameWorld::dealContact()
 	{
 		auto brick = collide_brick.first;
 		auto point = collide_brick.second;
+		//1. brick jump, lifepoint minus
 		int brick_hp = brick->collision(point);
+		//2. scroe up
+		m_hud->updateScore(brick->getCoinPoint());
+		//3. brick bomb
 		if (brick_hp <= 0)
 		{
 			brickBomb(brick, point);
 		}
+		
+		
 	}
 
 	//undealCollideBrick.clear();

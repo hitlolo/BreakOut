@@ -19,6 +19,7 @@ public:
 	GameBrick();
 	~GameBrick();
 	b2Vec2 getOriginLocation();
+	CC_SYNTHESIZE(int, coinPoint, CoinPoint);
 //	virtual void update(float time) override;
 
 private:
@@ -42,7 +43,7 @@ private:
 	//type 1 = long ,0 = short
 	CC_SYNTHESIZE(bool, is_longBrick, IsLong);
 	CC_SYNTHESIZE(int, hpPoint, HpPoint);
-	CC_SYNTHESIZE(int, coinPoint, CoinPoint);
+	
 
 public:
 	//return hp

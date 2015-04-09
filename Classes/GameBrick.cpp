@@ -86,7 +86,7 @@ void GameBrick::initHP(Value&  def)
 void GameBrick::initCoinPoint()
 {
 
-	coinPoint = this->hpPoint * 100;
+	coinPoint = this->hpPoint;
 }
 
 void GameBrick::initCoinLabel()
@@ -236,12 +236,13 @@ void GameBrick::setOriginLocation()
 
 int GameBrick::collision(b2Vec2 point)
 {
-	//1
-	PlayMelody();
 	//2 shake
 	shake();
 
 	coinLabelJump();
+	//1
+	PlayMelody();
+	
 	//3 check life
 	if (hpPoint != 0)
 	{

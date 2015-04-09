@@ -16,9 +16,23 @@ class HudLayer :public Layer
 public:
 	CREATE_FUNC(HudLayer);
 	virtual bool init() override;
-
+	HudLayer();
+	~HudLayer();
 private:
 	void initRootNodeFromCSB();
+	void getItemsFromRoot(Node* root);
+
+public:
+	void updateScore(int score);
+
+private:
+	std::vector<Sprite*> heartVector;
+	Node                *bonusPanel;
+	Text                *bonusTimeText;
+	Text                *scoreText;
+
+private:
+	int                 score;
 };
 
 
