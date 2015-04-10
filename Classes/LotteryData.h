@@ -1,0 +1,18 @@
+#pragma once
+
+
+enum class LOTTERY
+{
+	NONE = 0,
+	FRUIT,
+	BALL,
+	SPEED_UP,
+	SPEED_DOWN,
+	BAR_UP,
+	BAR_DOWN,
+	QUESTION,
+	EXCLAMATION,
+	BAD
+
+
+};

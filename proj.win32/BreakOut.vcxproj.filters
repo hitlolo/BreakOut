@@ -52,6 +52,9 @@
     <Filter Include="classes\Game\Map">
       <UniqueIdentifier>{e6ddd44e-f652-4dca-b986-6c2c66820a75}</UniqueIdentifier>
     </Filter>
+    <Filter Include="classes\Game\Game\Lottery">
+      <UniqueIdentifier>{861d225f-7b34-4b3a-ba8b-8a3f06c289a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -143,6 +146,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\HudLayer.cpp">
       <Filter>classes\Game\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameLottery.cpp">
+      <Filter>classes\Game\Game\Lottery</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BonusCreator.cpp">
+      <Filter>classes\Game\Game\Lottery</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\BonusStrategy.cpp">
+      <Filter>classes\Game\Game\Lottery</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +262,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\HudLayer.h">
       <Filter>classes\Game\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameLottery.h">
+      <Filter>classes\Game\Game\Lottery</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LotteryData.h">
+      <Filter>classes\Game\Game\Lottery</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BonusCreator.h">
+      <Filter>classes\Game\Game\Lottery</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BonusStrategy.h">
+      <Filter>classes\Game\Game\Lottery</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

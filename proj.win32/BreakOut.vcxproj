@@ -139,6 +139,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   <ItemGroup>
     <ClCompile Include="..\Classes\AABBQuery.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\BonusCreator.cpp" />
+    <ClCompile Include="..\Classes\BonusStrategy.cpp" />
     <ClCompile Include="..\Classes\BrickLayer.cpp" />
     <ClCompile Include="..\Classes\ContactListener.cpp" />
     <ClCompile Include="..\Classes\CreditLayer.cpp" />
@@ -146,6 +148,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\GameBrick.cpp" />
     <ClCompile Include="..\Classes\GameController.cpp" />
     <ClCompile Include="..\Classes\GameLogo.cpp" />
+    <ClCompile Include="..\Classes\GameLottery.cpp" />
     <ClCompile Include="..\Classes\GameMap.cpp" />
     <ClCompile Include="..\Classes\GameMenu.cpp" />
     <ClCompile Include="..\Classes\GamePaddle.cpp" />
@@ -171,6 +174,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
   <ItemGroup>
     <ClInclude Include="..\Classes\AABBQuery.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\BonusCreator.h" />
+    <ClInclude Include="..\Classes\BonusStrategy.h" />
     <ClInclude Include="..\Classes\BrickLayer.h" />
     <ClInclude Include="..\Classes\ContactData.h" />
     <ClInclude Include="..\Classes\ContactListener.h" />
@@ -180,6 +185,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\GameController.h" />
     <ClInclude Include="..\Classes\GameData.h" />
     <ClInclude Include="..\Classes\GameLogo.h" />
+    <ClInclude Include="..\Classes\GameLottery.h" />
     <ClInclude Include="..\Classes\GameMap.h" />
     <ClInclude Include="..\Classes\GameMenu.h" />
     <ClInclude Include="..\Classes\GamePaddle.h" />
@@ -191,6 +197,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\GLES-Render.h" />
     <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\HudLayer.h" />
+    <ClInclude Include="..\Classes\LotteryData.h" />
     <ClInclude Include="..\Classes\OptionLayer.h" />
     <ClInclude Include="..\Classes\PhysicsProtocol.h" />
     <ClInclude Include="..\Classes\PhysicsSprite.h" />

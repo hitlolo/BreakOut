@@ -315,10 +315,13 @@ void GameBrick::coinLabelJump()
 	m_label->setOpacity(255);
 
 	//
+	auto scaleup = ScaleTo::create(0.02f, 2.0f);
+	auto scaledown = ScaleTo::create(0.2f, 1.0f);
+	auto scale = Sequence::create(scaleup, scaledown, nullptr);
 	auto fade = FadeOut::create(1.0f);
 	auto jump = JumpBy::create(1.0f, Point(0, 0), 30, 1);
 	auto visibel = CallFunc::create(CC_CALLBACK_0(Label::setVisible, m_label, false));
-	auto action = Sequence::createWithTwoActions(Spawn::create(fade, jump, nullptr), visibel);
+	auto action = Sequence::create(Spawn::create(scale,fade, jump, nullptr), visibel, nullptr);
 	m_label->runAction(action);
 
 

@@ -370,6 +370,7 @@ void GameWorld::dealContact()
 		if (brick_hp <= 0)
 		{
 			brickBomb(brick, point);
+			GameLottery::getInstance()->lottery();
 		}
 		
 		

@@ -21,6 +21,7 @@
 #include "ShatterSprite.h"
 #include "AABBQuery.h"
 #include "HudLayer.h"
+#include "GameLottery.h"
 
 
 USING_NS_CC;
