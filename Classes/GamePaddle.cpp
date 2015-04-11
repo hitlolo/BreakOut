@@ -81,7 +81,7 @@ void GamePaddle::addFixturesToBody(b2Body* body)
 				break;
 	}
 
-	GB2ShapeCache::getInstancs()->addFixturesToBody(body, type_name);
+	GB2ShapeCache::getInstance()->addFixturesToBody(body, type_name);
 }
 
 

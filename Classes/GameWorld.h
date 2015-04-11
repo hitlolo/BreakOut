@@ -22,6 +22,7 @@
 #include "AABBQuery.h"
 #include "HudLayer.h"
 #include "GameLottery.h"
+#include "BonusCreator.h"
 
 
 USING_NS_CC;

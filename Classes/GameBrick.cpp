@@ -203,7 +203,7 @@ void GameBrick::initPhysics(b2World* world, Value& def)
 	
 //	bodyDef.position.Set(ptm(getPosition().x), ptm(getPosition().y));
 	auto body = world->CreateBody(&bodyDef);
-	GB2ShapeCache::getInstancs()->addFixturesToBody(body, getShapeName());
+	GB2ShapeCache::getInstance()->addFixturesToBody(body, getShapeName());
 	this->setB2Body(body);
 	this->setPTMRatio(PTM_RATIO);
 	this->setIgnoreBodyRotation(false);

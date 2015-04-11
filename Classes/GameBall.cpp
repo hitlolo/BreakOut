@@ -87,7 +87,7 @@ void  GameBall::initPhysicsAttributes()
 	bodyDef.position.Set(  ptm(288), ptm(96) );
 	auto body = m_world->CreateBody(&bodyDef);
 
-	GB2ShapeCache::getInstancs()->addFixturesToBody(body, "ball");
+	GB2ShapeCache::getInstance()->addFixturesToBody(body, "ball");
 	this->setB2Body(body);
 	this->setPTMRatio(PTM_RATIO);
 	this->setIgnoreBodyRotation(false);

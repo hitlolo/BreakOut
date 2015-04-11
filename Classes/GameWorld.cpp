@@ -22,7 +22,7 @@ bool GameWorld::init(int level)
 		return false;
 	}
 	
-	addBackground();
+	//addBackground();
 	addHUD();
 	addTouchLayer();
 
@@ -57,7 +57,7 @@ GameWorld::GameWorld()
 	originPoint = Director::getInstance()->getVisibleOrigin();
 	isStarted = false;	
 	//shape cache ready
-	GB2ShapeCache::getInstancs()->addShapesWithFile("breakout.plist");
+	
 	setSoundEngine(GameSound::getInstance());
 }
 
@@ -369,8 +369,15 @@ void GameWorld::dealContact()
 		//3. brick bomb
 		if (brick_hp <= 0)
 		{
+			Point brick_position = brick->getPosition();
 			brickBomb(brick, point);
-			GameLottery::getInstance()->lottery();
+			Lottery  type = GameLottery::getInstance()->lottery();
+			if (type != LOTTERY::NONE)
+			{
+	
+				auto bonus = BonusCreator::getInstance()->createBonus(type, m_world, brick_position);
+				this->addChild(bonus);
+			}
 		}
 		
 		

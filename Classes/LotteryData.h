@@ -1,7 +1,6 @@
 #pragma once
 
-
-enum class LOTTERY
+typedef  enum class Lottery
 {
 	NONE = 0,
 	FRUIT,
@@ -15,4 +14,4 @@ enum class LOTTERY
 	BAD
 
 
-};
+}LOTTERY;

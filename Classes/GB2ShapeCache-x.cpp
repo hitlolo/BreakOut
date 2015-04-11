@@ -72,7 +72,7 @@ public:
 
 static GB2ShapeCache *_sharedGB2ShapeCache = NULL;
 
-GB2ShapeCache* GB2ShapeCache::getInstancs(void) {
+GB2ShapeCache* GB2ShapeCache::getInstance(void) {
 	if (!_sharedGB2ShapeCache) {
 		_sharedGB2ShapeCache = new GB2ShapeCache();
         _sharedGB2ShapeCache->init();

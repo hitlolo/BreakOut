@@ -45,7 +45,7 @@ namespace cocos2d {
 	class GB2ShapeCache {
 	public:
 		// Static interface
-		static GB2ShapeCache* getInstancs(void);
+		static GB2ShapeCache* getInstance(void);
 		
 	public:
 		bool init();			

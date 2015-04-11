@@ -52,6 +52,8 @@ void  GameLogo::loadRes()
 void  GameLogo::loadPNG()
 {
 	Director::getInstance()->getTextureCache()->addImageAsync("spriteSheet.png", CC_CALLBACK_1(GameLogo::loadPNGOver, this));
+	GB2ShapeCache::getInstance()->addShapesWithFile("breakout.plist");
+	GB2ShapeCache::getInstance()->addShapesWithFile("items.plist");
 }
 
 

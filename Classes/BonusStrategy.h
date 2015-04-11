@@ -10,81 +10,109 @@ USING_NS_CC;
 class Strategy
 {
 public:
-	virtual PhysicsSprite* createBonusSprite() = 0;
+	PhysicsSprite* createBonusSprite(b2World* world);
+protected:
+	virtual std::string getSpriteName() = 0;
+	virtual std::string getShapeName() = 0;
 };
 
 class FruitStrategy :public Strategy
 {
-public:
-	FruitStrategy();
-	~FruitStrategy();
-	virtual PhysicsSprite* createBonusSprite() override;
+//public:
+//	FruitStrategy();
+//	~FruitStrategy();
+private:
+	virtual std::string getSpriteName() override;
+	virtual std::string getShapeName() override;
 private:
 	int getRandomFruit();
 };
 
 class SpeedUpStrategy :public Strategy
 {
-public:
-	SpeedUpStrategy();
-	~SpeedUpStrategy();
-	virtual PhysicsSprite* createBonusSprite() override;
+//public:
+//	SpeedUpStrategy();
+//	~SpeedUpStrategy();
+private:
+	virtual std::string getSpriteName() override;
+	virtual std::string getShapeName() override;
 };
 
 class SpeedDownStrategy :public Strategy
 {
-public:
-	SpeedDownStrategy();
-	~SpeedDownStrategy();
-	virtual PhysicsSprite* createBonusSprite() override;
+//public:
+//	SpeedDownStrategy();
+//	~SpeedDownStrategy();
+private:
+	virtual std::string getSpriteName() override;
+	virtual std::string getShapeName() override;
 };
 
 class BallBonusStrategy :public Strategy
 {
-public:
-	BallBonusStrategy();
-	~BallBonusStrategy();
-	virtual PhysicsSprite* createBonusSprite() override;
+//public:
+//	BallBonusStrategy();
+//	~BallBonusStrategy();
+private:
+	virtual std::string getSpriteName() override;
+	virtual std::string getShapeName() override;
 };
 
 class BarUpStrategy :public Strategy
 {
-public:
-	BarUpStrategy();
-	~BarUpStrategy();
-	virtual PhysicsSprite* createBonusSprite() override;
+//public:
+//	BarUpStrategy();
+//	~BarUpStrategy();
+private:
+	virtual std::string getSpriteName() override;
+	virtual std::string getShapeName() override;
 };
 
 class BarDownStrategy :public Strategy
 {
-public:
-	BarDownStrategy();
-	~BarDownStrategy();
-	virtual PhysicsSprite* createBonusSprite() override;
+//public:
+//	BarDownStrategy();
+//	~BarDownStrategy();
+private:
+	virtual std::string getSpriteName() override;
+	virtual std::string getShapeName() override;
 };
 
 class QuestionMarkStrategy :public Strategy
 {
-public:
-	QuestionMarkStrategy();
-	~QuestionMarkStrategy();
-	virtual PhysicsSprite* createBonusSprite() override;
+//public:
+//	QuestionMarkStrategy();
+//	~QuestionMarkStrategy();
+private:
+	virtual std::string getSpriteName() override;
+	virtual std::string getShapeName() override;
+
+private:
+	int getRandomColor();
 };
 
 class ExcalmationMarkStrategy :public Strategy
 {
-public:
-	ExcalmationMarkStrategy();
-	~ExcalmationMarkStrategy();
-	virtual PhysicsSprite* createBonusSprite() override;
+//public:
+//	ExcalmationMarkStrategy();
+//	~ExcalmationMarkStrategy();
+private:
+	virtual std::string getSpriteName() override;
+	virtual std::string getShapeName() override;
+private:
+	int getRandomColor();
 };
 
 class BadThingStrategy :public Strategy
 {
-public:
-	BadThingStrategy();
-	~BadThingStrategy();
-	virtual PhysicsSprite* createBonusSprite() override;
+//public:
+//	BadThingStrategy();
+//	~BadThingStrategy();
+private:
+	virtual std::string getSpriteName() override;
+	virtual std::string getShapeName() override;
+private:
+	int getRandomColor();
 };
 
 #endif
