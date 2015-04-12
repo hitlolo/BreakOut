@@ -19,7 +19,7 @@ PhysicsSprite* Strategy::createBonusSprite(b2World* world)
 	sprite->setB2Body(body);
 	sprite->setPTMRatio(PTM_RATIO);
 	sprite->setIgnoreBodyRotation(false);
-	
+	CCLOG("%d.%d.", body->GetFixtureList()->GetFilterData().categoryBits, body->GetFixtureList()->GetFilterData().maskBits);
 	return sprite;
 }
 

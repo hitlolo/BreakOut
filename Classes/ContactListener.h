@@ -24,6 +24,17 @@ public:
 	bool isBallAndPaddle();
 	bool isBallAndWall();
 	bool isBallAndBottom();
+
+	bool isPaddleAndFruit();
+	bool isPaddleAndBallBonus();
+	bool isPaddleAndUp();
+	bool isPaddleAndDown();
+	bool isPaddleAndSpeedUp();
+	bool isPaddleAndSpeedDown();
+	bool isPaddleAndQuestion();
+	bool isPaddleAndExcalmation();
+	bool isPaddleAndBad();
+
 	b2Vec2 getContactPoint();
 	collide_type getCollideType();
 	b2Fixture* getBrickFixture();

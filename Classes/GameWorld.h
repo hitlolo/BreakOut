@@ -89,6 +89,7 @@ private:
 	void logic();
 	void dealContact();
 	void brickBomb(GameBrick*, b2Vec2);
+	void dumpOutsideBodies();
 };
 
 #endif

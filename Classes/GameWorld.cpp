@@ -226,12 +226,35 @@ void GameWorld::logic()
 	this->dealContact();
 }
 
+void GameWorld::dumpOutsideBodies()
+{
+	std::vector<b2Body*> eraser;
+	for (b2Body* b = m_world->GetBodyList(); b; b = b->GetNext())
+	{
+		b2Vec2 location = b->GetPosition();
+		if ( location.y < 0 && (b->GetFixtureList()->GetFilterData().categoryBits!=(uint16)COLLIDE_BIT::SHATTER))
+		{
+			eraser.push_back(b);
+		}
+	}
+
+	for (auto body : eraser)
+	{
+		auto sprite = (Sprite*)body->GetUserData();
+	
+		body->SetUserData(nullptr);
+		m_world->DestroyBody(body);
+		if (sprite)
+			sprite->removeFromParentAndCleanup(true);
+	}
+}
+
 void GameWorld::update(float dt)
 {
 	m_world->Step(dt, 10, 10);
 	this->logic();
 	m_world->ClearForces();
-	
+	dumpOutsideBodies();
 	if (m_streak)
 	{
 		m_streak->setPosition(m_ball->getPosition());
