@@ -20,10 +20,15 @@ public:
 	~HudLayer();
 private:
 	void initRootNodeFromCSB();
+	void initFruitLabel();
 	void getItemsFromRoot(Node* root);
 
 public:
 	void updateScore(int score);
+	void showBonusText(Point position,std::string text);
+	void showBonusTime(unsigned time);
+private:
+	void bonusTimeCountingDown(float delta);
 
 private:
 	std::vector<Sprite*> heartVector;
@@ -31,8 +36,11 @@ private:
 	Text                *bonusTimeText;
 	Text                *scoreText;
 
+	Text                *fruitLabel;
+
 private:
-	int                 score;
+	int                  score;
+	unsigned             bonusTime;
 };
 
 

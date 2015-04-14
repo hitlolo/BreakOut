@@ -311,3 +311,13 @@ void PhysicsSprite::draw(Renderer *renderer, const Mat4 &transform, uint32_t fla
 	Sprite::draw(renderer, _transform, flags);
 
 }
+
+
+void  PhysicsSprite::dump()
+{
+
+	auto world = _pB2Body->GetWorld();
+	_pB2Body->SetUserData(nullptr);
+	world->DestroyBody(_pB2Body);
+	this->removeFromParentAndCleanup(true);
+}

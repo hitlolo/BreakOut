@@ -25,6 +25,9 @@ public:
 	bool isBallAndWall();
 	bool isBallAndBottom();
 
+	bool isBonusAndBottom();
+	bool isPaddleAndBonus();
+
 	bool isPaddleAndFruit();
 	bool isPaddleAndBallBonus();
 	bool isPaddleAndUp();
@@ -35,9 +38,13 @@ public:
 	bool isPaddleAndExcalmation();
 	bool isPaddleAndBad();
 
+	
+
 	b2Vec2 getContactPoint();
 	collide_type getCollideType();
+	collide_type getBonusType();
 	b2Fixture* getBrickFixture();
+	b2Fixture* getBonusFixture();
 private:
 	b2WorldManifold m_manifold;
 };

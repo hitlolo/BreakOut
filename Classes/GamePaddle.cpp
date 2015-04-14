@@ -7,6 +7,7 @@ GamePaddle::GamePaddle(b2World* world, b2Body* ground)
 , m_groundBody(ground)
 , m_type(BAR::NORMAL)
 , m_melody(MELODY::XI)
+, bonusTime(0)
 {
 	
 }
@@ -47,6 +48,7 @@ void  GamePaddle::initSelfImage()
 {
 	this->initWithSpriteFrameName(selectRandomFile());
 	this->setContentSize(NORMAL_SIZE);
+	//this->setContentSize(MIN_SIZE);
 	
 }
 
@@ -65,7 +67,6 @@ void GamePaddle::addFixturesToBody(b2Body* body)
 	if (fixture)
 	{
 		body->DestroyFixture(fixture);
-
 	}
 	std::string type_name;
 	switch (m_type)
@@ -377,4 +378,87 @@ void GamePaddle::update(float time)
 {
 	this->setPosition(Vec2((getB2Body()->GetPosition().x) * PTM_RATIO,getB2Body()->GetPosition().y * PTM_RATIO));
 
+}
+
+int GamePaddle::paddleUp(unsigned time)
+{
+	if (this->m_type == bar_type::NORMAL)
+	{
+		this->m_type = bar_type::LONG;
+		this->addFixturesToBody(this->getB2Body());
+		this->setContentSize(MAX_SIZE);
+		this->bonusTime = time;
+		this->schedule(CC_SCHEDULE_SELECTOR(GamePaddle::bonusTimeCountingDown), 1.0f);
+
+		return 1;
+	}
+	else if (this->m_type == bar_type::LONG)
+	{
+		this->bonusTime = time;
+		return 0;
+	}
+	else if (this->m_type == bar_type::SHORT)
+	{
+		this->bonusTime = 0;
+		this->unschedule(CC_SCHEDULE_SELECTOR(GamePaddle::bonusTimeCountingDown));
+		this->m_type = bar_type::NORMAL;
+		this->addFixturesToBody(getB2Body());
+		this->setContentSize(NORMAL_SIZE);
+		return -1;
+	}
+	
+
+}
+
+int GamePaddle::paddleDown(unsigned time)
+{
+	if (this->m_type == bar_type::NORMAL)
+	{
+		this->m_type = bar_type::SHORT;
+		this->addFixturesToBody(this->getB2Body());
+		this->setContentSize(MIN_SIZE);
+		this->bonusTime = time;
+		this->schedule(CC_SCHEDULE_SELECTOR(GamePaddle::bonusTimeCountingDown), 1.0f);
+		return 1;
+	}
+	else if (this->m_type == bar_type::SHORT)
+	{
+		this->bonusTime = time;
+		return 0;
+	}
+	else if (this->m_type == bar_type::LONG)
+	{
+		this->bonusTime = 0;
+		this->unschedule(CC_SCHEDULE_SELECTOR(GamePaddle::bonusTimeCountingDown));
+		this->m_type = bar_type::NORMAL;
+		this->addFixturesToBody(getB2Body());
+		this->setContentSize(NORMAL_SIZE);
+		return -1;
+	}
+}
+
+void GamePaddle::bonusTimeCountingDown(float delta)
+{
+	this->bonusTime -= 1;
+	if (bonusTime == 0)
+	{
+		/*if (this->m_type == bar_type::LONG)
+		{
+			this->unschedule(CC_SCHEDULE_SELECTOR(GamePaddle::bonusTimeCountingDown));
+			this->m_type = bar_type::NORMAL;
+			this->addFixturesToBody(getB2Body());
+			this->setContentSize(NORMAL_SIZE);
+		}
+		else if (this->m_type == bar_type::SHORT)
+		{*/
+			this->m_type = bar_type::NORMAL;
+			this->unschedule(CC_SCHEDULE_SELECTOR(GamePaddle::bonusTimeCountingDown));
+			
+			this->addFixturesToBody(getB2Body());
+			this->setContentSize(NORMAL_SIZE);
+		//}
+		
+		
+
+	}
 }

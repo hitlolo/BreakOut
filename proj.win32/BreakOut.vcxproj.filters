@@ -156,6 +156,9 @@
     <ClCompile Include="..\Classes\BonusStrategy.cpp">
       <Filter>classes\Game\Game\Lottery</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\BonusDealer.cpp">
+      <Filter>classes\Game\Game\Lottery</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -273,6 +276,9 @@
       <Filter>classes\Game\Game\Lottery</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\BonusStrategy.h">
+      <Filter>classes\Game\Game\Lottery</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\BonusDealer.h">
       <Filter>classes\Game\Game\Lottery</Filter>
     </ClInclude>
   </ItemGroup>

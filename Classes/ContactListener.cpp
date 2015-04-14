@@ -42,6 +42,20 @@ b2Fixture* CustomContact::getBrickFixture()
 
 }
 
+b2Fixture* CustomContact::getBonusFixture()
+{
+	b2Filter filterA = m_fixtureA->GetFilterData();
+	b2Filter filterB = m_fixtureB->GetFilterData();
+	if (filterA.groupIndex == 1)
+	{
+		return m_fixtureA;
+	}
+	else
+	{
+		return m_fixtureB;
+	}
+}
+
 bool CustomContact::isBallAndBrick()
 {
 	b2Filter filterA = m_fixtureA->GetFilterData();
@@ -280,9 +294,62 @@ bool CustomContact::isPaddleAndBad()
 		return false;
 }
 
+bool CustomContact::isBonusAndBottom()
+{
+	b2Filter filterA = m_fixtureA->GetFilterData();
+	b2Filter filterB = m_fixtureB->GetFilterData();
+
+
+	if ((filterA.groupIndex == 0 && filterB.groupIndex == 1)
+		|| (filterA.groupIndex == 1 && filterB.groupIndex == 0))
+	{
+		if ((filterA.categoryBits == (uint16)collide_bit::BOTTOM && filterB.groupIndex == 1)
+			|| (filterB.categoryBits == (uint16)collide_bit::BOTTOM && filterA.groupIndex == 1))
+		{
+			return true;
+		}
+		else
+			return false;
+	}
+
+	return false;
+	
+}
+
+bool CustomContact::isPaddleAndBonus()
+{
+	b2Filter filterA = m_fixtureA->GetFilterData();
+	b2Filter filterB = m_fixtureB->GetFilterData();
+
+
+	if (filterA.groupIndex != filterB.groupIndex)
+	{
+		
+		if (filterA.categoryBits == (uint16)collide_bit::PADDLE
+			|| filterB.categoryBits == (uint16)collide_bit::PADDLE)
+		{
+			return true;
+		}
+		else
+			return false;
+	}
+	return false;
+}
+
 collide_type CustomContact::getCollideType()
 {
-	if (isBallAndWall())
+	if (isBonusAndBottom())
+	{
+	
+		return collide_type::BONUS_BOTTOM;
+	}
+
+	else if (isPaddleAndBonus())
+	{
+	
+		return collide_type::PADDLE_BONUS;
+	}
+	else if (isBallAndWall())
 	{
 		return  collide_type::BALL_WALL;
 	}
@@ -298,7 +365,13 @@ collide_type CustomContact::getCollideType()
 	{
 		return collide_type::BALL_PADDLE; 
 	}
-	else if (isPaddleAndFruit())
+
+	else return collide_type::UNKNOWN;
+}
+
+collide_type CustomContact::getBonusType()
+{
+	if (isPaddleAndFruit())
 	{
 		return collide_type::PADDLE_FRUIT;
 	}
@@ -336,7 +409,6 @@ collide_type CustomContact::getCollideType()
 	}
 	else return collide_type::UNKNOWN;
 }
-
 //----------------------------------------------------------
 //----------------------------------------------------------
 
@@ -345,7 +417,7 @@ void ContactListener::BeginContact(b2Contact* contact)  // Called when two fixtu
 	if (contact)
 	{
 		CustomContact myContact(contact);
-		CCLOG("START,%d,,,,", myContact.getCollideType());
+		
 		if (myContact.getCollideType() != collide_type::UNKNOWN)
 		{
 			contactVector.push_back(myContact);
@@ -376,6 +448,7 @@ void ContactListener::EndContact(b2Contact* contact)   // Called when two fixtur
 
 void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold)
 {
+	//contact->SetEnabled(false);
 	B2_NOT_USED(contact);
 	B2_NOT_USED(oldManifold);
 	//CCLOG("PRE");
@@ -383,6 +456,7 @@ void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold
 
 void ContactListener::PostSolve(b2Contact* contact, const b2ContactImpulse* impulse)
 {
+	//contact->SetEnabled(false);
 	B2_NOT_USED(contact);
 	B2_NOT_USED(impulse);
 	//CCLOG("POST");

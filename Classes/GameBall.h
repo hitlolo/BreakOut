@@ -36,9 +36,20 @@ private:
 	b2Body           *m_groundBody;
 	b2MouseJoint     *m_mouseJoint;
 	b2PrismaticJoint *m_joint_x;
+	int               m_currentSpeed;
+	int               m_minSpeed;
 	int               m_maxSpeed;
+	int               m_normalSpeed;
 	CC_SYNTHESIZE(bool, isStarted, Started);
 	
+	
+	CC_SYNTHESIZE(bool, is_SpeedUp, SpeedUpEd);
+	CC_SYNTHESIZE(bool, is_SpeedDown, SpeedDownEd);
+	CC_SYNTHESIZE(unsigned, bonusTime, BonusTime);
+	void bonusTimeCountingDown(float delta);
+public:
+	int speedUp(unsigned time);
+	int speedDown(unsigned time);
 };
 
 

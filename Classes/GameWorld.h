@@ -23,6 +23,7 @@
 #include "HudLayer.h"
 #include "GameLottery.h"
 #include "BonusCreator.h"
+#include "BonusDealer.h"
 
 
 USING_NS_CC;

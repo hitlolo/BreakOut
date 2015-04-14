@@ -471,6 +471,9 @@ bool GameShatter::createShatter(b2Body* origin_body, std::vector<b2Vec2> vertice
 		fixtureDef.filter.groupIndex = 0;
 		fixtureDef.filter.categoryBits = (uint16)collide_bit::SHATTER;
 		fixtureDef.filter.maskBits = (uint16)collide_bit::PADDLE;
+		//fixtureDef.filter.groupIndex = -1;
+		//fixtureDef.filter.categoryBits = 0;
+		//fixtureDef.filter.maskBits = 0;
 
 
 

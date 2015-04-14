@@ -22,7 +22,7 @@ bool GameWorld::init(int level)
 		return false;
 	}
 	
-	//addBackground();
+	addBackground();
 	addHUD();
 	addTouchLayer();
 
@@ -254,7 +254,7 @@ void GameWorld::update(float dt)
 	m_world->Step(dt, 10, 10);
 	this->logic();
 	m_world->ClearForces();
-	dumpOutsideBodies();
+	//dumpOutsideBodies();
 	if (m_streak)
 	{
 		m_streak->setPosition(m_ball->getPosition());
@@ -349,6 +349,8 @@ void GameWorld::dealContact()
 {
 	std::vector<CustomContact> contactVector = this->m_contact->getContactVector();
 	std::map<GameBrick*, b2Vec2> undealCollideBrick;
+	std::vector<CustomContact> undealBonusVector;
+	std::vector<b2Body*> uncatchedBonusVector;
 	for (auto contact : contactVector)
 	{
 		auto collideType = contact.getCollideType();
@@ -366,12 +368,26 @@ void GameWorld::dealContact()
 		}
 		case COLLIDE_TYPE::BALL_PADDLE:
 		{
+			
 			getSoundEngine()->playMelody(MELODY::XI);
 			break;
 		}
 		case COLLIDE_TYPE::BALL_WALL:
 		{
 			getSoundEngine()->playMelody(MELODY::FA);
+			break;
+		}
+		case COLLIDE_TYPE::PADDLE_BONUS:
+		{
+			undealBonusVector.push_back(contact);
+		
+			break;
+		}
+		case COLLIDE_TYPE::BONUS_BOTTOM:
+		{
+			auto body = contact.getBrickFixture()->GetBody();		
+			uncatchedBonusVector.push_back(body);
+			
 			break;
 		}
 		default:
@@ -408,4 +424,59 @@ void GameWorld::dealContact()
 
 	//undealCollideBrick.clear();
 
+	//uncatched bonus  clean up
+	for (auto body : uncatchedBonusVector)
+	{
+		
+		auto sprite = (PhysicsSprite*)body->GetUserData();
+
+		b2Filter filter;
+		filter.groupIndex = -1;
+		filter.categoryBits = 0;
+		filter.maskBits = 0;
+		body->GetFixtureList()->SetFilterData(filter);
+		
+		auto  fadeout = FadeOut::create(0.2f);
+	//	auto  fadein = FadeIn::create(0.05f);
+	//	auto  repeat = Repeat::create(Sequence::create(fadeout, fadein, nullptr), 2);
+	//	auto action = Spawn::create(scaledown, fade, nullptr);
+		auto clean = CallFunc::create(CC_CALLBACK_0(PhysicsSprite::dump, sprite));
+
+		auto sequence = Sequence::create(fadeout, clean, nullptr);
+		sprite->runAction(sequence);
+	}
+
+
+	//catch bonus
+	for (auto contact : undealBonusVector)
+	{
+		COLLIDE_TYPE collideType = contact.getBonusType();
+		auto bonus = (PhysicsSprite*)(contact.getBonusFixture()->GetBody()->GetUserData());
+		//play melody
+		switch (collideType)
+		{
+		case COLLIDE_TYPE::PADDLE_FRUIT:
+			
+			BonusDealer::getInstance()->dealFruitBonus(bonus, m_hud);
+			break;
+					
+		case COLLIDE_TYPE::PADDLE_SPEED_UP:
+		
+			BonusDealer::getInstance()->dealSpeedUpBonus(m_ball, bonus, m_hud);
+			break;
+		case COLLIDE_TYPE::PADDLE_SPEED_DOWN:
+
+			BonusDealer::getInstance()->dealSpeedDownBonus(m_ball, bonus, m_hud);
+			break;
+		case COLLIDE_TYPE::PADDLE_UP:
+
+			BonusDealer::getInstance()->dealPaddleUpBonus(m_paddle, bonus, m_hud);
+			break;
+		case COLLIDE_TYPE::PADDLE_DOWN:
+
+			BonusDealer::getInstance()->dealPaddleDownBonus(m_paddle, bonus, m_hud);
+			break;
+	
+		}
+	}
 }

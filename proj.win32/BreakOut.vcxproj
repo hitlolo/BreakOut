@@ -140,6 +140,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\AABBQuery.cpp" />
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\BonusCreator.cpp" />
+    <ClCompile Include="..\Classes\BonusDealer.cpp" />
     <ClCompile Include="..\Classes\BonusStrategy.cpp" />
     <ClCompile Include="..\Classes\BrickLayer.cpp" />
     <ClCompile Include="..\Classes\ContactListener.cpp" />
@@ -175,6 +176,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\AABBQuery.h" />
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\BonusCreator.h" />
+    <ClInclude Include="..\Classes\BonusDealer.h" />
     <ClInclude Include="..\Classes\BonusStrategy.h" />
     <ClInclude Include="..\Classes\BrickLayer.h" />
     <ClInclude Include="..\Classes\ContactData.h" />

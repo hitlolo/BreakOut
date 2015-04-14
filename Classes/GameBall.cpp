@@ -6,10 +6,15 @@ GameBall::GameBall(b2World* world, b2Body* ground)
 	, m_groundBody(ground)
 	, m_mouseJoint(nullptr)
 	, m_joint_x(nullptr)
-	, m_maxSpeed(20)
+	, m_normalSpeed(20)
+	, m_minSpeed(15)
+	, m_maxSpeed(25)
+	, is_SpeedUp(false)
+	, is_SpeedDown(false)
+	, bonusTime(0)
 
 {
-	
+	m_currentSpeed = m_normalSpeed;
 }
 
 GameBall::~GameBall()
@@ -122,7 +127,7 @@ void GameBall::update(float time)
 	b2Vec2 velocity = getB2Body()->GetLinearVelocity();
 	//ÔÈËÙÔË¶¯
 	velocity.Normalize();
-	velocity*= m_maxSpeed;
+	velocity *= m_currentSpeed;
 	this->getB2Body()->SetLinearVelocity(velocity);
 }
 
@@ -170,4 +175,77 @@ void GameBall::onMoveCancel()
 		getB2Body()->GetWorld()->DestroyJoint(m_mouseJoint);
 		m_mouseJoint = NULL;
 	}
+}
+
+
+int GameBall::speedUp(unsigned time)
+{
+	if (this->getSpeedUpEd())
+	{
+		this->bonusTime += time;
+		return 0;
+	}
+	else
+	{ 
+		if (this->getSpeedDownEd())
+		{
+			this->unschedule(CC_SCHEDULE_SELECTOR(GameBall::bonusTimeCountingDown));
+			this->m_currentSpeed = m_normalSpeed;
+			this->setSpeedDownEd(false);
+			this->bonusTime = 0;
+			return -1;
+		}
+		this->bonusTime = time;
+		this->m_currentSpeed = m_maxSpeed;
+		this->setSpeedUpEd(true);
+		this->schedule(CC_SCHEDULE_SELECTOR(GameBall::bonusTimeCountingDown), 1.0f);
+		return 1;
+	}
+}
+
+int GameBall::speedDown(unsigned time)
+{
+	if (this->getSpeedDownEd())
+	{
+		this->bonusTime += time;
+		return 0;
+	}
+	else
+	{
+		if (this->getSpeedUpEd())
+		{
+			this->unschedule(CC_SCHEDULE_SELECTOR(GameBall::bonusTimeCountingDown));
+			this->m_currentSpeed = m_normalSpeed;
+			this->setSpeedUpEd(false);
+			this->bonusTime = 0;
+			return -1;
+		}
+		this->bonusTime = time;
+		this->m_currentSpeed = m_minSpeed;
+		this->setSpeedDownEd(true);
+		this->schedule(CC_SCHEDULE_SELECTOR(GameBall::bonusTimeCountingDown), 1.0f);
+		return 1;
+	}
+}
+
+void GameBall::bonusTimeCountingDown(float delta)
+{
+	this->bonusTime -= 1;
+	if (bonusTime == 0)
+	{
+		if (getSpeedUpEd())
+		{
+			this->unschedule(CC_SCHEDULE_SELECTOR(GameBall::bonusTimeCountingDown));
+			this->m_currentSpeed = m_normalSpeed;
+			this->setSpeedUpEd(false);
+		}
+		else if (getSpeedDownEd())
+		{
+			this->unschedule(CC_SCHEDULE_SELECTOR(GameBall::bonusTimeCountingDown));
+			this->m_currentSpeed = m_normalSpeed;
+			this->setSpeedDownEd(false);
+		}
+		
+	}
+	
 }

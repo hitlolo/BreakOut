@@ -23,7 +23,7 @@ typedef  enum class bar_type{
 	LONG,
 }BAR;
 
-class GamePaddle : virtual public Scale9Sprite, public PhysicsProtocol
+class GamePaddle : public Scale9Sprite, public PhysicsProtocol
 {
 public:
 	static GamePaddle* create(b2World*,b2Body*);	
@@ -76,7 +76,7 @@ private:
 	bar_type      m_type;
 	melody        m_melody;
 	// box2d specific
-	
+	CC_SYNTHESIZE(unsigned, bonusTime, BonusTime);
 public:
 	void onBeginMove(const b2Vec2 position);
 	void onMove(const std::vector<Touch*>& touches);
@@ -85,7 +85,10 @@ public:
 
 public:
 	
-
+	int paddleUp(unsigned time);
+	int paddleDown(unsigned time);
+private:
+	void bonusTimeCountingDown(float delta);
 };
 
 #endif
