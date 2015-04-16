@@ -28,10 +28,9 @@ typedef enum class game_state
 
 typedef enum class ball_state
 {
-	IDLE = 0,
-	READY,
-	GAME,
-	OVER
+	TO_BE_START = 0,
+	TO_BE_BONUS,
+	TO_BE_RESTART
 }BALL_STATE;
 
 

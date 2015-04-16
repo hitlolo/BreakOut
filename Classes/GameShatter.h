@@ -19,7 +19,7 @@ public:
 	virtual bool init() override;
 	
 	GameShatter(GameBrick* target, b2Vec2 point);
-	~GameShatter();
+	virtual ~GameShatter();
 
 	void bomb();
 private:

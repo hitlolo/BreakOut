@@ -15,17 +15,17 @@ public:
 	virtual bool init() override;
 	virtual void onEnter() override;
 	CreditLayer();
-	~CreditLayer();
+	virtual ~CreditLayer();
 	void onCancel();
 	void onShow();
-public:
-	CC_SYNTHESIZE(SoundDelegate*, soundEngine, SoundEngine);
+
 private:
 	void addCSBRootFile();
 	void setTouchListeners();
 	void runInAnimation();
 	void runOutAnimation();
 	void playClickEffect();
+
 private:
 	bool onTouchBegan(Touch* touch, Event* event);
 	void onTouchEnded(Touch* touch, Event* event);
@@ -33,6 +33,7 @@ private:
 
 private:
 	EventListenerTouchOneByOne *eventListener;
+	CC_SYNTHESIZE(SoundDelegate*, soundEngine, SoundEngine);
 };
 
 #endif

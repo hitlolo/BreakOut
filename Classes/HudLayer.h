@@ -17,7 +17,7 @@ public:
 	CREATE_FUNC(HudLayer);
 	virtual bool init() override;
 	HudLayer();
-	~HudLayer();
+	virtual ~HudLayer();
 private:
 	void initRootNodeFromCSB();
 	void initFruitLabel();

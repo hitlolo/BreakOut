@@ -17,7 +17,7 @@ public:
 	static GameBrick* create(b2World*,Value&);
 	bool init(b2World*,Value&);
 	GameBrick();
-	~GameBrick();
+	virtual ~GameBrick();
 	b2Vec2 getOriginLocation();
 	CC_SYNTHESIZE(int, coinPoint, CoinPoint);
 //	virtual void update(float time) override;

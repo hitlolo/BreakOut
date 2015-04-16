@@ -83,7 +83,7 @@ bool GameLottery::isBonus()
 {
 	// probability = 1/10
 	int probability = this->getRandomByRange(0, 9);
-	if (probability == 5)
+	if (probability != 5)
 		return true;
 	else
 		return false;

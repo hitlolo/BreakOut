@@ -10,7 +10,7 @@ class AABBQuery : public b2QueryCallback
 {
 public:
 	AABBQuery();
-	~AABBQuery();
+	virtual ~AABBQuery();
 	bool ReportFixture(b2Fixture* fixture);
 	std::vector<b2Body*> getInScreenBodies();
 private:

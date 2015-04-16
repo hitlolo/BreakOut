@@ -14,7 +14,7 @@ public:
 	static GameScene* create(int level);
 	bool init(int level);
 	GameScene();
-	~GameScene();
+	virtual ~GameScene();
 private:	
 	void startGameByLevel(int);
 };

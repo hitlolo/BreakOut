@@ -23,31 +23,38 @@ public:
 	virtual void onEnter() override;
 	virtual void onExit() override;
 	GameMenu();	
-	~GameMenu();
-	CC_SYNTHESIZE(SoundDelegate*, soundEngine, SoundEngine);
-	virtual void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event) override;
+	virtual ~GameMenu();
+	
 
 private:
+	//get menu items
 	void addMenu();
 	void getMenuRoot(Node*);
 	void setTitleFontLineout();
 	void getButtonsFromRoot();
-	void addButtonListeners();
-	void setAndStartUIAnimation();
+	void setButtonListeners();
+	//start ui animation
+	void setAndStartUIAnimation();	
+	
 
 private:
-	Node*     menuRoot;
-	Button*   buttonStart;
-	Button*   buttonOptions;
-	Button*   buttonCredits;
-	Button*   buttonTutorial;
-	OptionLayer* optionLayer;
-	CreditLayer* creditLayer;
+	Node*          menuRoot;
+	Button*        buttonStart;
+	Button*        buttonOptions;
+	Button*        buttonCredits;
+	Button*        buttonTutorial;
+	OptionLayer*   optionLayer;
+	CreditLayer*   creditLayer;
 	TutorialLayer* tutorLayer;
+	CC_SYNTHESIZE(SoundDelegate*, soundEngine, SoundEngine);
+
+	//button callbacks
 	void startGame(Ref* sender);
 	void showOptions(Ref* sender);
 	void showCredits(Ref* sender);
 	void showTutorial(Ref* sender);
+	//sound effect
 	void playClickEffect();
+	virtual void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event) override;
 };
 #endif

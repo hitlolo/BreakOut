@@ -42,22 +42,23 @@ void GameLogo::addLogoAndLoad()
 
 void  GameLogo::loadRes()
 {
-	this->loadPNG();
+	this->loadPngAndShapes();
 	this->loadMusicAndEffects();
 	this->overLoading();
 }
 
 
 
-void  GameLogo::loadPNG()
+void  GameLogo::loadPngAndShapes()
 {
-	Director::getInstance()->getTextureCache()->addImageAsync("spriteSheet.png", CC_CALLBACK_1(GameLogo::loadPNGOver, this));
+	Director::getInstance()->getTextureCache()->addImageAsync("spriteSheet.png", CC_CALLBACK_1(GameLogo::loadSpriteFramesAfterPNGOver, this));
+	
 	GB2ShapeCache::getInstance()->addShapesWithFile("breakout.plist");
 	GB2ShapeCache::getInstance()->addShapesWithFile("items.plist");
 }
 
 
-void GameLogo::loadPNGOver(Texture2D* texture)
+void GameLogo::loadSpriteFramesAfterPNGOver(Texture2D* texture)
 {
 
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("spriteSheet.plist", texture);

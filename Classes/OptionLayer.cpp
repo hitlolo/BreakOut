@@ -6,6 +6,7 @@ bool OptionLayer::init()
 	{
 		return  false;
 	}
+
 	initSoundEngine();
 	addCSBRootFile();
 	getItemsFromRoot();
@@ -77,17 +78,6 @@ void OptionLayer::getItemsFromRoot()
 	if (!panel)
 		return;
 	
-		//set font name again due to the cocos studio 2.0 bugs (Text load ttf error)
-	//for (auto node : panel->getChildren())
-	//{
-	//	auto textNode = dynamic_cast<ui::Text*>(node);
-	//	if (textNode)
-	//	{
-	//		textNode->enableOutline(Color4B(25, 26, 25, 155), 1);
-	//	}
-	//}
-
-	//cancelButton = dynamic_cast<ui::Button*>(panel->getChildByName("cancelButton"));
 	GET_BUTTON(panel, cancelButton);
 //	GET_CHECKBOX(panel, soundCheck);
 //	GET_CHECKBOX(panel, effectCheck);
@@ -97,17 +87,7 @@ void OptionLayer::getItemsFromRoot()
 	effectCheck->setSelectedState(getSoundEngine()->isEffectOn());
 }
 
-void OptionLayer::onShow()
-{
-	this->playClickEffect();
-	this->runInAnimation();
-}
 
-void OptionLayer::onCancel()
-{
-	this->playClickEffect();
-	this->runOutAnimation();
-}
 
 void OptionLayer::setClickListenersToItems()
 {
@@ -120,6 +100,7 @@ void  OptionLayer::onCancelCallBack(Ref* sender)
 {
 	onCancel();
 }
+
 void  OptionLayer::onMusicCheckBoxCallback(Ref *pSender, ui::CheckBoxEventType event_type)
 {
 	this->playClickEffect();
@@ -132,8 +113,6 @@ void  OptionLayer::onMusicCheckBoxCallback(Ref *pSender, ui::CheckBoxEventType e
 		getSoundEngine()->musicOff();
 		break;
 	}
-
-
 }
 void  OptionLayer::onEffectCheckBoxCallback(Ref *pSender, ui::CheckBoxEventType event_type)
 {
@@ -178,5 +157,17 @@ bool  OptionLayer::isTouchOnPanel(Touch* touch)
 	Point position = touch->getLocationInView();
 	Rect panelRect = rootNode->boundingBox();
 	return panelRect.containsPoint(position);
-	
+}
+
+
+void OptionLayer::onShow()
+{
+	this->playClickEffect();
+	this->runInAnimation();
+}
+
+void OptionLayer::onCancel()
+{
+	this->playClickEffect();
+	this->runOutAnimation();
 }

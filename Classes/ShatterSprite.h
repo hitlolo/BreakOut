@@ -16,7 +16,7 @@ class ShatterSprite :public PhysicsSprite, public PhysicsProtocol
 public:
 	static ShatterSprite* create(b2Body* body, Sprite* originSprite);
 	ShatterSprite(b2Body* body, Sprite* originSprite);
-	~ShatterSprite();
+	virtual ~ShatterSprite();
 	virtual void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags) override;
 	bool init(b2Body* body, Sprite* originSprite);
 private:

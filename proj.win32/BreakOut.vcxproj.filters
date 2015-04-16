@@ -66,9 +66,6 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\test.cpp">
-      <Filter>classes</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\CreditLayer.cpp">
       <Filter>classes\Menu</Filter>
     </ClCompile>
@@ -169,9 +166,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\test.h">
-      <Filter>classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\CreditLayer.h">
       <Filter>classes\Menu</Filter>

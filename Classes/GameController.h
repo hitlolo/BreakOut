@@ -17,21 +17,24 @@ class GameController
 
 public:
 	static GameController* getInstance();
-	GameController();
+	 GameController();
 	~GameController();
-	void goState(const GAME_STATE = GAME_STATE::LOGO);
-	int getLevelPassed();
-	void setLevelPassed(int);
-	CC_SYNTHESIZE(int, levelSelected, SelectedLevel);
-	void popScene();
+
+public:
+	//interface
+	void  goState(const GAME_STATE = GAME_STATE::LOGO);
+	int   getLevelPassed();
+	void  setLevelPassed(int);
+	
+	void  backToLastScene();
+	
 
 private:
 	static GameController* _controller; 
 	void nextScene(Scene*);
 	void pushSceneBySlideInR(Scene*);
 	void pushSceneByFadeIn(Scene*);
-	CC_SYNTHESIZE(GAME_STATE, curGameState, CurGameState);
-	CC_SYNTHESIZE(Scene*, curScene, CurScene);
+	
 
 private:
 	void logo();
@@ -42,6 +45,9 @@ private:
 
 private:
 	int  level;
+	CC_SYNTHESIZE(int, levelSelected, SelectedLevel);
+	CC_SYNTHESIZE(GAME_STATE, curGameState, CurGameState);
+	CC_SYNTHESIZE(Scene*, curScene, CurScene);
 };
 
 #endif

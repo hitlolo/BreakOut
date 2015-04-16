@@ -22,10 +22,10 @@ GameBall::~GameBall()
 
 }
 
-GameBall* GameBall::create(b2World* world, b2Body* ground)
+GameBall* GameBall::create(b2World* world, b2Body* ground, b2Vec2 position, ball_state state, b2Vec2 velocity)
 {
 	GameBall * ret = new (std::nothrow) GameBall(world, ground);
-	if (ret && ret->init())
+	if (ret && ret->init(position, state, velocity))
 	{
 		ret->autorelease();
 	}
@@ -36,13 +36,13 @@ GameBall* GameBall::create(b2World* world, b2Body* ground)
 	return ret;
 }
 
-bool GameBall::init()
+bool GameBall::init(b2Vec2 position, ball_state state, b2Vec2 velocity)
 {
 	if (!PhysicsSprite::init())
 	{
 		return false;
 	}
-	beReady();
+	initByStateAndPositionAndVelocity(state, position, velocity);
 	return true;
 }
 
@@ -78,18 +78,36 @@ std::string GameBall::selectRandomColor()
 	}
 }
 
-void  GameBall::initPhysicsAttributes()
-{
 
+
+void GameBall::initByStateAndPositionAndVelocity(ball_state state, b2Vec2 position, b2Vec2 velocity)
+{
+	this->initSelfImage();
+	switch (state)
+	{
+	case BALL_STATE::TO_BE_START:
+		initStartPhysicsAttributes(position);
+		break;
+	case BALL_STATE::TO_BE_BONUS:
+		initBonusPhysicsAttributes(position,velocity);
+		break;
+	case BALL_STATE::TO_BE_RESTART:
+		initReStartPhysicsAttributes(position);
+		break;
+	}
+}
+
+void GameBall::initStartPhysicsAttributes(b2Vec2 position)
+{
 	b2BodyDef bodyDef;
 	bodyDef.type = b2BodyType::b2_dynamicBody;
 	bodyDef.linearDamping = 0.0f;
 	bodyDef.angularDamping = 0.0f;
 	bodyDef.fixedRotation = false;
 	bodyDef.gravityScale = 0.0f;
-//	bodyDef.bullet = true;
+	//	bodyDef.bullet = true;
 	bodyDef.userData = this;
-	bodyDef.position.Set(  ptm(288), ptm(96) );
+	bodyDef.position = position;
 	auto body = m_world->CreateBody(&bodyDef);
 
 	GB2ShapeCache::getInstance()->addFixturesToBody(body, "ball");
@@ -104,18 +122,61 @@ void  GameBall::initPhysicsAttributes()
 	m_joint_x = (b2PrismaticJoint*)getB2Body()->GetWorld()->CreateJoint(&jointDef);
 }
 
-
-void GameBall::beReady()
+void GameBall::initBonusPhysicsAttributes(b2Vec2 position, b2Vec2 velocity)
 {
-	initSelfImage();
-	initPhysicsAttributes();
+	b2BodyDef bodyDef;
+	bodyDef.type = b2BodyType::b2_dynamicBody;
+	bodyDef.linearDamping = 0.0f;
+	bodyDef.angularDamping = 0.0f;
+	bodyDef.fixedRotation = false;
+	bodyDef.gravityScale = 0.0f;
+	//	bodyDef.bullet = true;
+	bodyDef.userData = this;
+	bodyDef.position = position;
+	auto body = m_world->CreateBody(&bodyDef);
 
+	GB2ShapeCache::getInstance()->addFixturesToBody(body, "ball");
+	this->setB2Body(body);
+	this->setPTMRatio(PTM_RATIO);
+	this->setIgnoreBodyRotation(false);
+
+	//start rolling
+	this->getB2Body()->SetLinearVelocity(velocity);
+	this->getB2Body()->SetAngularVelocity(5.0f);
+	this->setStarted(true);
+
+	this->scheduleUpdate();
+}
+
+void GameBall::initReStartPhysicsAttributes(b2Vec2 position)
+{
+	b2BodyDef bodyDef;
+	bodyDef.type = b2BodyType::b2_dynamicBody;
+	bodyDef.linearDamping = 0.0f;
+	bodyDef.angularDamping = 0.0f;
+	bodyDef.fixedRotation = false;
+	bodyDef.gravityScale = 0.0f;
+	//	bodyDef.bullet = true;
+	bodyDef.userData = this;
+	bodyDef.position = position;
+	auto body = m_world->CreateBody(&bodyDef);
+
+	GB2ShapeCache::getInstance()->addFixturesToBody(body, "ball");
+	this->setB2Body(body);
+	this->setPTMRatio(PTM_RATIO);
+	this->setIgnoreBodyRotation(false);
+
+	b2PrismaticJointDef jointDef;
+	b2Vec2 worldAxis(1.0f, 0.0f);
+	jointDef.collideConnected = true;
+	jointDef.Initialize(getB2Body(), m_groundBody, getB2Body()->GetWorldCenter(), worldAxis);
+	m_joint_x = (b2PrismaticJoint*)getB2Body()->GetWorld()->CreateJoint(&jointDef);
 }
 
 void GameBall::startGame()
 {
 	this->getB2Body()->GetWorld()->DestroyJoint(m_joint_x);
-	this->getB2Body()->SetLinearVelocity(b2Vec2(0, m_maxSpeed));
+	this->getB2Body()->SetLinearVelocity(b2Vec2(0, m_normalSpeed));
 	this->getB2Body()->SetAngularVelocity(5.0f);
 	this->setStarted(true);
 	

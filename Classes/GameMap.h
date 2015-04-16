@@ -24,7 +24,7 @@ public:
 
 	GameMap();
 
-	~GameMap();
+	virtual ~GameMap();
 
 	CC_SYNTHESIZE(SoundDelegate*, soundEngine, SoundEngine);
 

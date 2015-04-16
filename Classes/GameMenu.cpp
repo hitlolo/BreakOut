@@ -46,7 +46,7 @@ void GameMenu::addMenu()
 	this->getMenuRoot(node);
 	this->setTitleFontLineout();
 	this->getButtonsFromRoot();
-	this->addButtonListeners();
+	this->setButtonListeners();
 	
 }
 
@@ -96,7 +96,7 @@ void GameMenu::getButtonsFromRoot()
 	GET_BUTTON(menuRoot, buttonCredits);
 }
 
-void GameMenu::addButtonListeners()
+void GameMenu::setButtonListeners()
 {
 	buttonStart->addClickEventListener(CC_CALLBACK_1(GameMenu::startGame,this));
 	buttonOptions->addClickEventListener(CC_CALLBACK_1(GameMenu::showOptions, this));
@@ -184,14 +184,6 @@ void GameMenu::playClickEffect()
 {
 	getSoundEngine()->playClickEffect();
 }
-
-//void GameMenu::keyBackClicked()
-//{
-//	Director::getInstance()->end();
-//#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)  
-//	exit(0);
-//#endif  
-//}
 
 void GameMenu::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 {

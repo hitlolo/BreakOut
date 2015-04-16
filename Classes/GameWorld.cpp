@@ -282,7 +282,7 @@ void GameWorld::onGameStart()
 
 void GameWorld::onReturn()
 {
-	GameController::getInstance()->popScene();
+	GameController::getInstance()->backToLastScene();
 }
 
 void GameWorld::onPaddleBeginMove(const std::vector<Touch*>& touches)

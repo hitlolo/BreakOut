@@ -35,7 +35,7 @@ public:
 	static GameWorld* create(int);
 	bool init(int);
 	GameWorld();
-	~GameWorld();
+	virtual ~GameWorld();
 	//update the physics world  too
 	virtual void update(float dt) override;
 	//draw physics debug draw
@@ -72,6 +72,8 @@ private:
 	ParticleSystemQuad *m_particle;
 	ContactListener    *m_contact;
 	CC_SYNTHESIZE(SoundDelegate*, soundEngine, SoundEngine);
+
+	std::vector<GameBall*> m_BallVector;
 
 #if 1
 	DrawNode       *m_draw;

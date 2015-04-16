@@ -75,7 +75,7 @@ void GameMap::onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event)
 {
 	if (keyCode == EventKeyboard::KeyCode::KEY_BACK)
 	{
-		GameController::getInstance()->popScene();
+		GameController::getInstance()->backToLastScene();
 
 	}
 }

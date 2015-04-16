@@ -11,13 +11,15 @@
 
 USING_NS_CC;
 
+
+
 class GameBall :public PhysicsSprite, public PhysicsProtocol
 {
 public:
-	static GameBall* create(b2World*,b2Body*);
-	virtual bool init() override;
+	static GameBall* create(b2World*, b2Body*, b2Vec2 = b2Vec2(9, 3), ball_state = ball_state::TO_BE_START,b2Vec2 = b2Vec2(0,0));
+	bool init(b2Vec2, ball_state, b2Vec2);
 	GameBall(b2World*, b2Body*);
-	~GameBall();
+	virtual ~GameBall();
 	void startGame();
 	void update(float time) override;
 public:
@@ -28,8 +30,12 @@ public:
 private:
 	std::string selectRandomColor();
 	void initSelfImage();
-	void initPhysicsAttributes();	
-	void beReady();
+
+
+	void initByStateAndPositionAndVelocity(ball_state,b2Vec2,b2Vec2);
+	void initStartPhysicsAttributes(b2Vec2 position);
+	void initBonusPhysicsAttributes(b2Vec2 position, b2Vec2 velocity);
+	void initReStartPhysicsAttributes(b2Vec2 position);
 
 private:
 	b2World          *m_world;

@@ -10,17 +10,19 @@ USING_NS_CC;
 class GameLogo :public Layer
 {
 public:
-	virtual bool init() override;
 	static Scene* createScene();
 	CREATE_FUNC(GameLogo);
+	virtual bool init() override;
 
 private:
 	void startLoading();
-	void loadRes();
 	void addLogoAndLoad();
-	void loadPNG();
-	void loadPNGOver(Texture2D* texture);	void loadMusicAndEffects();
+	void loadRes();
+	void loadPngAndShapes();
+	void loadSpriteFramesAfterPNGOver(Texture2D* texture);	void loadMusicAndEffects();
 	void overLoading();
+
+	//GameController goto menu state
 	void startGame();
 };
 

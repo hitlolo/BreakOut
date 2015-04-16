@@ -2,6 +2,7 @@
 
 GameController* GameController::_controller = nullptr;
 
+
 GameController* GameController::getInstance()
 {
 	if (_controller == nullptr)
@@ -40,7 +41,6 @@ void GameController::goState(const GAME_STATE state)
 		map();
 		break;
 	case GAME_STATE::GAME:
-		//test();
 		game(getSelectedLevel());
 		break;
 	case GAME_STATE::OVER:
@@ -101,7 +101,7 @@ void  GameController::pushSceneByFadeIn(Scene* next_scene)
 	Director::getInstance()->pushScene(trasition);
 }
 
-void GameController::popScene()
+void GameController::backToLastScene()
 {
 	Director::getInstance()->popScene();
 }

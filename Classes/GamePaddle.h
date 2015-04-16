@@ -30,7 +30,7 @@ public:
 	virtual bool init() override;
 	virtual void update(float time) override;
 	GamePaddle(b2World*, b2Body*);
-	~GamePaddle();
+	virtual ~GamePaddle();
 
 private:
 	std::string selectRandomFile();
